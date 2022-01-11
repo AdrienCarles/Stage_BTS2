@@ -15,7 +15,7 @@ ini_set('html_errors', '1');
  * @param string $classe
  */
 function my_autoloader($classe) {
-  include 'classes/' . $classe . '.php';
+  include 'classe/' . $classe . '.php';
 }
 
 spl_autoload_register('my_autoloader');
