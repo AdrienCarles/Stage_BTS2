@@ -18,6 +18,8 @@ function my_autoloader($classe) {
   include 'classe/' . $classe . '.php';
 }
 
+session_start(); // Démarrage de la session
+
 spl_autoload_register('my_autoloader');
 
 /**
