@@ -65,6 +65,7 @@ CREATE TABLE utilisateur(
    id_user INT NOT NULL UNIQUE AUTO_INCREMENT,
    nom_user VARCHAR(500),
    prenom_user VARCHAR(500),
+   mdp_user VARCHAR(500) NOT NULL,
    classe_user VARCHAR(500),
    tel_user VARCHAR(50),
    mail_user VARCHAR(500),
