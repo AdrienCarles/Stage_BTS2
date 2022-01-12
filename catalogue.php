@@ -30,13 +30,14 @@ require('init.php');
       $familles =New FamilleDAO;
       $familles = $familles->findall();
       foreach($familles as $famille){
+        $id_famille = $famille->get_id_famille();
         $lib_famille = $famille->get_lib_famille();
         echo $lib_famille."<br>";
         $images = New ImageDAO;
         $images = $images->findall();
         foreach($images AS $image){  
           $img = $image->get_id_image();
-          echo("<a href='panier.php?id_produit=".$id_produit."&id_image=".$img."'><img class=' ' src='./img/Visuel/$lib_famille/$img.jpg' alt='produit'></a>");
+          echo("<a href='panier.php?id_produit=".$id_produit."&id_famille=".$id_famille."&id_image=".$img."'><img class=' ' src='./img/Visuel/$lib_famille/$img.jpg' alt='produit'></a>");
         }
         echo "<hr>";
       }
