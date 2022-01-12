@@ -1,7 +1,6 @@
 <?php
-/**
- * Page d'accueil
- */
+// Initialisations
+require('init.php');
 ?>
 <!DOCTYPE html>
 <html lang="fr">
