@@ -1,8 +1,9 @@
 
 INSERT INTO `role`(`lib_role`) 
 VALUES 
-("Administrateur"),
-("Utilisateur");
+("Utilisateur"),
+("Controleur"),
+("Administrateur");
 
 INSERT INTO `produit`(`lib_produit`, `type_produit`, `spec_produit`, `prix`, `diametre`) 
 VALUES 
