@@ -76,9 +76,15 @@ CREATE TABLE utilisateur(
 
 CREATE TABLE commande(
    id_commande INT NOT NULL UNIQUE AUTO_INCREMENT,
+   num_commande VARCHAR(500),
    date_commande DATE,
    total_comande FLOAT,
    mode_paiement VARCHAR(500),
+   nom_commande VARCHAR(500),
+   prenom_commande VARCHAR(500),
+   classe_commande VARCHAR(50),
+   tel_commande VARCHAR(50),
+   mail_commande VARCHAR(500),
    id_user INT NOT NULL,
    id_statut INT NOT NULL,
    PRIMARY KEY(id_commande),
