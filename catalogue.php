@@ -1,6 +1,15 @@
 <?php
 // Initialisations
 require('init.php');
+session_start();
+$id_produit = isset($_GET['id_produit']) ? $_GET['id_produit'] : '';
+$produit = isset($_SESSION['produit']) ? $_SESSION['produit'] : '';
+
+if(!isset($_SESSION['produit'])){
+  $produit =New ProduitDAO;
+  $produit = $produit->find($id_produit);  
+  $_SESSION["produit"] = $produit;  
+}
 
 ?>
 <!DOCTYPE html>
@@ -37,7 +46,7 @@ require('init.php');
         $images = $images->findall();
         foreach($images AS $image){  
           $img = $image->get_id_image();
-          echo("<a href='panier.php?id_produit=".$id_produit."&id_famille=".$id_famille."&id_image=".$img."'><img class=' ' src='./img/Visuel/$lib_famille/$img.jpg' alt='produit'></a>");
+          echo("<a href='panier.php?id_famille=".$id_famille."&id_image=".$img."'><img class=' ' src='./img/Visuel/$lib_famille/$img.jpg' alt='produit'></a>");
         }
         echo "<hr>";
       }

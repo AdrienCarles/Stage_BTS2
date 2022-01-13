@@ -15,7 +15,7 @@
   $tel=isset($_POST['tel']) ? $_POST['tel'] : '+33';
   $mail=isset($_POST['mail']) ? $_POST['mail'] : '';
   $submit=isset($_POST['submit']); // Attribue à la variable submit l'appui sur le bouton du formulaire 
-
+  
   // Vérifie le user et filtre les données renrer dans le formulaire
   if ($submit){
     // NOM

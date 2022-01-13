@@ -1,6 +1,8 @@
 <?php
 // Initialisations
 require('init.php');
+session_start();
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -13,6 +15,11 @@ require('init.php');
 </head>
 <body>
   <h1>Les silusins</h1>
-  <?php include "menu.php"; ?>
+  
+  <?php include "menu.php"; 
+  session_unset();
+  session_destroy();
+  setcookie(session_name(),'',-1,'/');
+  ?>
 </body>
 </html>
