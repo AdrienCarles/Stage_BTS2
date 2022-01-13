@@ -3,7 +3,6 @@
 require('init.php');
 session_start();
 $id_produit = isset($_GET['id_produit']) ? $_GET['id_produit'] : '';
-$produit = isset($_SESSION['produit']) ? $_SESSION['produit'] : '';
 
 if(!isset($_SESSION['produit'])){
   $produit =New ProduitDAO;
@@ -26,6 +25,7 @@ if(!isset($_SESSION['produit'])){
   <?php include "menu.php"; ?>
   <?php
     if(!isset($_GET['id_produit'])){
+      session_unset();
       $produits =New ProduitDAO;
       $produits = $produits->findall();    
       foreach($produits as $produit){
@@ -46,7 +46,7 @@ if(!isset($_SESSION['produit'])){
         $images = $images->findall();
         foreach($images AS $image){  
           $img = $image->get_id_image();
-          echo("<a href='panier.php?id_famille=".$id_famille."&id_image=".$img."'><img class=' ' src='./img/Visuel/$lib_famille/$img.jpg' alt='produit'></a>");
+          echo("<img class=' ' src='./img/Visuel/$lib_famille/$img.jpg' alt='produit'>");
         }
         echo "<hr>";
       }

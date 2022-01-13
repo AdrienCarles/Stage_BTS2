@@ -2,24 +2,7 @@
     // Initialisations
     require('init.php');
     session_start();
-    $id_famille = isset($_GET['id_famille']) ? $_GET['id_famille'] : '';
-    $id_image = isset($_GET['id_image']) ? $_GET['id_image'] : '';
-
-    $produit = isset($_SESSION['produit']) ? $_SESSION['produit'] : '';
-    $famille = isset($_SESSION['famille']) ? $_SESSION['famille'] : '';
-    $image = isset($_SESSION['image']) ? $_SESSION['image'] : '';
-    $submit = isset($_POST['submit']);
-
-    if(!isset($_SESSION['famille'])){
-      $famille =New FamilleDAO;
-      $famille = $famille->find($id_famille);  
-      $_SESSION["famille"] = $famille;  
-    }
-    if(!isset($_SESSION['image'])){
-      $image =New ImageDAO;
-      $image = $image->find($id_image);  
-      $_SESSION["image"] = $image;  
-    }
+  
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -31,28 +14,6 @@
   <link rel="stylesheet" type="text/css" href="css/styles.css" />
 </head>
 <body>
-    <h1>Catalogue</h1>
-    <?php include "menu.php"; ?>
-    <?php
-        if (!$submit) {
-            echo("<p class=''>".$produit->get_lib_produit()."</p>");
-            $img_prod = $produit->get_id_produit();
-            echo("<img class=' ' src='./img/Produits/$img_prod.jpg' alt='produit'>");
-            echo("<p class=''>".$produit->get_prix()."€</p>");
-            echo("<img class=' ' src='./img/Visuel/".$famille->get_lib_famille()."/".$image->get_id_image().".jpg' alt='image'>");
-    ?>
-    <br><br><br>
-    <form action="<?php echo $_SERVER['PHP_SELF']?>" method="post">
-        <label for="message">Votre message personnalisé</label><br>
-        <textarea name="message" id="message" cols="30" rows="2"></textarea><br>
-        <label for="qte">Quantitée</label><br>
-        <input name="qte" id="qte" type="text" value=1 required/><br>
-        <input type="submit" name="submit" value="Valider" class="">
-    </form>
-    <?php 
-        }else{
-            
-        }; 
-    ?>
+
 </body>
 </html>
