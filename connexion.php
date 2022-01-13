@@ -1,6 +1,5 @@
 <?php
-  // Initialisations
-  require('init.php');
+  require("header.php");
   $utilisateurDAO = new UtilisateurDAO();
   //Recuperation des données entrées dans le formulaire
   $nom=isset($_POST['nom']) ? $_POST['nom'] :  "";
@@ -25,25 +24,16 @@
   }
 
 ?>
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Les Silusins</title>
-  <link rel="stylesheet" type="text/css" href="css/styles.css" />
-</head>
-<body>
-  <h1>Connexion</h1>
-  <?php include "menu.php"; ?>
-  <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post"> <!-- Formulaire -->
-    <br>
-    <label for="nom">Nom</label><br>
-    <input type="text" name="nom" id="nom" required><br>
-    <label for="mdp">Mot de passe</label><br>
-    <input type="password" name="mdp" id="mdp" required><br><br>
-    <input type="submit" name="submit" value="Connexion">
-  </form>
-</body>
-</html>
+<h1>Connexion</h1>
+<?php include "menu.php"; ?>
+<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post"> <!-- Formulaire -->
+  <br>
+  <label for="nom">Nom</label><br>
+  <input type="text" name="nom" id="nom" required><br>
+  <label for="mdp">Mot de passe</label><br>
+  <input type="password" name="mdp" id="mdp" required><br><br>
+  <input type="submit" name="submit" value="Connexion">
+</form>
+<?php
+  require("footer.php");
+?>

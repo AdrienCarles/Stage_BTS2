@@ -1,6 +1,5 @@
 <?php
-  // Initialisations
-  require('init.php');
+  require("header.php");
 
   $utilisateurDAO = new UtilisateurDAO();
 
@@ -81,51 +80,42 @@
 
 
 ?>
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Les Silusins</title>
-  <link rel="stylesheet" type="text/css" href="css/styles.css" />
-</head>
-<body>
-  <h1>Inscription</h1>
-  <?php 
-    include "menu.php";
-    if (count($messages) > 0) {
-      echo "<ul>";
-      foreach ($messages as $message) {
-        echo "<li>" . $message . "</li>";
-      }
-      echo "</ul>";
+<h1>Inscription</h1>
+<?php 
+  include "menu.php";
+  if (count($messages) > 0) {
+    echo "<ul>";
+    foreach ($messages as $message) {
+      echo "<li>" . $message . "</li>";
     }
-  ?>
+    echo "</ul>";
+  }
+?>
 
-  <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post"> <!-- Formulaire -->
-    <label for="nom">Nom</label><br>
-    <input type="text" name="nom" id="nom" placeholder="Nom" value="<?=$nom?>"><br>
+<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post"> <!-- Formulaire -->
+  <label for="nom">Nom</label><br>
+  <input type="text" name="nom" id="nom" placeholder="Nom" value="<?=$nom?>"><br>
     
-    <label for="prenom">Prénom</label><br>
-    <input type="text" name="prenom" id="prenom" placeholder="Prénom" value="<?=$prenom?>"><br>
+  <label for="prenom">Prénom</label><br>
+  <input type="text" name="prenom" id="prenom" placeholder="Prénom" value="<?=$prenom?>"><br>
 
-    <label for="mdp">Mot de Passe</label><br>
-    <input type="password" name="mdp" id="mdp" placeholder="Mot de Passe" value=""><br>
+  <label for="mdp">Mot de Passe</label><br>
+  <input type="password" name="mdp" id="mdp" placeholder="Mot de Passe" value=""><br>
 
-    <label for="c_mdp">Confirmer le Mot de Passe</label><br>
-    <input type="password" name="c_mdp" id="c_mdp" placeholder="Mot de Passe" value=""><br>
+  <label for="c_mdp">Confirmer le Mot de Passe</label><br>
+  <input type="password" name="c_mdp" id="c_mdp" placeholder="Mot de Passe" value=""><br>
 
-    <label for="classe">Classe</label><br>
-    <input type="text" name="classe" id="classe" placeholder="Classe" value="<?=$classe?>"><br>
+  <label for="classe">Classe</label><br>
+  <input type="text" name="classe" id="classe" placeholder="Classe" value="<?=$classe?>"><br>
     
-    <label for="tel">Téléphone</label><br>
-    <input type="text" name="tel" id="tel" placeholder="Téléphone" value="<?=$tel?>"><br>
+  <label for="tel">Téléphone</label><br>
+  <input type="text" name="tel" id="tel" placeholder="Téléphone" value="<?=$tel?>"><br>
     
-    <label for="mail">Mail</label><br>
-    <input type="email" name="mail" id="mail" placeholder="Mail" value="<?=$mail?>"><br><br>
+  <label for="mail">Mail</label><br>
+  <input type="email" name="mail" id="mail" placeholder="Mail" value="<?=$mail?>"><br><br>
 
-    <input type="submit" value="S'inscrire" name="submit">
-  </form>   
-</body>
-</html>
+  <input type="submit" value="S'inscrire" name="submit">
+</form>   
+<?php
+  require("footer.php");
+?>

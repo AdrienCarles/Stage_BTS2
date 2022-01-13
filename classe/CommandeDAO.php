@@ -39,4 +39,11 @@ class CommandeDAO extends DAO {
     }
     return $commande;
   } // function find
+
+  function insert_commande(Commande $commande){
+    $sql = "INSERT INTO `commande`(`id_commande`, `num_commande`, `date_commande`, `total_comande`, `mode_paiement`, `nom_commande`, `prenom_commande`, `classe_commande`, `tel_commande`, `mail_commande`, `id_user`, `id_statut`
+            VALUES 
+            (:title, :phase, :us_release_date, :directors, :screenwriters, :producers, :status)";
+
+  }
 }
