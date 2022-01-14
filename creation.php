@@ -44,13 +44,11 @@
     //etape 4 
     $message = isset($_SESSION['message']) ? $_SESSION['message'] : '';
 
-?>
-<?php
     // Point 0
     if($etape == 0){
         echo "<h1>Créer le votre</h1>";   
         echo "<br>";
-        echo "<a href='creation.php?etape=1'>C'est partie</a>";
+        echo "<a href='creation.php?etape=1'>C'est parti</a>";
     }
     // Etape 1
     if($etape == 1){
@@ -69,7 +67,6 @@
     }
     // Etape 2
     if($etape == 2){
-        $id_produit =$_GET['id_produit'];
         $familles =New FamilleDAO;
         $familles = $familles->findall();
         foreach($familles as $famille){
@@ -110,11 +107,11 @@
             echo("<img class=' ' src='./img/Produits/$img_prod.jpg' alt='produit'>");
             echo("<img class=' ' src='./img/Visuel/".$famille->get_lib_famille()."/".$image->get_id_image().".jpg' alt='image'>");   
             ?>
-                <form action="validation.php" method="post">
-                    <label for="qte">Quantité</label><br>
-                    <input name="qte" id="qte" type="text" value=1 required/><br>
-                    <input type="submit" name="submit2" value="Valider" class="">
-                </form>
+            <form action="validation.php" method="post">
+                <label for="qte">Quantité</label><br>
+                <input name="qte" id="qte" type="number" value=1 required/><br>
+                <input type="submit" name="submit2" value="Valider" class="">
+            </form>
             <?php
         }else{
             header("Location: validation.php"); //Redirection vers validation

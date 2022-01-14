@@ -10,7 +10,6 @@
 
 ?>
 <h1>Catalogue</h1>
-<?php include "menu.php"; ?>
 <?php
   if(!isset($_GET['id_produit'])){
     session_unset();

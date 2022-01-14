@@ -31,7 +31,7 @@ CREATE TABLE produit(
    lib_produit VARCHAR(500),
    type_produit VARCHAR(500),
    spec_produit VARCHAR(500),
-   prix VARCHAR(50),
+   prix FLOAT,
    diametre FLOAT,
    PRIMARY KEY(id_produit)
 );

@@ -41,9 +41,26 @@ class CommandeDAO extends DAO {
   } // function find
 
   function insert_commande(Commande $commande){
-    $sql = "INSERT INTO `commande`(`id_commande`, `num_commande`, `date_commande`, `total_comande`, `mode_paiement`, `nom_commande`, `prenom_commande`, `classe_commande`, `tel_commande`, `mail_commande`, `id_user`, `id_statut`
+    $sql = "INSERT INTO `commande`(`num_commande`, `date_commande`, `total_comande`, `mode_paiement`, `nom_commande`, `prenom_commande`, `classe_commande`, `tel_commande`, `mail_commande`, `id_user`, `id_statut`)
             VALUES 
-            (:title, :phase, :us_release_date, :directors, :screenwriters, :producers, :status)";
-
+            (:num_commande, :date_commande, :total_comande, :mode_paiement, :nom_commande, :prenom_commande, :classe_commande, :tel_commande, :mail_commande, :id_user, :id_statut)";
+    try{
+      $params = array(
+        ':num_commande'=>$commande->get_num_commande(),
+        ':date_commande'=>$commande->get_date_commande(),
+        ':total_comande'=>$commande->get_total_comande(),
+        ':mode_paiement'=>$commande->get_mode_paiement(),
+        ':nom_commande'=>$commande->get_nom_commande(),
+        ':prenom_commande'=>$commande->get_prenom_commande(),
+        ':classe_commande'=>$commande->get_classe_commande(),
+        ':tel_commande'=>$commande->get_tel_commande(),
+        ':mail_commande'=>$commande->get_mail_commande(),
+        ':id_user'=>$commande->get_id_user(),
+        ':id_statut'=>$commande->get_id_statut(),
+      );
+      $sth = $this->executer($sql, $params);
+    }catch (PDOException $e) {
+      die("Erreur lors de la requête SQL : " . $e->getMessage());
+    }
   }
 }

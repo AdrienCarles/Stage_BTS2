@@ -12,4 +12,11 @@
   <link rel="stylesheet" type="text/css" href="css/styles.css" />
 </head>
 <body>
-    <?php include "menu.php"; ?>
+  <?php include "menu.php"; ?>
+  <ul>
+    <li>Page d'<a href="index.php">accueil</a></li>
+    <li><a href="connexion.php">Connexion</a></li>
+    <li><a href="inscription.php">Inscription</a></li>
+    <li><a href="catalogue.php">Catalogue</a></li>
+    <li><a href="creation.php">Création</a></li>
+  </ul>

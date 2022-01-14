@@ -52,3 +52,7 @@ VALUES
 (1,25),
 (1,26),
 (,),
+
+INSERT INTO `statut`(`lib_statut`) 
+VALUES 
+("Panier"),

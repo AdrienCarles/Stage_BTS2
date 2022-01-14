@@ -1,8 +1,11 @@
 <?php
     require("header.php");
+    $date = date('Y/m/d');
 
-    $qte = isset($_POST['qte']) ? $_POST['qte'] : '';
+    $qte = isset($_POST['qte']) ? $_POST['qte'] : '1';
     $etape = isset($_GET['etape']) ? $_GET['etape'] : '';
+
+
 
     $produit = isset($_SESSION['produit']) ? $_SESSION['produit'] : ''; //récupération des objets contenus dans la session 
     $famille = isset($_SESSION['famille']) ? $_SESSION['famille'] : '';
@@ -20,10 +23,28 @@
 
     $submit = isset($_POST['submit']);
 
+    if ($submit) {
+        $prix = $produit->get_prix()*$_SESSION['qte'];
+        $commande = new Commande(array(
+            'num_commande'=>"W1000",
+            'date_commande'=>$date,
+            'total_comande'=>$prix,
+            'mode_paiement'=>NULL,
+            'nom_commande'=>$nom,
+            'prenom_commande'=>$prenom,
+            'classe_commande'=>$classe,
+            'tel_commande'=>$tel,
+            'mail_commande'=>$mail,
+            'id_user'=>1,
+            'id_statut'=>1,
+        ));
+        $commandeDAO->insert_commande($commande); 
+    }
 ?>
 <h1>Validation</h1>
 <?php
     if($etape === ''){
+        $_SESSION['qte'] = $qte;
         echo ("<h2 class=''>Valider votre produit</h2>");
         echo("<p class=''>".$produit->get_lib_produit()."</p>");
         $img_produit = $produit->get_id_produit();
@@ -53,9 +74,9 @@
             <input type="text" name="tel"><br><br>
             <label for="mail">Mail</label><br>
             <input type="text" name="mail"><br><br>
-            <input type="submit">
+            <input type="submit"name="submit" value="Envoyer" />
         </form>
         <?php
     }
-require("footer.php");
+require("footer.php")
 ?>

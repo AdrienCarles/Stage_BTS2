@@ -46,7 +46,7 @@ class UtilisateurDAO extends DAO {
     {
       $sql = "INSERT INTO `utilisateur`(`nom_user`, `prenom_user`, `mdp_user`, `classe_user`, `tel_user`, `mail_user`, `id_role`) 
               VALUES 
-              (:nom_user, :prenom_user, :mdp_user, :classe_user, :tel_user, :mail_user, 2)";
+              (:nom_user, :prenom_user, :mdp_user, :classe_user, :tel_user, :mail_user, 1)";
       $params = array(
         ":nom_user" => $utilisateur->get_nom_user(),
         ":prenom_user" => $utilisateur->get_prenom_user(),

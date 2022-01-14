@@ -25,7 +25,6 @@
 
 ?>
 <h1>Connexion</h1>
-<?php include "menu.php"; ?>
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post"> <!-- Formulaire -->
   <br>
   <label for="nom">Nom</label><br>

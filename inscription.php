@@ -82,7 +82,6 @@
 ?>
 <h1>Inscription</h1>
 <?php 
-  include "menu.php";
   if (count($messages) > 0) {
     echo "<ul>";
     foreach ($messages as $message) {
@@ -91,7 +90,6 @@
     echo "</ul>";
   }
 ?>
-
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post"> <!-- Formulaire -->
   <label for="nom">Nom</label><br>
   <input type="text" name="nom" id="nom" placeholder="Nom" value="<?=$nom?>"><br>
