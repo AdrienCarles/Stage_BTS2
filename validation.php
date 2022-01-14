@@ -6,13 +6,13 @@
     $etape = isset($_GET['etape']) ? $_GET['etape'] : '';
 
 
-
     $produit = isset($_SESSION['produit']) ? $_SESSION['produit'] : ''; //récupération des objets contenus dans la session 
     $famille = isset($_SESSION['famille']) ? $_SESSION['famille'] : '';
     $image = isset($_SESSION['image']) ? $_SESSION['image'] : '';
     $message = isset($_SESSION['message']) ? $_SESSION['message'] : '';
 
     $commandeDAO = new CommandeDAO;
+    $produit_image_commandeDAO = new Produit_image_commandeDAO;
 
     //récuperation des données du formulaire
     $nom = isset($_POST['nom']) ? $_POST['nom'] : '';
@@ -23,10 +23,15 @@
 
     $submit = isset($_POST['submit']);
 
+    $id_produit = $produit->get_id_produit();
+    $id_famille = $famille->get_id_famille();
+    $id_image = $image->get_id_image();
+
+
     if ($submit) {
-        $prix = $produit->get_prix()*$_SESSION['qte'];
+        $prix = $produit->get_prix()*$_SESSION['qte'];  //revoir le calcul du prix
         $commande = new Commande(array(
-            'num_commande'=>"W1000",
+            'num_commande'=>"W1000", //gerer le numero de commande
             'date_commande'=>$date,
             'total_comande'=>$prix,
             'mode_paiement'=>NULL,
@@ -39,6 +44,29 @@
             'id_statut'=>1,
         ));
         $commandeDAO->insert_commande($commande); 
+    }
+
+    if(isset($commande)){ 
+        $commande =New CommandeDAO;
+        $commande = $commande->find_by_nom_commande($nom);  
+        $_SESSION["commande"] = $commande;  
+        $id_commande = $commande->get_id_commande();
+        $quantite = $_SESSION['qte'];
+        $produit_image_commande = NEW Produit_image_commande(array(
+            'id_produit'=>$id_produit,
+            'id_famille'=>$id_famille,
+            'id_image'=>$id_image,
+            'id_commande'=>$id_commande,
+            'quantite'=>$quantite,
+            'message'=>$message,
+        ));
+        $produit_image_commandeDAO->insert_produit_image_commande($produit_image_commande); 
+        unset($_SESSION['produit']);
+        unset($_SESSION['famille']);
+        unset($_SESSION['image']);
+        unset($_SESSION['message']);
+        unset($_SESSION['qte']);
+        header("Location: panier.php"); //Redirection vers le panier
     }
 ?>
 <h1>Validation</h1>
@@ -68,7 +96,7 @@
             <input type="text" name="nom"><br><br>
             <label for="prenom">Prenom</label><br>
             <input type="text" name="prenom"><br><br>
-            <label for="classe">Clasee</label><br>
+            <label for="classe">Classe</label><br>
             <input type="text" name="classe"><br><br>
             <label for="tel">Téléphone</label><br>
             <input type="text" name="tel"><br><br>

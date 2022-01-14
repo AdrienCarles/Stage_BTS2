@@ -32,7 +32,7 @@
     private $id_famille;
     private $id_image;
     private $id_commande;
-    private $quantitée;
+    private $quantite;
     private $message;
     
     /**
@@ -54,9 +54,9 @@
     {
         $this->id_commande = $id_commande;
     }
-    public function set_quantitée($quantitée)
+    public function set_quantite($quantite)
     {
-        $this->quantitée = $quantitée;
+        $this->quantite = $quantite;
     }
     public function set_message($message)
     {
@@ -82,9 +82,9 @@
     {
         return $this->id_commande;
     }
-    public function get_quantitée()
+    public function get_quantite()
     {
-        return $this->quantitée;
+        return $this->quantite;
     }
     public function get_message()
     {

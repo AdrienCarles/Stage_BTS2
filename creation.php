@@ -77,7 +77,7 @@
           $images = $images->findall();
           foreach($images AS $image){  
             $img = $image->get_id_image();
-            echo("<a href='creation.php?etape=3&id_famille=".$id_famille."&id_image=".$img."'><img class=' ' src='./img/Visuel/$lib_famille/$img.jpg' alt='produit'></a>");
+            echo("<a href='creation.php?etape=3&id_famille=".$id_famille."&id_image=".$img."'><img class=' ' src='./img/Visuel/$lib_famille/$img.jpg' alt=''></a>");
           }
           echo "<hr>";
         }

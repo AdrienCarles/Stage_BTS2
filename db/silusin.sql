@@ -56,7 +56,7 @@ CREATE TABLE famille(
 
 CREATE TABLE image(
    id_famille INT,
-   id_image INT NOT NULL UNIQUE AUTO_INCREMENT,
+   id_image INT NOT NULL,
    PRIMARY KEY(id_famille, id_image),
    FOREIGN KEY(id_famille) REFERENCES famille(id_famille)
 );
@@ -97,7 +97,7 @@ CREATE TABLE produit_image_commande(
    id_famille INT NOT NULL,
    id_image INT NOT NULL,
    id_commande INT NOT NULL,
-   quantitée INT NOT NULL,
+   quantité INT NOT NULL,
    message VARCHAR(500),
    PRIMARY KEY(id_produit, id_famille, id_image, id_commande),
    FOREIGN KEY(id_produit) REFERENCES produit(id_produit),
