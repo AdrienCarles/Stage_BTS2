@@ -1,5 +1,6 @@
 <?php
     require_once("header.php");
+
     $etape = isset($_GET['etape']) ? $_GET['etape'] : null;//definition de la condition d'affichage
     if(!isset($etape)){
         $etape = 0;
@@ -54,7 +55,11 @@
     if($etape == 1){
         echo "<h1>Choisissez un produit</h1>";
         if(!isset($_GET['id_produit'])){
-            session_unset();
+            unset($_SESSION['produit']);
+            unset($_SESSION['famille']);
+            unset($_SESSION['image']);
+            unset($_SESSION['message']);
+            unset($_SESSION['qte']);
             $produits =New ProduitDAO;
             $produits = $produits->findall();    
             foreach($produits as $produit){
@@ -74,7 +79,7 @@
           $lib_famille = $famille->get_lib_famille();
           echo $lib_famille."<br>";
           $images = New ImageDAO;
-          $images = $images->findall();
+          $images = $images->find_by_id_famille($id_famille);
           foreach($images AS $image){  
             $img = $image->get_id_image();
             echo("<a href='creation.php?etape=3&id_famille=".$id_famille."&id_image=".$img."'><img class=' ' src='./img/Visuel/$lib_famille/$img.jpg' alt=''></a>");

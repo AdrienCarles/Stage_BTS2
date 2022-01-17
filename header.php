@@ -1,6 +1,7 @@
 <?php
        require('init.php');//initialisation VITAL!!!!
        session_start(); //demarage des sessions
+       print_r($_SESSION);
 ?>
 <!DOCTYPE html>
 <html lang="fr">
