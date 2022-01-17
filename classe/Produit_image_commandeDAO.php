@@ -27,9 +27,9 @@ class Produit_image_commandeDAO extends DAO {
   function find_by_id_commande($id_commande) {
     $sql = "SELECT * FROM produit_image_commande WHERE id_commande= :id_commande";
     try {
-      $params = array(":id_commande" => $id_commande);
-      $sth = $this->executer($sql, $params);
-      $row = $sth->fetchAll(PDO::FETCH_ASSOC);
+      $sth = $this->pdo->prepare($sql);
+      $sth->execute(array(":id_commande" => $id_commande));
+      $row = $sth->fetch(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
       die("Erreur lors de la requête SQL : " . $e->getMessage());
     }
@@ -39,7 +39,6 @@ class Produit_image_commandeDAO extends DAO {
     }
     return $produit_image_commande;
   } // function find
-
 
   function insert_produit_image_commande(Produit_image_commande $produit_image_commande) {
     $sql = "INSERT INTO `produit_image_commande`(`id_produit`, `id_famille`, `id_image`, `id_commande`, `quantite`, `message`) 
@@ -56,7 +55,21 @@ class Produit_image_commandeDAO extends DAO {
       );
       $sth = $this->executer($sql, $params);
     }catch (PDOException $e) {
-      die("Erreur lors de la requête SQL : " . $e->getMessage());
+
     }
   } // function insert_produit_image_commande() 
+
+  function delete($id_produit,$id_image,$id_commande) {
+    $sql = "DELETE FROM produit_image_commande WHERE id_produit=:id_produit AND id_image=:id_image AND id_commande=:id_commande";
+    $params = array(
+      ":id_produit" => $id_produit,
+      ":id_image" => $id_image,
+      ":id_commande" => $id_commande,
+    );
+    try {
+      $sth = $this->executer($sql, $params); // On passe par la méthode de la classe mère
+    } catch (PDOException $e) {
+      die("Erreur lors de la requête SQL : " . $e->getMessage());
+    }
+  } // delete()
 }

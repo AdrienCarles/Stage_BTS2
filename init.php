@@ -1,9 +1,7 @@
 <?php
 /**
 * Initialisations dans chaque page
-*
 */
-
 /**
  * Paramétrage pour certains serveurs qui n'affichent pas les erreurs PHP par défaut
  */
@@ -17,8 +15,6 @@ ini_set('html_errors', '1');
 function my_autoloader($classe) {
   include 'classe/' . $classe . '.php';
 }
-
-
 spl_autoload_register('my_autoloader');
 
 /**

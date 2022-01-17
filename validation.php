@@ -81,11 +81,7 @@
         echo("<img class=' ' src='./img/Visuel/$lib_famille/$img_visuel.jpg' alt='produit'>");
         if($message === ''){
             echo("<p class=''>Quantité : ".$qte."</p>");
-            if($commande == NULL){
-                echo ("<a href='validation.php?etape=1'>Valider</a>");
-            }else{
-                header("Location: panier.php"); //Redirection vers le panier
-            }
+            echo ("<a href='validation.php?etape=1'>Valider</a>");
         }else{
             echo("<p class=''>Quantité : 1</p>");
             echo("<p class=''>Message : ".$message."</p>");
