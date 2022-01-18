@@ -28,11 +28,10 @@
     $id_image = $image->get_id_image();
 
     if ($submit) {
-        $prix = $produit->get_prix()*$_SESSION['qte'];  //revoir le calcul du prix
         $commande = new Commande(array(
             'num_commande'=>"W1000", //gerer le numero de commande
             'date_commande'=>$date,
-            'total_comande'=>$prix,
+            'total_comande'=>NULL,
             'mode_paiement'=>NULL,
             'nom_commande'=>$nom,
             'prenom_commande'=>$prenom,

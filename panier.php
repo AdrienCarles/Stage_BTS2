@@ -44,8 +44,21 @@
         }
     ?>
     </table>
-<?php
-    echo "<p>Total a payer : ".$prix_total."</p>";
-    echo "<a href='bon_de_commande_pdf.php'>Validation de la commande</a>";
+    <br><br>
+    <form action="bon_de_commande_pdf.php" method='post'>
+        <label for="prix">Prix total à payer</label><br>
+        <input type="text" name="prix" value=" <?=$prix_total?>" disabled><br><br>
+        <label for="mode_paiement">Mode de paiement :</label><br>
+        <input type="radio" name="mode_paiement" id="mode_paiement" value="especes" checked>Espèces<br>
+        <input type="radio" name="mode_paiement" id="mode_paiement" value="cheque">Chèque à l'ordre de l'OCCE<br><br>
+        <input type="submit" value="Envoyer"><br><br><br>
+        <label for="non_fonctionel">Mode de paiement :non fonctionel</label><br>
+        <select name="non_fonctionel">
+            <option value="non_fonctionel" selected>Espèces</option>
+            <option value="non_fonctionel" >Chèque à l'ordre de l'OCCE</option>
+        </select>
+    </form>
+    <a href=''>Validation de la commande</a>
+<?php    
     require("footer.php");
 ?>
