@@ -21,7 +21,7 @@ VALUES
 INSERT INTO `famille`(`id_famille`, `lib_famille`) 
 VALUES 
 ("Héro"),
-(""),
+("Zen"),
 
 INSERT INTO `image`(`id_famille`, `id_image`) 
 VALUES 

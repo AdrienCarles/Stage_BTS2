@@ -27,8 +27,10 @@ class Produit_image_commandeDAO extends DAO {
   function find_by_id_commande($id_commande) {
     $sql = "SELECT * FROM produit_image_commande WHERE id_commande= :id_commande";
     try {
-      $sth = $this->pdo->prepare($sql);
-      $sth->execute(array(":id_commande" => $id_commande));
+      $params = array(
+        ":id_commande" => $id_commande
+      );
+      $sth = $this->executer($sql, $params);
       $row = $sth->fetch(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
       die("Erreur lors de la requête SQL : " . $e->getMessage());
@@ -55,7 +57,7 @@ class Produit_image_commandeDAO extends DAO {
       );
       $sth = $this->executer($sql, $params);
     }catch (PDOException $e) {
-
+      die("Erreur lors de la requête SQL : " . $e->getMessage());
     }
   } // function insert_produit_image_commande() 
 

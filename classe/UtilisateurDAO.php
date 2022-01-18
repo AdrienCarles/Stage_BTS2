@@ -24,10 +24,10 @@ class UtilisateurDAO extends DAO {
         return $utilisateurs;
     } // function findAll() 
 
-    function find_by_nom(Utilisateur $nom) {
+    function find_by_nom(Utilisateur $utilisateurs) {
         $sql="SELECT * FROM utilisateur WHERE nom_user=:nom_user ";
         $params = array(
-            ":nom_user" =>  $nom,        
+            ":nom_user" =>  $utilisateurs->get_nom_user(),        
         );
         try {
             $sth = $this->executer($sql, $params);
