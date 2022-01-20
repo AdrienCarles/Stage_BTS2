@@ -54,4 +54,19 @@ class ImageDAO extends DAO {
     }
     return $image;
   } // function find
+
+  function insert(Image $image){
+      $sql = "INSERT INTO `image`(`id_famille`, `id_image`) 
+              VALUES 
+              (:id_famille, :id_image)";
+      $params = array(
+        ":id_famille" => $image->get_id_famille(),
+        ":id_image" => $image->get_id_image(),
+      );
+      try {
+        $sth = $this->executer($sql, $params); // On passe par la méthode de la classe mère
+      } catch (PDOException $e) {
+        die("Erreur lors de la requête SQL : " . $e->getMessage());
+      }
+  } // insert()
 }

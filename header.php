@@ -18,6 +18,7 @@
       <ul>
         <li><a href="index.php">Accueil</a></li>
         <li><a href="creation.php">Création</a></li>
+        <li><a href="catalogue.php">Catalogue</a></li>
         <li><a href="inscription.php">Inscription</a></li>
         <li><a href="connexion.php">Connexion</a></li>
       </ul>
@@ -53,5 +54,4 @@
       <?php
       }
     }
-       print_r($_SESSION);
   ?>
