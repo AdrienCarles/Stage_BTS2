@@ -40,10 +40,13 @@ class CommandeDAO extends DAO {
     return $commande;
   } // function find
 
-  function find_by_nom_commande($nom_commande){
-    $sql = "SELECT * FROM commande WHERE nom_commande= :nom_commande";
+  function find_by_nom_prenom_commande($nom_commande, $prenom_commande){
+    $sql = "SELECT * FROM commande WHERE nom_commande= :nom_commande AND prenom_commande = :prenom_commande";
     try {
-      $params = array(":nom_commande" => $nom_commande);
+      $params = array(
+        ":nom_commande" => $nom_commande,
+        ":prenom_commande" => $prenom_commande,
+      );
       $sth = $this->executer($sql, $params);
       $row = $sth->fetch(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
@@ -54,17 +57,17 @@ class CommandeDAO extends DAO {
       $commande = new Commande($row);
     }
     return $commande;
-  } //function find_by_nom_commande
+  } //function find_by_nom_prenom_commande
 
   function insert_commande(Commande $commande){
-    $sql = "INSERT INTO `commande`(`num_commande`, `date_commande`, `total_comande`, `mode_paiement`, `nom_commande`, `prenom_commande`, `classe_commande`, `tel_commande`, `mail_commande`, `id_user`, `id_statut`)
+    $sql = "INSERT INTO `commande`(`num_commande`, `date_commande`, `total_commande`, `mode_paiement`, `nom_commande`, `prenom_commande`, `classe_commande`, `tel_commande`, `mail_commande`, `id_user`, `id_statut`)
             VALUES 
-            (:num_commande, :date_commande, :total_comande, :mode_paiement, :nom_commande, :prenom_commande, :classe_commande, :tel_commande, :mail_commande, :id_user, :id_statut)";
+            (:num_commande, :date_commande, :total_commande, :mode_paiement, :nom_commande, :prenom_commande, :classe_commande, :tel_commande, :mail_commande, :id_user, :id_statut)";
     try{
       $params = array(
         ':num_commande'=>$commande->get_num_commande(),
         ':date_commande'=>$commande->get_date_commande(),
-        ':total_comande'=>$commande->get_total_comande(),
+        ':total_commande'=>$commande->get_total_commande(),
         ':mode_paiement'=>$commande->get_mode_paiement(),
         ':nom_commande'=>$commande->get_nom_commande(),
         ':prenom_commande'=>$commande->get_prenom_commande(),
@@ -79,4 +82,19 @@ class CommandeDAO extends DAO {
       die("Erreur lors de la requête SQL : " . $e->getMessage());
     }
   }
+  function update(Commande $commande2) {
+    $sql = "UPDATE commande set num_commande=:num_commande, total_commande=:total_commande, mode_paiement=:mode_paiement, id_statut=:id_statut where id_commande= :id_commande";
+    $params = array(
+      ":id_commande" => $commande2->get_id_commande(),
+      ":num_commande" => $commande2->get_num_commande(),
+      ':total_commande' => $commande2->get_total_commande(),
+      ':mode_paiement' => $commande2->get_mode_paiement(),
+      ":id_statut" => $commande2->get_id_statut(),
+    );
+    try {
+      $sth = $this->executer($sql, $params); // On passe par la méthode de la classe mère
+    } catch (PDOException $e) {
+      throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
+    }
+  } // update()
 }

@@ -2,28 +2,16 @@
     require_once('fpdf/fpdf.php');
     require('init.php');
     session_start(); //demarage des sessions
-    $commande = $_SESSION['commande'];    
-    $mode_paiement = isset($_POST['mode_paiement']) ? $_POST['mode_paiement'] : '';
-    $prix = isset($_POST['prix']) ? $_POST['prix'] : '';
-    $id_commande = $commande->get_id_commande();
-    $commandeDAO = new CommandeDAO; 
-    $commande2 = new Commande(array(
-        'id_commande' => $commande->get_id_commande(),
-        'num_commande' => "W".$commande->get_id_commande(),
-        'total_commande' => $prix,
-        'mode_paiement' => $mode_paiement,
-        'id_statut'=>2,
-    ));
-    $commandeDAO->update($commande2); 
-    $commande =$commandeDAO->find($id_commande);
-    $_SESSION['id_commande'] = $commande->get_id_commande(); 
+    $id_commande = $_SESSION['id_commande'];
+    $commandeDAO = new CommandeDAO;
+    $commande = $commandeDAO->find($id_commande);   
     $pdf = new FPDF();
     //definition des constantes date qui renvois la date du jour et EURO qui atribut le signe €
     date_default_timezone_set('Europe/Paris'); //instanciation du fuseau horaire
     $date = date('d/m/Y');
     define('EURO'," ".utf8_encode(chr(128))); 
 
-    $pdf->SetTitle('Commande'.$commande->get_num_commande(), true);  // déﬁnit le titre du document
+    $pdf->SetTitle( 'Bon de commande'.$commande->get_num_commande(), true);  // déﬁnit le titre du document
     $pdf->SetAuthor( $commande->get_nom_commande(), true);  // déﬁnit le créateur du document
 
     $pdf->AddPage(); // Crée une nouvelle page
@@ -59,7 +47,7 @@
     $pdf->Cell(75, 5, utf8_decode(" "),0,0,'L');
     $pdf->SetFont('Arial','',10);  // Définit la police 
     $pdf->MultiCell(40, 5, utf8_decode("(à payer au moment\nde la commande) :"),0,'C');
-    if ($mode_paiement == "especes"){
+    if ($commande->get_mode_paiement() == "especes"){
         $pdf->SetFont('Arial','',12);  // Définit la police 
         $pdf->SetXY(85,75);
         $pdf->Cell(40, 5, utf8_decode("Espèces"),0,2,'C');
@@ -69,10 +57,10 @@
         $pdf->MultiCell(40, 5, utf8_decode("Chèque\nà l'ordre de L'OCCE"),0,'C');
     }
     $pdf->SetXY(155,80);
-    $pdf->Cell(75, 5, utf8_decode($prix.EURO),0,0,'L');
+    $pdf->Cell(75, 5, utf8_decode($commande->get_total_commande().EURO),0,0,'L');
     $pdf->SetFont('Arial','B',18);  // Définit la police 
     $pdf->SetXY(10,100);
-    $pdf->Cell(0, 12.5, utf8_decode("Bon de commande WEB : ".$commande->get_num_commande()." - Les Silusins"),1,0,'C');
+    $pdf->Cell(0, 12.5, utf8_decode("Bon de commande WEB ".$commande->get_num_commande()." - Les Silusins"),1,0,'C');
     $pdf->Ln(20);//Saut de lignes
     $pdf->SetFont('Arial','',12);  // Définit la police 
     //Tableau
@@ -85,6 +73,7 @@
     $pdf->Cell(20,10,"Prix tot",1,0,"C"); 
     $pdf->Ln(10);//Saut de lignes
 
+    $id_commande = $commande->get_id_commande();
     $prix_total = 0;
     $produit_image_commandeDAO = new Produit_image_commandeDAO;
     $produit_image_commandes = $produit_image_commandeDAO->find_by_id_commande($id_commande);
@@ -114,7 +103,6 @@
     $pdf->Cell(0, 10, utf8_decode(": ULIS du collège Pierre Suc à Saint-Sulpice-la-Pointe"),0,0,"L");
     
     // Génération du document PDF
-    $pdf->Output('f','./pdf/Commande '.$commande->get_num_commande().'.pdf', 'UTF-8');
+    $pdf->Output('d','./pdf/Bon de commande'.$commande->get_num_commande().'.pdf', 'UTF-8');
     // Redirection vers une autre page
-    header('Location: commande_validation.php');     
 ?>

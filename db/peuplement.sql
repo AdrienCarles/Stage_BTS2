@@ -1,4 +1,3 @@
-
 INSERT INTO `role`(`lib_role`) 
 VALUES 
 ("Utilisateur"),
@@ -85,3 +84,9 @@ VALUES
 INSERT INTO `statut`(`lib_statut`) 
 VALUES 
 ("Panier"),
+("Valider"),
+
+INSERT INTO `utilisateur`(`nom_user`, `prenom_user`, `mdp_user`, `classe_user`, `tel_user`, `mail_user`, `id_role`) 
+VALUES 
+("Default","Default",NULL,NULL,NULL,NULL,1),
+("Controleur","Controleur",NULL,NULL,NULL,NULL,2)

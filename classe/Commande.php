@@ -31,7 +31,7 @@
     private $id_commande;
     private $num_commande;
     private $date_commande;
-    private $total_comande;
+    private $total_commande;
     private $mode_paiement;
     private $nom_commande;
     private $prenom_commande;
@@ -39,7 +39,7 @@
     private $tel_commande;
     private $mail_commande;
     private $id_user;
-    private $id_statut ;
+    private $id_statut;
 
     /**
      * Setter
@@ -56,9 +56,9 @@
     {
         $this->date_commande = $date_commande;
     }
-    public function set_total_comande($total_comande)
+    public function set_total_commande($total_commande)
     {
-        $this->total_comande = $total_comande;
+        $this->total_commande = $total_commande;
     }
     public function set_mode_paiement($mode_paiement)
     {
@@ -88,9 +88,9 @@
     {
         $this->id_user = $id_user;
     }
-    public function set_id_statut ($id_statut )
+    public function set_id_statut($id_statut)
     {
-        $this->id_statut  = $id_statut ;
+        $this->id_statut = $id_statut;
     }
 
 
@@ -109,9 +109,9 @@
     {
         return $this->date_commande;
     }
-    public function get_total_comande()
+    public function get_total_commande()
     {
-        return $this->total_comande;
+        return $this->total_commande;
     }
     public function get_mode_paiement()
     {
@@ -141,7 +141,7 @@
     {
         return $this->id_user;
     }
-    public function get_id_statut ()
+    public function get_id_statut()
     {
         return $this->id_statut ;
     }

@@ -78,7 +78,7 @@ CREATE TABLE commande(
    id_commande INT NOT NULL UNIQUE AUTO_INCREMENT,
    num_commande VARCHAR(500),
    date_commande DATE,
-   total_comande FLOAT,
+   total_commande FLOAT,
    mode_paiement VARCHAR(500),
    nom_commande VARCHAR(500),
    prenom_commande VARCHAR(500),

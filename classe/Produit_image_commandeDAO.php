@@ -31,15 +31,15 @@ class Produit_image_commandeDAO extends DAO {
         ":id_commande" => $id_commande
       );
       $sth = $this->executer($sql, $params);
-      $row = $sth->fetch(PDO::FETCH_ASSOC);
+      $rows = $sth->fetchAll(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
       die("Erreur lors de la requête SQL : " . $e->getMessage());
     }
-    $produit_image_commande = null;
-    if($row) {
-      $produit_image_commande = new Produit_image_commande($row);
+    $produit_image_commandes = array();
+    foreach($rows as $row) {
+      $produit_image_commandes[] = new Produit_image_commande($row);
     }
-    return $produit_image_commande;
+    return $produit_image_commandes;
   } // function find
 
   function insert_produit_image_commande(Produit_image_commande $produit_image_commande) {

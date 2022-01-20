@@ -14,10 +14,9 @@
       "nom_user" => $nom,
       "mdp_user" => $password
     ));
-    $utilisateurDAO->find_by_nom($utilisateur);
+    $utilisateur=$utilisateurDAO->find_by_nom($utilisateur);
     //Si le pseudo existe verifier que le mdp correspond à celui entré
-    //if($nom === $utilisateur->get_nom_user() && password_verify($password,$utilisateur->get_nom_user())){   
-    if($nom === $utilisateur->get_nom_user() && $password === $utilisateur->get_nom_user()){   
+    if($nom === $utilisateur->get_nom_user() && password_verify($password, $utilisateur->get_mdp_user())){   
       $_SESSION['utilisateur']=$utilisateur;
       header("Location: connecter.php"); //Redirection vers la page principale
     }

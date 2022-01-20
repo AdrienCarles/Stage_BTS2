@@ -41,6 +41,8 @@
     } 
     if($mdp!=$c_mdp) { // Vérifie que les deux mots de passe corresspondent
       $messages[] = "Les mots de passe ne correspondent pas";
+    }else{
+      $mdp=password_hash($mdp, PASSWORD_BCRYPT); // Hash le mot de passe
     }
     // CLASSE
     $classe = filter_input(INPUT_POST, "classe",FILTER_SANITIZE_SPECIAL_CHARS);

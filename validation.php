@@ -29,9 +29,9 @@
 
     if ($submit) {
         $commande = new Commande(array(
-            'num_commande'=>"W1000", //gerer le numero de commande
+            'num_commande'=>NULL,
             'date_commande'=>$date,
-            'total_comande'=>NULL,
+            'total_commande'=>NULL,
             'mode_paiement'=>NULL,
             'nom_commande'=>$nom,
             'prenom_commande'=>$prenom,
@@ -42,10 +42,9 @@
             'id_statut'=>1,
         ));
         $commandeDAO->insert_commande($commande); 
-    
         if(isset($commande)){ 
-            $commande =New CommandeDAO;
-            $commande = $commande->find_by_nom_commande($nom);  
+            $commandeDAO =New CommandeDAO;
+            $commande = $commandeDAO->find_by_nom_prenom_commande($nom,$prenom);  
             $_SESSION["commande"] = $commande;  
             $id_commande = $commande->get_id_commande();
             $quantite = $_SESSION['qte'];
