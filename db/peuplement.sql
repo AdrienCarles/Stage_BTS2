@@ -85,6 +85,7 @@ INSERT INTO `statut`(`lib_statut`)
 VALUES 
 ("Panier"),
 ("Valider"),
+("Archiver")
 
 INSERT INTO `utilisateur`(`nom_user`, `prenom_user`, `mdp_user`, `classe_user`, `tel_user`, `mail_user`, `id_role`) 
 VALUES 

@@ -103,6 +103,7 @@
     $pdf->Cell(0, 10, utf8_decode(": ULIS du collège Pierre Suc à Saint-Sulpice-la-Pointe"),0,0,"L");
     
     // Génération du document PDF
+    unset($_SESSION['id_commande']);
     $pdf->Output('d','./pdf/Bon de commande'.$commande->get_num_commande().'.pdf', 'UTF-8');
     // Redirection vers une autre page
 ?>

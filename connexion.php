@@ -2,7 +2,7 @@
   require("header.php");
 
   $messages = array(); //message d'erreur
-
+  $nom_user = " ";
   $utilisateurDAO = new UtilisateurDAO();
   //Recuperation des données entrées dans le formulaire
   $submit=isset($_POST['submit']); // Attribue à la variable submit l'appui sur le bouton du formulaire 
@@ -16,13 +16,16 @@
     ));
     $utilisateur=$utilisateurDAO->find_by_nom($utilisateur);
     //Si le pseudo existe verifier que le mdp correspond à celui entré
-    if($nom === $utilisateur->get_nom_user() && password_verify($password, $utilisateur->get_mdp_user())){   
+    if(null !== $utilisateur){
+      $nom_user = $utilisateur->get_nom_user();
+    }
+    if($nom ===  $nom_user && password_verify($password, $utilisateur->get_mdp_user())){   
       $_SESSION['utilisateur']=$utilisateur;
       header("Location: connecter.php"); //Redirection vers la page principale
     }
     else{
-      echo "Erreur lors de la connexion"; 
-      header("Location: connexion.php"); //Si les informations ne correspondent pas rester sur la page
+      $messages[] ="Nom ou Mots de passe Inconnus";
+      //header("Location: connexion.php?erreur=1"); //Si les informations ne correspondent pas rester sur la page
     }
   }
 

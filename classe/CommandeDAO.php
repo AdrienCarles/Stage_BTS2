@@ -40,6 +40,23 @@ class CommandeDAO extends DAO {
     return $commande;
   } // function find
 
+  function find_num_commande($num_commande) {
+    $sql = "SELECT * FROM commande WHERE num_commande= :num_commande";
+    try {
+      $params = array(":num_commande" => $num_commande);
+      $sth = $this->executer($sql, $params);
+      $row = $sth->fetch(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+      die("Erreur lors de la requête SQL : " . $e->getMessage());
+    }
+    $commande = null;
+    if ($row) {
+      $commande = new Commande($row);
+    }
+    return $commande;
+  } // function find
+
+
   function find_by_nom_prenom_commande($nom_commande, $prenom_commande){
     $sql = "SELECT * FROM commande WHERE nom_commande= :nom_commande AND prenom_commande = :prenom_commande";
     try {
@@ -82,14 +99,27 @@ class CommandeDAO extends DAO {
       die("Erreur lors de la requête SQL : " . $e->getMessage());
     }
   }
-  function update(Commande $commande2) {
+  function update(Commande $commande) {
     $sql = "UPDATE commande set num_commande=:num_commande, total_commande=:total_commande, mode_paiement=:mode_paiement, id_statut=:id_statut where id_commande= :id_commande";
     $params = array(
-      ":id_commande" => $commande2->get_id_commande(),
-      ":num_commande" => $commande2->get_num_commande(),
-      ':total_commande' => $commande2->get_total_commande(),
-      ':mode_paiement' => $commande2->get_mode_paiement(),
-      ":id_statut" => $commande2->get_id_statut(),
+      ":id_commande" => $commande->get_id_commande(),
+      ":num_commande" => $commande->get_num_commande(),
+      ':total_commande' => $commande->get_total_commande(),
+      ':mode_paiement' => $commande->get_mode_paiement(),
+      ":id_statut" => $commande->get_id_statut(),
+    );
+    try {
+      $sth = $this->executer($sql, $params); // On passe par la méthode de la classe mère
+    } catch (PDOException $e) {
+      throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
+    }
+  } // update()
+
+  function update_statut(Commande $commande) {
+    $sql = "UPDATE commande set id_statut=:id_statut where id_commande= :id_commande";
+    $params = array(
+      ":id_commande" => $commande->get_id_commande(),
+      ":id_statut" => $commande->get_id_statut(),
     );
     try {
       $sth = $this->executer($sql, $params); // On passe par la méthode de la classe mère
