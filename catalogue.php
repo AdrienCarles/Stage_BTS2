@@ -7,6 +7,10 @@
 ?>
 <h1>Catalogue</h1>
 <h2>Produits</h2>
+
+
+
+
 <table>
   <tr>
     <th>Nom du produit</th>
