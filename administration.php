@@ -44,7 +44,7 @@
 ?>
 <h1>Portail administrateur</h1>
 
-<h2>Liste des commandes à valider</h2>
+<h2 class="text_center">Liste des commandes à valider</h2>
 
 <table>
     <th>Numéro</th>
@@ -80,7 +80,7 @@
     ?>
 </table>
 
-<h2>Liste des commandes archivé</h2>
+<h2 class="text_center">Liste des commandes archivé</h2>
 <table>
     <th>Numéro</th>
     <th>Date</th>
@@ -113,14 +113,16 @@
     ?>
 </table>
 
-<h2>Insertion de nouveaux visuel</h2>
-<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-        <label for="famille">Famille</label><br>
-        <input type="text" name='famille' id="famille"><br><br>
-        <label for="max">Nombre d'images</label><br>
-        <input type="number" name="max" id="max"><br><br>
-        <input type="submit" value="valider" name="submit">
-</form>
+<h2 class="text_center">Insertion de nouveaux visuel</h2>
+<div class="form_admin">
+    <form class="card" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+            <label for="famille">Famille</label><br>
+            <input type="text" name='famille' id="famille"><br><br>
+            <label for="max">Nombre d'images</label><br>
+            <input type="number" name="max" id="max"><br><br>
+            <input type="submit" value="valider" name="submit">
+    </form>
+</div>
 <?php 
   require("footer.php");
 ?>

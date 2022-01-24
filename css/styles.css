@@ -1,6 +1,130 @@
 @charset "utf-8";
 /* Template CSS */
 
+/*Classes générales*/
+*{
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Verdana, Geneva, sans-serif;
+  background-color: #f6f6f6;
+  overflow-x: hidden;
+  cursor: default;
+}
+h1{
+  text-align: center;    
+  font-weight : 300;
+}
+
+.text_center{
+  text-align: center;
+}
+
+.card{
+  border-radius: 0.5em;
+  background-color: #e9e9e9;
+  box-shadow: 0 0 20px rgb(0 0 0 / 20%);
+  border: 1px solid rgba(87, 15, 15, 0.125);
+  padding: 1.25rem;
+}
+/*Container et colonnes*/
+.container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.col-1,.col-2,.col-3,.col-4,.col-5,.col-6,.col-7,.col-8,.col-9,.col-10,.col-11,.col-12{
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@media (min-width: 1200px){
+  .container {
+      max-width: 1140px;
+  }
+}
+
+@media (max-width: 779px) {
+  .col-1,.col-2,.col-3,.col-4,.col-5,.col-6,.col-7,.col-8,.col-9,.col-10,.col-11,.col-12{
+      width:100%;
+  }
+}
+@media (min-width: 780px) {
+  .col-1{
+    width: 8.33333333%;
+  }
+  .col-2 {  
+      width: 16.66666667%;
+  }
+  .col-3 {	
+      width: 25%;
+  }
+  .col-4 {	
+      width: 33.33333333%;
+  }
+  .col-5 {
+      width: 41.66666667%;
+  }
+  .col-6 {
+      width: 50%;
+  }
+  .col-7 {
+      width: 58.33333333%;
+  }
+  .col-8 {
+      width: 66.66666667%;
+  }
+  .col-9 {
+      width: 75%;
+  }
+  .col-10 {
+      width: 83.33333333%;
+  }
+  .col-11 {
+      width: 91.66666667%;
+  }
+  .col-12 {
+    width: 100%;
+  }
+}
+
+/*navbar et menu*/
+
+.menu {
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 20px;
+  width: 100%;
+  list-style-type: none;
+}
+.nav_left{
+  display: inline-flex;
+  width: 400px;
+  justify-content: space-evenly;
+}
+
+/*administration.php*/
+.form_admin{
+  max-width: 250px;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+} 
+
+/*CSS pris suur autre exos*/
 table, th, td {
   border-style: solid;
   border-width: 1px;
@@ -8,11 +132,6 @@ table, th, td {
   border-collapse: collapse;
   margin: auto;
   padding: auto;
-}
-
-body {
-  margin-left:20px;
-  font-family: Verdana, Geneva, sans-serif;
 }
 
 th,td {
@@ -37,9 +156,4 @@ td.total {
 img {
   max-width: 250px;
   max-height: 120px;
-}
-
-.edition_symbole {
-  max-width: 50px;
-  max-height: 50px;
 }

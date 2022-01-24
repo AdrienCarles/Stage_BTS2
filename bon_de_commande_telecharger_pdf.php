@@ -17,7 +17,7 @@
     $pdf->AddPage(); // Crée une nouvelle page
     $pdf->SetFont('Arial','B',20);  // Définit la police 
     $pdf->Image('img/20.jpg',10,10,50,50); //Logo
-    $pdf->Cell(0, 20, utf8_decode("SILUSIN"),0,1,'C');
+    $pdf->Cell(0, 20, utf8_decode("SILUSINS"),0,1,'C');
     $pdf->SetFont('Arial','',12);  // Définit la police 
     $pdf->Cell(60, 5, utf8_decode(" "),0,0,'L');
     $pdf->Cell(50, 5, utf8_decode("NOM : ".$commande->get_nom_commande()),0,0,'L');

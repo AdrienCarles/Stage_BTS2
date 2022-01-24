@@ -53,13 +53,7 @@
         <input type="radio" name="mode_paiement" id="mode_paiement" value="especes" checked>Espèces<br>
         <input type="radio" name="mode_paiement" id="mode_paiement" value="cheque">Chèque à l'ordre de l'OCCE<br><br>
         <input type="submit" value="Envoyer"><br><br><br>
-        <label for="non_fonctionel">Mode de paiement :non fonctionel</label><br>
-        <select name="non_fonctionel">
-            <option value="non_fonctionel" selected>Espèces</option>
-            <option value="non_fonctionel" >Chèque à l'ordre de l'OCCE</option>
-        </select>
     </form>
-    <a href=''>Validation de la commande</a>
 <?php    
     require("footer.php");
 ?>

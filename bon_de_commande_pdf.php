@@ -3,13 +3,14 @@
     require('init.php');
     session_start(); //demarage des sessions
     $commande = $_SESSION['commande'];    
+    $type_commande= $_SESSION['type_commande'];    
     $mode_paiement = isset($_POST['mode_paiement']) ? $_POST['mode_paiement'] : '';
     $prix = isset($_POST['prix']) ? $_POST['prix'] : '';
     $id_commande = $commande->get_id_commande();
     $commandeDAO = new CommandeDAO; 
     $commande2 = new Commande(array(
         'id_commande' => $commande->get_id_commande(),
-        'num_commande' => "W".$commande->get_id_commande(),
+        'num_commande' => $type_commande.$commande->get_id_commande(),
         'total_commande' => $prix,
         'mode_paiement' => $mode_paiement,
         'id_statut'=>2,
@@ -29,7 +30,7 @@
     $pdf->AddPage(); // Crée une nouvelle page
     $pdf->SetFont('Arial','B',20);  // Définit la police 
     $pdf->Image('img/20.jpg',10,10,50,50); //Logo
-    $pdf->Cell(0, 20, utf8_decode("SILUSIN"),0,1,'C');
+    $pdf->Cell(0, 20, utf8_decode("SILUSINS"),0,1,'C');
     $pdf->SetFont('Arial','',12);  // Définit la police 
     $pdf->Cell(60, 5, utf8_decode(" "),0,0,'L');
     $pdf->Cell(50, 5, utf8_decode("NOM : ".$commande->get_nom_commande()),0,0,'L');
