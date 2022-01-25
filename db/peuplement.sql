@@ -4,7 +4,7 @@ VALUES
 ("Controleur"),
 ("Administrateur");
 
-INSERT INTO `produit`(`lib_produit`, `type_produit`, `spec_produit`, `prix`, `diametre`) 
+INSERT INTO `produit`(`lib_produit`, `type_produit`, `spec_produit`, `prix_produit`, `diametre_produit`) 
 VALUES 
 ("Petit Badge","Badge","Petit",1,NULL),
 ("Grand Badge","Badge","Grand",1.50,NULL),
@@ -17,7 +17,7 @@ VALUES
 ("Décapsuleur Porte-clé","Décapsuleur","Porte-clé",2,NULL),
 ("Décapsuleur Magnet","Décapsuleur","Magnet",2,NULL);
 
-INSERT INTO `famille`(`id_famille`, `lib_famille`) 
+INSERT INTO `famille`(`lib_famille`) 
 VALUES 
 ("Héro"),
 ("Zen"),

@@ -27,12 +27,11 @@
     $famille = isset($_SESSION['famille']) ? $_SESSION['famille'] : '';
     $image = isset($_SESSION['image']) ? $_SESSION['image'] : '';
 
-    $submit = isset($_POST['submit']); //validation de formulaire de l'étape 3
+    $submit = isset($_POST['submit']) ? $_POST['submit'] : ''; //validation de formulaire de l'étape 3
 
     if($submit){
         $message = isset($_POST['message']) ? $_POST['message'] : ''; //récupération du message depuis le formulaire 
         $_SESSION["message"] = $message;  
-        header("Location: controleur_creation.php?etape=4"); //Redirection vers l'etape 4 
     }
 
     if(!isset($_SESSION['famille'])){
@@ -46,8 +45,9 @@
         $_SESSION["image"] = $image;  
     }// création de la session image contenant l'objet Image d'id selectionné
 
+
     //etape 4 
-    $message = isset($_SESSION['message']) ? $_SESSION['message'] : '';
+    $message = isset($_SESSION['message']) ? $_SESSION['message']: '' ;
 
     // Point 0
     if($etape == 0 && !isset($_SESSION["type_commande"])){
@@ -57,7 +57,7 @@
         echo "<br>";
         echo "<a href='controleur_creation.php?etape=1&type_commande=P'>Commande Physique</a>";
     }elseif($etape == 0 ){
-        header("Location: controleur_creation.php?etape=1   "); //Redirection vers le panier
+        header("Location: controleur_creation.php?etape=1"); 
     }
     // Etape 1
     if($etape == 1){
@@ -74,7 +74,7 @@
               echo("<p class=''>".$produit->get_lib_produit()."</p>");
               $img = $produit->get_id_produit();
               echo("<a href='controleur_creation.php?etape=2&id_produit=".$img."'><img class=' ' src='./img/Produits/$img.jpg' alt='produit'></a>");
-              echo("<p class=''>".$produit->get_prix()."€</p>");
+              echo("<p class=''>".$produit->get_prix_produit()."€</p>");
             }
         }
     }
@@ -104,7 +104,7 @@
         echo("<img class=' ' src='./img/Visuel/".$famille->get_lib_famille()."/".$image->get_id_image().".jpg' alt='image'>");
     ?>
     <br><br><br>
-    <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
+    <form action="controleur_creation.php?etape=4" method="post">
         <label for="message">Votre message personnalisé</label><br>
         <textarea name="message" id="message" cols="30" rows="2"></textarea><br>
         <input type="submit" name="submit" value="Valider" class="">

@@ -32,7 +32,7 @@
                 echo("<td><img class=' ' src='./img/Visuel/".$famille->get_lib_famille()."/".$image->get_id_image().".jpg' alt=''></td>");
                 echo("<td>".$famille->get_lib_famille().$image->get_id_image()."</td>");
                 echo("<td>".$produit_image_commande->get_quantite()."</td>");
-                echo("<td>".$produit->get_prix()."</td>");
+                echo("<td>".$produit->get_prix_produit()."</td>");
                 echo("<td>".$produit_image_commande->get_message()."</td>");
                 echo("</tr>");
             }

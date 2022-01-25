@@ -35,8 +35,8 @@
                 echo("<td><img class=' ' src='./img/Visuel/".$famille->get_lib_famille()."/".$image->get_id_image().".jpg' alt=''></td>");
                 echo("<td>".$famille->get_lib_famille().$image->get_id_image()."</td>");
                 echo("<td>".$produit_image_commande->get_quantite()."</td>");
-                echo("<td>".$produit->get_prix()."</td>");
-                $prix_total = $prix_total +($produit->get_prix()*$produit_image_commande->get_quantite());
+                echo("<td>".$produit->get_prix_produit()."</td>");
+                $prix_total = $prix_total +($produit->get_prix_produit()*$produit_image_commande->get_quantite());
                 echo("<td>".$produit_image_commande->get_message()."</td>");
                 echo("<td><a href='suppression.php?id_produit=".$produit->get_id_produit()."&lib_famille=".$famille->get_lib_famille()."&id_image=".$image->get_id_image()."'>Supprimer</a></td>");
                 echo("</tr>");

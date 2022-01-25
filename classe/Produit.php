@@ -31,8 +31,8 @@
     private $lib_produit;
     private $type_produit;
     private $spec_produit;
-    private $prix;
-    private $diametre;
+    private $prix_produit;
+    private $diametre_produit;
 
     /**
      * Setter
@@ -53,11 +53,11 @@
     {
         $this->spec_produit = $spec_produit;
     }
-    public function set_prix($prix)
+    public function set_prix_produit($prix)
     {
         $this->prix = $prix;
     }
-    public function set_diametre($diametre)
+    public function set_diametre_produit($diametre)
     {
         $this->diametre = $diametre;
     }
@@ -82,11 +82,11 @@
     {
         return $this->spec_produit;
     }
-    public function get_prix()
+    public function get_prix_produit()
     {
         return $this->prix;
     }
-    public function get_diametre()
+    public function get_diametre_produit()
     {
         return $this->diametre;
     }

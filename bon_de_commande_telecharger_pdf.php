@@ -88,9 +88,9 @@
         $pdf->Cell(25, 10, utf8_decode($famille->get_lib_famille().$image->get_id_image()),1,0,"C");
         $pdf->Cell(20, 10, utf8_decode($produit_image_commande->get_quantite()),1,0,"C");
         $pdf->Cell(50, 10, utf8_decode($produit_image_commande->get_message()),1,0,"C");
-        $pdf->Cell(25, 10, utf8_decode($produit->get_prix().EURO),1,0,"C");
-        $pdf->Cell(20, 10, utf8_decode($produit->get_prix()*$produit_image_commande->get_quantite().EURO),1,1,"C");
-        $prix_total = $prix_total + $produit->get_prix()*$produit_image_commande->get_quantite();
+        $pdf->Cell(25, 10, utf8_decode($produit->get_prix_produit().EURO),1,0,"C");
+        $pdf->Cell(20, 10, utf8_decode($produit->get_prix_produit()*$produit_image_commande->get_quantite().EURO),1,1,"C");
+        $prix_total = $prix_total + $produit->get_prix_produit()*$produit_image_commande->get_quantite();
     }
     $pdf->Ln(10);//Saut de lignes
     $pdf->SetX(140);

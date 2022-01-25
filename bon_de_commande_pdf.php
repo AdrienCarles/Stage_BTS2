@@ -3,7 +3,7 @@
     require('init.php');
     session_start(); //demarage des sessions
     $commande = $_SESSION['commande'];    
-    $type_commande= $_SESSION['type_commande'];    
+    $type_commande= isset($_SESSION['type_commande']) ? $_SESSION['type_commande'] : 'W';    
     $mode_paiement = isset($_POST['mode_paiement']) ? $_POST['mode_paiement'] : '';
     $prix = isset($_POST['prix']) ? $_POST['prix'] : '';
     $id_commande = $commande->get_id_commande();
@@ -77,9 +77,9 @@
         $pdf->Cell(25, 10, utf8_decode($famille->get_lib_famille().$image->get_id_image()),1,0,"C");
         $pdf->Cell(20, 10, utf8_decode($produit_image_commande->get_quantite()),1,0,"C");
         $pdf->Cell(50, 10, utf8_decode($produit_image_commande->get_message()),1,0,"C");
-        $pdf->Cell(25, 10, utf8_decode($produit->get_prix().EURO),1,0,"C");
-        $pdf->Cell(20, 10, utf8_decode($produit->get_prix()*$produit_image_commande->get_quantite().EURO),1,1,"C");
-        $prix_total = $prix_total + $produit->get_prix()*$produit_image_commande->get_quantite();
+        $pdf->Cell(25, 10, utf8_decode($produit->get_prix_produit().EURO),1,0,"C");
+        $pdf->Cell(20, 10, utf8_decode($produit->get_prix_produit()*$produit_image_commande->get_quantite().EURO),1,1,"C");
+        $prix_total = $prix_total + $produit->get_prix_produit()*$produit_image_commande->get_quantite();
     }
     $pdf->Ln(10);//Saut de lignes
     $pdf->SetX(140);

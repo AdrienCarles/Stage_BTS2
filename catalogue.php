@@ -23,7 +23,7 @@
     echo("<td>".$produit->get_lib_produit()."</td>");
     $img = $produit->get_id_produit();
     echo("<td><img class=' ' src='./img/Produits/$img.jpg' alt='produit'></td>");
-    echo("<td>".$produit->get_prix()."€</td>");
+    echo("<td>".$produit->get_prix_produit()."€</td>");
     echo("</tr>");
   }
   ?>  

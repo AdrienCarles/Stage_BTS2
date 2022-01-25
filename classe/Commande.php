@@ -40,6 +40,7 @@
     private $mail_commande;
     private $id_user;
     private $id_statut;
+    private $id_user_controleur;
 
     /**
      * Setter
@@ -91,6 +92,10 @@
     public function set_id_statut($id_statut)
     {
         $this->id_statut = $id_statut;
+    }
+    public function set_id_user_controleur($id_user_controleur)
+    {
+        $this->id_user_controleur = $id_user_controleur;
     }
 
 
@@ -145,5 +150,10 @@
     {
         return $this->id_statut ;
     }
-
+    public function get_id_user_controleur()
+    {
+        return $this->id_user_controleur ;
+    }
 }
+
+

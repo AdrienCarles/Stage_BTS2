@@ -66,7 +66,7 @@
               echo("<p class=''>".$produit->get_lib_produit()."</p>");
               $img = $produit->get_id_produit();
               echo("<a href='creation.php?etape=2&id_produit=".$img."'><img class=' ' src='./img/Produits/$img.jpg' alt='produit'></a>");
-              echo("<p class=''>".$produit->get_prix()."€</p>");
+              echo("<p class=''>".$produit->get_prix_produit()."€</p>");
             }
         }
     }

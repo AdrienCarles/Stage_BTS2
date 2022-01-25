@@ -19,10 +19,10 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données :  `silusin`
+-- Base de données :  `silusins`
 --
-CREATE DATABASE IF NOT EXISTS `silusin` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `silusin`;
+CREATE DATABASE IF NOT EXISTS `silusins` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `silusins`;
 
 -- --------------------------------------------------------
 
@@ -31,8 +31,8 @@ CREATE TABLE produit(
    lib_produit VARCHAR(500),
    type_produit VARCHAR(500),
    spec_produit VARCHAR(500),
-   prix FLOAT,
-   diametre FLOAT,
+   prix_produit VARCHAR(50),
+   diametre_produit VARCHAR(50),
    PRIMARY KEY(id_produit)
 );
 
@@ -87,9 +87,12 @@ CREATE TABLE commande(
    mail_commande VARCHAR(500),
    id_user INT NOT NULL,
    id_statut INT NOT NULL,
-   PRIMARY KEY(id_commande),
-   FOREIGN KEY(id_user) REFERENCES utilisateur(id_user),
-   FOREIGN KEY(id_statut) REFERENCES statut(id_statut)
+   id_user_controleur INT NOT NULL,
+   PRIMARY KEY(Id_commande),
+   FOREIGN KEY(Id_user) REFERENCES utilisateur(Id_user),
+   FOREIGN KEY(Id_statut) REFERENCES statut(Id_statut),
+   FOREIGN KEY(Id_user_controleur) REFERENCES utilisateur(Id_user)
+
 );
 
 CREATE TABLE produit_image_commande(
