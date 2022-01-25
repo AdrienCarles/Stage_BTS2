@@ -24,6 +24,23 @@ class UtilisateurDAO extends DAO {
         return $utilisateurs;
     } // function findAll() 
 
+    function find($id_user) {
+      $sql = "select * from utilisateur where id_user= :id_user";
+      try {
+        $sth = $this->pdo->prepare($sql);
+        $sth->execute(array(":id_user" => $id_user));
+        $row = $sth->fetch(PDO::FETCH_ASSOC);
+      } catch (PDOException $e) {
+        throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
+      }
+      $utilisateur=null;
+      if($row) {
+        $utilisateur = new Utilisateur($row);
+      }
+      // Retourne l'objet métier
+      return $utilisateur;
+    } // function find()
+
     function find_by_nom(Utilisateur $utilisateurs) {
         $sql="SELECT * FROM utilisateur WHERE nom_user=:nom_user ";
         $params = array(

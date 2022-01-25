@@ -49,7 +49,8 @@
             <li><a href="index.php">Accueil</a></li>
           </div>
           <div class="nav_left">
-            <li><a href="controleur_creation.php">Création de commandes</a></li>
+            <li><a href="administration_controleur.php">Administration</a></li>
+            <li><a href="controleur_creation.php">Création</a></li>
             <li><a href="deconnexion.php">Deconnexion</a></li>
           </div>
         </ul>
@@ -62,7 +63,7 @@
             <li><a href="index.php">Accueil</a></li>
           </div>
           <div class="nav_left">
-            <li><a href="administration.php">Administration</a></li>
+            <li><a href="administration_admin.php">Administration</a></li>
             <li><a href="deconnexion.php">Deconnexion</a></li>
           </div> 
         </ul>

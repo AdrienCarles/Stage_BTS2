@@ -90,7 +90,7 @@
         }
     }else{
         if($commande == NULL){
-            echo ("<h2 class=''>Veillez entrez vos identifiants de commande</h2>");
+            echo ("<h2 class=''>Veillez entrez les identifiants de la commande</h2>");
             ?>
             <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
                 <label for="nom">Nom</label><br>
