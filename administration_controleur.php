@@ -4,6 +4,7 @@
   $familleDAO = new FamilleDAO;
   $imageDAO = new ImageDAO;
   $utilisateurDAO = new UtilisateurDAO;
+  $utilisateur = $_SESSION['utilisateur'];
   $commandes = $commandeDAO->findall();
   $cloture = isset($_GET["cloture"]) ? $_GET["cloture"] : '';
   $id_commande = isset($_GET["id_commande"]) ? $_GET["id_commande"] : '';
@@ -12,8 +13,9 @@
     $commandec = new Commande(array(
         'id_commande' => $id_commande,
         'id_statut'=>3,
+        'id_user_controleur'=>$utilisateur->get_id_user(),
     ));    
-    $commandeDAO->update_statut($commandec); 
+    $commandeDAO->update_statut_id_controleur($commandec); 
     header('Location: administration_controleur.php');     
   }
 

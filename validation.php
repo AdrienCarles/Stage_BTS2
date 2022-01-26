@@ -28,23 +28,25 @@
     $id_image = $image->get_id_image();
 
     if ($submit) {
-        $commande = new Commande(array(
-            'num_commande'=>NULL,
-            'date_commande'=>$date,
-            'total_commande'=>NULL,
-            'mode_paiement'=>NULL,
-            'nom_commande'=>$nom,
-            'prenom_commande'=>$prenom,
-            'classe_commande'=>$classe,
-            'tel_commande'=>$tel,
-            'mail_commande'=>$mail,
-            'id_user'=>1,
-            'id_statut'=>1,
-        ));
+        if(empty($commande)){
+            $commande = new Commande(array(
+                'num_commande'=>NULL,
+                'date_commande'=>$date,
+                'total_commande'=>NULL,
+                'mode_paiement'=>NULL,
+                'nom_commande'=>$nom,
+                'prenom_commande'=>$prenom,
+                'classe_commande'=>$classe,
+                'tel_commande'=>$tel,
+                'mail_commande'=>$mail,
+                'id_user'=>1,
+                'id_statut'=>1,
+            ));
+        }
         $commandeDAO->insert_commande($commande); 
         if(isset($commande)){ 
             $commandeDAO =New CommandeDAO;
-            $commande = $commandeDAO->find_by_nom_prenom_commande($nom,$prenom);  
+            $commande = $commandeDAO->find_by_nom_prenom_date_commande($nom,$prenom,$date);  
             $_SESSION["commande"] = $commande;  
             $id_commande = $commande->get_id_commande();
             $quantite = $_SESSION['qte'];

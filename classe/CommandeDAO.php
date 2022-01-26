@@ -57,12 +57,13 @@ class CommandeDAO extends DAO {
   } // function find
 
 
-  function find_by_nom_prenom_commande($nom_commande, $prenom_commande){
-    $sql = "SELECT * FROM commande WHERE nom_commande= :nom_commande AND prenom_commande = :prenom_commande";
+  function find_by_nom_prenom_date_commande($nom_commande, $prenom_commande, $date_commande){
+    $sql = "SELECT * FROM commande WHERE nom_commande= :nom_commande AND prenom_commande = :prenom_commande AND date_commande = :date_commande";
     try {
       $params = array(
         ":nom_commande" => $nom_commande,
         ":prenom_commande" => $prenom_commande,
+        ":date_commande" => $date_commande,
       );
       $sth = $this->executer($sql, $params);
       $row = $sth->fetch(PDO::FETCH_ASSOC);
@@ -115,6 +116,20 @@ class CommandeDAO extends DAO {
     }
   } // update()
 
+  function update_statut_id_controleur(Commande $commande) {
+    $sql = "UPDATE commande set id_statut=:id_statut, id_user_controleur=:id_user_controleur where id_commande= :id_commande";
+    $params = array(
+      ":id_commande" => $commande->get_id_commande(),
+      ":id_statut" => $commande->get_id_statut(),
+      ":id_user_controleur" => $commande->get_id_user_controleur(),
+    );
+    try {
+      $sth = $this->executer($sql, $params); // On passe par la méthode de la classe mère
+    } catch (PDOException $e) {
+      throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
+    }
+  } // update()
+
   function update_statut(Commande $commande) {
     $sql = "UPDATE commande set id_statut=:id_statut where id_commande= :id_commande";
     $params = array(
@@ -127,4 +142,18 @@ class CommandeDAO extends DAO {
       throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
     }
   } // update()
+
+  function update_prix(Commande $commande) {
+    $sql = "UPDATE commande set total_commande=:total_commande where id_commande= :id_commande";
+    $params = array(
+      ":id_commande" => $commande->get_id_commande(),
+      ":total_commande" => $commande->get_total_commande(),
+    );
+    try {
+      $sth = $this->executer($sql, $params); // On passe par la méthode de la classe mère
+    } catch (PDOException $e) {
+      throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
+    }
+  } // update()
+
 }

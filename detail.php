@@ -8,6 +8,12 @@
     $produit_image_commandes = $produit_image_commandeDAO->find_by_id_commande($commande->get_id_commande());
 ?>
     <h1>Detail de la commande <?=$commande->get_num_commande()?></h1>
+
+    <p>Nom : <?=$commande->get_nom_commande()?></p>
+    <p>Prenom : <?=$commande->get_prenom_commande()?></p>
+    <p>Tèl : <?=$commande->get_tel_commande()?></p>
+    <p>Mail : <?=$commande->get_mail_commande()?></p>
+
     <table>
         <th>Nom Produit</th>
         <th>Produit</th>

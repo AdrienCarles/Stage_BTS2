@@ -3,6 +3,7 @@
     require('init.php');
     session_start(); //demarage des sessions
     $commande = $_SESSION['commande'];    
+    $utilisateur = $_SESSION['utilisateur'];
     $type_commande= isset($_SESSION['type_commande']) ? $_SESSION['type_commande'] : 'W';    
     $mode_paiement = isset($_POST['mode_paiement']) ? $_POST['mode_paiement'] : '';
     $prix = isset($_POST['prix']) ? $_POST['prix'] : '';
@@ -18,14 +19,15 @@
     $commandeDAO->update($commande2); 
     $commande =$commandeDAO->find($id_commande);
     $_SESSION['id_commande'] = $commande->get_id_commande(); 
-    $pdf = new FPDF();
     //definition des constantes date qui renvois la date du jour et EURO qui atribut le signe €
-    date_default_timezone_set('Europe/Paris'); //instanciation du fuseau horaire
-    $date = date('d/m/Y');
     define('EURO'," ".utf8_encode(chr(128))); 
 
+    $pdf = new Mon_PDF();
+    $pdf->SetAutoPageBreak(1,40);
     $pdf->SetTitle('Commande'.$commande->get_num_commande(), true);  // déﬁnit le titre du document
     $pdf->SetAuthor( $commande->get_nom_commande(), true);  // déﬁnit le créateur du document
+    $pdf->mon_fichier='Commande'.$commande->get_num_commande().'.pdf';
+
 
     $pdf->AddPage(); // Crée une nouvelle page
     $pdf->SetFont('Arial','B',20);  // Définit la police 
@@ -46,10 +48,8 @@
 
     $pdf->Ln(10); //Saut de lignes
 
-    $pdf->SetXY(155,80);
-    $pdf->Cell(75, 5, utf8_decode($prix.EURO),0,0,'L');
     $pdf->SetFont('Arial','B',18);  // Définit la police 
-    $pdf->SetXY(10,100);
+    $pdf->SetXY(10,65);
     $pdf->Cell(0, 12.5, utf8_decode("Bon de commande WEB : ".$commande->get_num_commande()),1,0,'C');
     $pdf->Ln(20);//Saut de lignes
     $pdf->SetFont('Arial','',12);  // Définit la police 
@@ -86,35 +86,20 @@
     $pdf->Cell(30, 10, utf8_decode("Prix Total"),1,0,"C");
     $pdf->Cell(30, 10, utf8_decode($prix_total.EURO),1,1,"C");
     $pdf->Ln(10);//Saut de lignes
-    $pdf->RoundedRect(22.5,62,50,30,5,"D");
-    $pdf->Cell(17.5, 5, utf8_decode(" "),0,0,'L');
-    $pdf->Cell(40, 5, utf8_decode("Date et signature : "),0,0,'C');
-    $pdf->RoundedRect(80,62,50,30,5,"D");
-    $pdf->Cell(17.5, 5, utf8_decode(" "),0,0,'L');
-    $pdf->Cell(40, 5, utf8_decode("Mode de paiement : "),0,0,'C');
-    $pdf->RoundedRect(137.5,62,50,30,5,"D");
-    $pdf->Cell(15, 5, utf8_decode(" "),0,0,'L');
-    $pdf->Cell(45, 5, utf8_decode("Prix Total :"),0,1,'C');
-    $pdf->Cell(17.5, 5, utf8_decode(" "),0,0,'L');
-    $pdf->Cell(40,8,utf8_decode($date),0,0,"C");
-    $pdf->Cell(75, 5, utf8_decode(" "),0,0,'L');
-    $pdf->SetFont('Arial','',10);  // Définit la police 
-    $pdf->MultiCell(40, 5, utf8_decode("(à payer au moment\nde la commande) :"),0,'C');
-    if ($mode_paiement == "especes"){
-        $pdf->SetFont('Arial','',12);  // Définit la police 
-        $pdf->Cell(40, 5, utf8_decode("Espèces"),0,2,'C');
-    }else{
-        $pdf->SetFont('Arial','',12);  // Définit la police 
-        $pdf->MultiCell(40, 5, utf8_decode("Chèque\nà l'ordre de L'OCCE"),0,'C');
-    }
-    $pdf->Ln(10);//Saut de lignes
     $pdf->SetFont('Arial','UB',12);  // Définit la police 
     $pdf->Cell(30, 10, utf8_decode("Les SILUSINS "),0,0,"R");
     $pdf->SetFont('Arial','U',12);  // Définit la police 
     $pdf->Cell(0, 10, utf8_decode(": ULIS du collège Pierre Suc à Saint-Sulpice-la-Pointe"),0,0,"L");
     
     // Génération du document PDF
-    $pdf->Output('f','./pdf/Commande '.$commande->get_num_commande().'.pdf', 'UTF-8');
+    $pdf->Output('f','./pdf/'.$pdf->mon_fichier);
     // Redirection vers une autre page
-    header('Location: commande_validation.php');     
+    if($utilisateur->get_id_role() == 1){
+        header('Location: commande_validation.php');     
+    }elseif($utilisateur->get_id_role() == 2){
+        header('Location: administration_controleur.php');     
+    }elseif($utilisateur->get_id_role() == 3){
+        header('Location: administration_admin.php');     
+    }
+        
 ?>

@@ -2,6 +2,7 @@
     require("header.php");
     $prix_total = 0;
     $commande = isset($_SESSION['commande']) ? $_SESSION['commande'] : '';
+    $commandeDAO = new CommandeDAO;
     $id_commande = $commande->get_id_commande();
     $produit_image_commandeDAO = new Produit_image_commandeDAO;
     $produit_image_commandes = $produit_image_commandeDAO->findall();
@@ -42,6 +43,12 @@
                 echo("</tr>");
             }
         }
+        $commande2 = new Commande(array(
+            'id_commande' => $commande->get_id_commande(),
+            'total_commande' => $prix_total,
+        ));
+        $commandeDAO->update_prix($commande2); 
+        $_SESSION['total_commande'] = $commande2->get_total_commande(); 
     ?>
     </table>
     <br><br>
