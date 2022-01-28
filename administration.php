@@ -1,24 +1,31 @@
 <?php
   require("header.php");
-  $commandeDAO = new CommandeDAO;
-  $familleDAO = new FamilleDAO;
-  $imageDAO = new ImageDAO;
-  $utilisateurDAO = new UtilisateurDAO;
   $utilisateur = isset($_SESSION['utilisateur']) ? $_SESSION['utilisateur'] : '';
   $role = $utilisateur->get_id_role();
   $commandes = $commandeDAO->findall();
   $cloture = isset($_GET["cloture"]) ? $_GET["cloture"] : '';
   $id_commande = isset($_GET["id_commande"]) ? $_GET["id_commande"] : '';
 
-  /* Operation fausse */
   if($cloture == 1){
     $commandec = new Commande(array(
         'id_commande' => $id_commande,
-        'id_statut'=>7,
+        'id_statut'=>3,
+        'id_user_controleur' => $utilisateur->get_id_user(),
     ));    
-    $commandeDAO->update_statut($commandec); 
-    header('Location: administration_admin.php');     
+    $commandeDAO->update_statut_id_controleur($commandec); 
+    header('Location: administration.php');     
   }
+  if($cloture == 2){
+    $commandec = new Commande(array(
+        'id_commande' => $id_commande,
+        'id_statut'=>4,
+        'id_user_controleur' => $utilisateur->get_id_user(),    
+    ));    
+    $commandeDAO->update_statut_id_controleur($commandec); 
+    header('Location: administration.php');     
+  }
+
+
 
   if($role == 3){
       echo"<h1>Portail administrateur</h1>";
@@ -58,13 +65,13 @@
                     echo("<td>".$commande->get_mail_commande()."</td>");
                     echo("<td><a href='detail.php?num_commande=".$commande->get_num_commande()."'>Detail</a></td>");
                     echo("<td><a href='administration.php?cloture=1&id_commande=".$commande->get_id_commande()."'>Conforme</a></td>");
-                    echo("<td><a href='administration.php?cloture=1&id_commande=".$commande->get_id_commande()."'>Non conforme</a></td>");
+                    echo("<td><a href='administration.php?cloture=2&id_commande=".$commande->get_id_commande()."'>Non conforme</a></td>");
                 echo("</tr>");
             }
         }
     ?>
 </table>
-        
+
 <h2 class="text_center">Liste des commandes controlées (statut: Conforme)</h2>
 
 <table>
@@ -98,7 +105,7 @@
                     echo("<td>".$commande->get_mail_commande()."</td>");
                     echo("<td>".$user->get_prenom_user()."</td>");
                     echo("<td><a href='detail.php?num_commande=".$commande->get_num_commande()."'>Detail</a></td>");
-                    echo("<td><a href='administration.php?cloture=1&id_commande=".$commande->get_id_commande()."'>Impression des visuels</a></td>");
+                    echo("<td><a href='impression_visuels_pdf.php?id_commande=".$commande->get_id_commande()."'>Impression des visuels</a></td>");
                     echo("<td><a href='administration.php?cloture=1&id_commande=".$commande->get_id_commande()."'>Fabriquée</a></td>");
 
                 echo("</tr>");
@@ -127,7 +134,7 @@
             $id_statut = $commande->get_id_statut();
             $id_user_controleur = $commande->get_id_user_controleur();
             $user = $utilisateurDAO->find($id_user_controleur);
-            if($id_statut == 3){
+            if($id_statut == 4){
                 echo("<tr>");
                     echo("<td>".$commande->get_num_commande()."</td>");
                     echo("<td>".$commande->get_date_commande()."</td>");

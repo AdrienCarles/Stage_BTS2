@@ -2,6 +2,11 @@
        require('init.php');//initialisation VITAL!!!!
        session_start(); //demarage des sessions
        print_r($_SESSION);
+
+       $commandeDAO = new CommandeDAO;
+       $familleDAO = new FamilleDAO;
+       $imageDAO = new ImageDAO;
+       $utilisateurDAO = new UtilisateurDAO;
 ?>
 <!DOCTYPE html>
 <html lang="fr">
