@@ -3,7 +3,7 @@
     require('init.php');
     session_start(); //demarage des sessions
     $commande = $_SESSION['commande'];    
-    $utilisateur = $_SESSION['utilisateur'];
+    $utilisateur = isset($_SESSION['utilisateur']) ? $_SESSION['utilisateur'] : '';
     $type_commande= isset($_SESSION['type_commande']) ? $_SESSION['type_commande'] : 'W';    
     $mode_paiement = isset($_POST['mode_paiement']) ? $_POST['mode_paiement'] : '';
     $prix = isset($_POST['prix']) ? $_POST['prix'] : '';
@@ -94,12 +94,13 @@
     // Génération du document PDF
     $pdf->Output('f','./pdf/'.$pdf->mon_fichier);
     // Redirection vers une autre page
-    if($utilisateur->get_id_role() == 1){
+    if(!empty($utilisateur)){
+        if($utilisateur->get_id_role() == 2){
+            header('Location: administration.php');     
+        }elseif($utilisateur->get_id_role() == 3){
+            header('Location: administration.php');     
+        }
+    }else{
         header('Location: commande_validation.php');     
-    }elseif($utilisateur->get_id_role() == 2){
-        header('Location: administration_controleur.php');     
-    }elseif($utilisateur->get_id_role() == 3){
-        header('Location: administration_admin.php');     
-    }
-        
+    }   
 ?>
