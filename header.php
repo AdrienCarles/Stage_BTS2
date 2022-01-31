@@ -1,7 +1,7 @@
 <?php
        require('init.php');//initialisation VITAL!!!!
        session_start(); //demarage des sessions
-       print_r($_SESSION);
+       print_r($_SESSION);    // Affichage des variables de session
 
        $commandeDAO = new CommandeDAO;
        $familleDAO = new FamilleDAO;
@@ -28,7 +28,6 @@
         <div class="nav_left">
           <li class="li_nav_left"><a href="catalogue.php">Catalogue</a></li>
           <li class="li_nav_left"><a href="creation.php">Création</a></li>
-          <li class="li_nav_left"><a href="inscription.php">Inscription</a></li>
           <li class="li_nav_left"><a href="connexion.php">Connexion</a></li>
         </div>
       </ul>
@@ -68,6 +67,7 @@
             <li><a href="index.php">Accueil</a></li>
           </div>
           <div class="nav_left">
+            <li><a href="inscription.php">Inscription</a></li>
             <li><a href="administration.php">Administration des commandes</a></li>
             <li><a href="visuel_ajout.php">Gestions des visuels</a></li>
             <li><a href="deconnexion.php">Deconnexion</a></li>

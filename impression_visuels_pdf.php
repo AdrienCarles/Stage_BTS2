@@ -12,41 +12,42 @@
     
 
 
-    $pdf = new FPDF('P','cm',);
-    $pdf->SetAutoPageBreak(1,40);
+    $pdf = new FPDF('P','mm',);
     $pdf->SetTitle('Visuels'.$commande->get_num_commande(), true);  // déﬁnit le titre du document
     $pdf->SetAuthor( $commande->get_nom_commande(), true);  // déﬁnit le créateur du document
     $pdf->mon_fichier='Commande'.$commande->get_num_commande().'.pdf';
 
     $pdf->AddPage(); // Crée une nouvelle page
     $pdf->SetFont('Arial','B',20);  // Définit la police 
-    $x =0;
-    $y =0;
+    $x =1;
+    $y =1;
+    $diametre_x = 0;
+    $pdf->SetXY($x,$y);
     foreach ($produit_image_commandes as $produit_image_commande){
         $produitDAO = new ProduitDAO;
-        $famille = new FamilleDAO;
+        $familleDAO = new FamilleDAO;
         $produit = $produitDAO->find($produit_image_commande->get_id_produit());
         $diametre = $produit->get_diametre_produit();
-        $famille = $famille->find($produit_image_commande->get_id_famille());
+        $famille = $familleDAO->find($produit_image_commande->get_id_famille());
         $chemin = "./img/Visuel/".$famille->get_lib_famille()."/".$produit_image_commande->get_id_image().".jpg";
         $quantite = $produit_image_commande->get_quantite();
-        while ($quantite > 0 ){
-            $pdf->SetXY($x,$y);
-            $pdf->Image($chemin,$x,$y,$diametre,$diametre);
-            if($diametre == 10){
-                $y = $y+5;
+        for($quantite; $quantite > 0; $quantite--){
+            $diametre_x = $diametre_x+$diametre;
+            if($x < 140){
+                $pdf->Image($chemin,$x,$y,$diametre,$diametre);
+                $x = $x+$diametre+2;
             }
-            $x = $x+$diametre;
-            if($x > 15){
-                $y = $y+$diametre;
-                $x = 0;
-                if($y > 20){
+            if($x > 140){
+                $y = $y+71;
+                $x = 1;
+                $diametre_x = 0;
+                $pdf->SetXY($x,$y);
+                if($y > 214){
                     $pdf->AddPage(); // Crée une nouvelle page
-                    $x =0;
-                    $y =0;                
+                    $x =1;
+                    $y =1;                
                 }
             }
-            $quantite = $quantite-1;
         }
     }
     $pdf->Output('d','./pdf/'.$pdf->mon_fichier, 'UTF-8');

@@ -53,13 +53,13 @@
     {
         $this->spec_produit = $spec_produit;
     }
-    public function set_prix_produit($prix)
+    public function set_prix_produit($prix_produit)
     {
-        $this->prix = $prix;
+        $this->prix_produit = $prix_produit;
     }
-    public function set_diametre_produit($diametre)
+    public function set_diametre_produit($diametre_produit)
     {
-        $this->diametre = $diametre;
+        $this->diametre_produit = $diametre_produit;
     }
 
 
@@ -84,10 +84,10 @@
     }
     public function get_prix_produit()
     {
-        return $this->prix;
+        return $this->prix_produit;
     }
     public function get_diametre_produit()
     {
-        return $this->diametre;
+        return $this->diametre_produit;
     }
 }
