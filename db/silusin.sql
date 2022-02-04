@@ -51,7 +51,9 @@ CREATE TABLE role(
 CREATE TABLE famille(
    id_famille INT NOT NULL UNIQUE AUTO_INCREMENT,
    lib_famille VARCHAR(500),
+   promo_famille TINYINT,
    PRIMARY KEY(id_famille)
+   
 );
 
 CREATE TABLE image(

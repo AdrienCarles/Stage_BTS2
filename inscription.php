@@ -11,7 +11,7 @@
   $mdp=isset($_POST['mdp']) ? $_POST['mdp'] : '';
   $c_mdp=isset($_POST['c_mdp']) ? $_POST['c_mdp'] : '';
   $classe=isset($_POST['classe']) ? $_POST['classe'] : '';
-  $tel=isset($_POST['tel']) ? $_POST['tel'] : '+33';
+  $tel=isset($_POST['tel']) ? $_POST['tel'] : '';
   $mail=isset($_POST['mail']) ? $_POST['mail'] : '';
   $submit=isset($_POST['submit']); // Attribue à la variable submit l'appui sur le bouton du formulaire 
   
@@ -53,10 +53,6 @@
         $messages[] = "Le téléphone n'est pas un entier valide"; 
     } 
     // EMAIL
-    $mail = filter_input(INPUT_POST, "mail",FILTER_SANITIZE_EMAIL);
-    if (empty(trim($mail))){ 
-        $messages[] = "Le mail est obligatoire"; 
-    }
     if (filter_var($mail, FILTER_VALIDATE_EMAIL) === false){
         $messages[] = "Le mail n'est pas valide"; 
     } 
@@ -112,7 +108,7 @@
   <input type="text" name="tel" id="tel" placeholder="Téléphone" value="<?=$tel?>"><br>
     
   <label for="mail">Mail</label><br>
-  <input type="email" name="mail" id="mail" placeholder="Mail" value="<?=$mail?>"><br><br>
+  <input type="text" name="mail" id="mail" placeholder="Mail" value="<?=$mail?>"><br><br>
 
   <input type="submit" value="S'inscrire" name="submit">
 </form>   

@@ -31,7 +31,7 @@
 <h2>Visuels</h2>
 <?php
   $familles =New FamilleDAO;
-  $familles = $familles->findall();
+  $familles = $familles->findAll_order_by_promo();
   foreach($familles as $famille){
     $id_famille = $famille->get_id_famille();
     $lib_famille = $famille->get_lib_famille();
@@ -41,7 +41,7 @@
     $images = $images->find_by_id_famille($id_famille);
     foreach($images AS $image){  
       $img = $image->get_id_image();
-      echo("<img class=' ' src='./img/Visuel/$lib_famille/$img.jpg' alt=''>");
+      echo("<img class='visuel' src='./img/Visuel/$lib_famille/$img.jpg' alt=''>");
     }
   }
 require("footer.php");

@@ -1,7 +1,6 @@
 <?php
        require('init.php');//initialisation VITAL!!!!
        session_start(); //demarage des sessions
-       print_r($_SESSION);    // Affichage des variables de session
 
        $commandeDAO = new CommandeDAO;
        $familleDAO = new FamilleDAO;
@@ -23,7 +22,7 @@
       ?>
       <ul class="container-fluid menu">
         <div class="nav_right">
-          <li><a href="index.php">Accueil</a></li>
+          <a href="index.php"><img src="./img/logo.jpg" alt=""></a>
         </div>
         <div class="nav_left">
           <li class="li_nav_left"><a href="catalogue.php">Catalogue</a></li>
@@ -38,7 +37,7 @@
         ?> 
         <ul class="container-fluid menu">
           <div class="nav_right">
-            <li><a href="index.php">Accueil</a></li>
+            <li><a href="index.php"><img src="./img/logo.jpg" alt=""></a></li>
           </div>
           <div class="nav_left">
             <li><a href="deconnexion.php">Deconnexion</a></li>
@@ -50,11 +49,11 @@
         ?>    
         <ul class="container-fluid menu"> 
           <div class="nav_right">
-            <li><a href="index.php">Accueil</a></li>
+            <li><a href="index.php"><img src="./img/logo.jpg" alt=""></a></li>
           </div>
           <div class="nav_left">
             <li><a href="administration.php">Administration</a></li>
-            <li><a href="controleur_creation.php">Création</a></li>
+            <li><a href="creation.php">Création</a></li>
             <li><a href="deconnexion.php">Deconnexion</a></li>
           </div>
         </ul>
@@ -64,7 +63,7 @@
         ?>    
         <ul class="container-fluid menu">       
           <div class="nav_right">
-            <li><a href="index.php">Accueil</a></li>
+            <li><a href="index.php"><img src="./img/logo.jpg" alt=""></a></li>
           </div>
           <div class="nav_left">
             <li><a href="inscription.php">Inscription</a></li>

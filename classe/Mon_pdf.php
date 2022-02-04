@@ -18,22 +18,30 @@ class Mon_pdf extends FPDF {
 
     //  
     $this->SetY(-35);
-
+    $this->SetFont('Arial','',12);  // Définit la police 
     $this->RoundedRect(22.5,260,50,30,5,"D");
     $this->Cell(17.5, 5, utf8_decode(" "),0,0,'L');
+    $this->SetFont('Arial','UB',12);  // Définit la police 
     $this->Cell(40, 5, utf8_decode("Date et signature : "),0,0,'C');
+    $this->SetFont('Arial','',12);  // Définit la police 
     $this->RoundedRect(80,260,50,30,5,"D");
+    $this->SetFont('Arial','',12);  // Définit la police 
     $this->Cell(17.5, 5, utf8_decode(" "),0,0,'L');
+    $this->SetFont('Arial','UB',12);  // Définit la police 
     $this->Cell(40, 5, utf8_decode("Mode de paiement : "),0,0,'C');
     $this->RoundedRect(137.5,260,50,30,5,"D");
-    $this->Cell(15, 5, utf8_decode(" "),0,0,'L');
-    $this->Cell(45, 5, utf8_decode("Prix Total :"),0,1,'C');
-    $this->Cell(17.5, 5, utf8_decode(" "),0,0,'L');
     $this->SetFont('Arial','',12);  // Définit la police 
+    $this->Cell(15, 5, utf8_decode(" "),0,0,'L');
+    $this->SetFont('Arial','UB',12);  // Définit la police 
+    $this->Cell(45, 5, utf8_decode("Prix Total :"),0,1,'C');
+    $this->SetFont('Arial','',12);  // Définit la police 
+    $this->Cell(17.5, 5, utf8_decode(" "),0,0,'L');
     $this->Cell(40,8,utf8_decode($date),0,0,"C");
+    $this->SetFont('Arial','',12);  // Définit la police 
     $this->Cell(75, 5, utf8_decode(" "),0,0,'L');
     $this->SetFont('Arial','',10);  // Définit la police 
     $this->MultiCell(40, 5, utf8_decode("(à payer au moment\nde la commande) :"),0,'C');
+    $this->SetFont('Arial','',12);  // Définit la police 
     $this->Cell(75, 5, utf8_decode(" "),0,0,'L'); 
     if ($mode_paiement == "especes"){
         $this->SetFont('Arial','',12);  // Définit la police 

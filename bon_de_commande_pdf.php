@@ -5,14 +5,26 @@
     $commande = $_SESSION['commande'];    
     $utilisateur = isset($_SESSION['utilisateur']) ? $_SESSION['utilisateur'] : '';
     $type_commande= isset($_SESSION['type_commande']) ? $_SESSION['type_commande'] : 'W';    
+    $prix = isset($_SESSION['total_commande']) ? $_SESSION['total_commande'] : '';
     $mode_paiement = isset($_POST['mode_paiement']) ? $_POST['mode_paiement'] : '';
-    $prix = isset($_POST['prix']) ? $_POST['prix'] : '';
+    $nom = isset($_POST['nom']) ? $_POST['nom'] : '';
+    $prenom = isset($_POST['prenom']) ? $_POST['prenom'] : '';
+    $classe = isset($_POST['classe']) ? $_POST['classe'] : '';
+    $tel = isset($_POST['tel']) ? $_POST['tel'] : '';
+    $mail = isset($_POST['mail']) ? $_POST['mail'] : '';
+
+
     $id_commande = $commande->get_id_commande();
     $commandeDAO = new CommandeDAO; 
     $commande2 = new Commande(array(
         'id_commande' => $commande->get_id_commande(),
         'num_commande' => $type_commande.$commande->get_id_commande(),
         'total_commande' => $prix,
+        'nom_commande'=>$nom,
+        'prenom_commande'=>$prenom,
+        'classe_commande'=>$classe,
+        'tel_commande'=>$tel,
+        'mail_commande'=>$mail,
         'mode_paiement' => $mode_paiement,
         'id_statut'=>2,
     ));
@@ -31,7 +43,7 @@
 
     $pdf->AddPage(); // Crée une nouvelle page
     $pdf->SetFont('Arial','B',20);  // Définit la police 
-    $pdf->Image('img/20.jpg',10,10,50,50); //Logo
+    $pdf->Image('img/logo.jpg',10,10,50,50); //Logo
     $pdf->Cell(0, 20, utf8_decode("SILUSINS"),0,1,'C');
     $pdf->SetFont('Arial','',12);  // Définit la police 
     $pdf->Cell(60, 5, utf8_decode(" "),0,0,'L');

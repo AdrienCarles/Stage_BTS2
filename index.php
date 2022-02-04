@@ -5,8 +5,11 @@
   session_destroy(); // Détruit la session (mais pas le cookie)
   setcookie(session_name(),'',-1,'/'); // Détruit le cookie de session
 ?>
-<h1 class="">Les silusins</h1>
-
+<div class="container">
+  <div class="row row_index">
+    <img class='card_index' src="./img/silusins.png" alt="garde">
+  </div>
+</div>
 <?php 
   if($connexion == 0){
     echo "Vous êtes déconnecter";

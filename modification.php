@@ -5,18 +5,26 @@
     $produit_image_commandeDAO = new Produit_image_commandeDAO;
 
     $commande = $commandeDAO->find_num_commande($num_commande);
+    $_SESSION['commande'] = $commande;
     $produit_image_commandes = $produit_image_commandeDAO->find_by_id_commande($commande->get_id_commande());
 ?>
-    <h1>Detail de la commande <?=$commande->get_num_commande()?></h1>
+    <h1>Modification de la commande <?=$commande->get_num_commande()?></h1>
     <div class="container">
         <div class="row">
-            <p class="col-12 text_center detail_commande">NOM : <?=$commande->get_nom_commande()?></p>
-            <p class="col-12 text_center detail_commande">PRENOM : <?=$commande->get_prenom_commande()?></p>
-            <p class="col-12 text_center detail_commande">TEL : <?=$commande->get_tel_commande()?></p>
-            <p class="col-12 text_center detail_commande">MAIL : <?=$commande->get_mail_commande()?></p>
+            <form class="col-12 form_modif_commande" action="">
+                <label for="nom">NOM</label>
+                <input type="text" name="nom" id="nom" value=" <?=$commande->get_nom_commande()?>"><br>
+                <label for="nom">PRENOM</label>
+                <input type="text" name="prenom" id="prenom" value=" <?=$commande->get_prenom_commande()?>"><br>
+                <label for="nom">TEL</label>
+                <input type="text" name="tel" id="tel" value=" <?=$commande->get_tel_commande()?>"><br>
+                <label for="nom">MAIL</label>
+                <input type="text" name="mail" id="mail" value=" <?=$commande->get_mail_commande()?>"><br>
+                <input type="submit" class="regulariser" name="submit" value="Modifier" />
+            </form>
         </div>
     </div>
-
+    <br>
 
     <table>
         <th>Nom Produit</th>
@@ -26,15 +34,16 @@
         <th>Quantité</th>
         <th>Prix Individuel</th>
         <th>Message</th>
+        <th colspan="2">Action</th>
         <?php
             foreach($produit_image_commandes as $produit_image_commande){
                 echo("<tr>");
-                $produit = new ProduitDAO;
-                $produit = $produit->find($produit_image_commande->get_id_produit());
-                $famille = new FamilleDAO;
-                $famille = $famille->find($produit_image_commande->get_id_famille());
-                $image = new ImageDAO;
-                $image = $image->find($produit_image_commande->get_id_image());
+                $produitDAO = new ProduitDAO;
+                $produit = $produitDAO->find($produit_image_commande->get_id_produit());
+                $familleDAO = new FamilleDAO;
+                $famille = $familleDAO->find($produit_image_commande->get_id_famille());
+                $imageDAO = new ImageDAO;
+                $image = $imageDAO->find($produit_image_commande->get_id_image());
 
                 $id_commande = $commande->get_id_commande();
                 echo("<td>".$produit->get_lib_produit()."</td>");
@@ -44,6 +53,7 @@
                 echo("<td>".$produit_image_commande->get_quantite()."</td>");
                 echo("<td>".$produit->get_prix_produit()."</td>");
                 echo("<td>".$produit_image_commande->get_message()."</td>");
+                echo("<td><a class='non_conforme' href='suppression.php?c=1&id_produit=".$produit->get_id_produit()."&lib_famille=".$famille->get_lib_famille()."&id_image=".$image->get_id_image()."'>Supprimer</a></td>");
                 echo("</tr>");
             }
         ?>

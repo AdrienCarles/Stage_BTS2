@@ -24,6 +24,21 @@ class FamilleDAO extends DAO {
       return $familles;
   } // function findAll() 
 
+  function findAll_order_by_promo() {
+    $sql = "SELECT * FROM famille ORDER BY promo_famille DESC";
+    try {
+      $sth=$this->executer($sql); 
+      $rows = $sth->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+      die("Erreur lors de la requête SQL : " . $e->getMessage());
+    }
+    $familles = array();
+    foreach ($rows as $row) {
+      $familles[] = new Famille($row);
+    }
+    return $familles;
+} // function findAll() 
+
   function find($id_famille) {
     $sql = "SELECT * FROM famille WHERE id_famille= :id_famille";
     try {

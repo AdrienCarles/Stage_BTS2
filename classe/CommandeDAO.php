@@ -55,8 +55,6 @@ class CommandeDAO extends DAO {
     }
     return $commande;
   } // function find
-
-
   function find_by_nom_prenom_date_commande($nom_commande, $prenom_commande, $date_commande){
     $sql = "SELECT * FROM commande WHERE nom_commande= :nom_commande AND prenom_commande = :prenom_commande AND date_commande = :date_commande";
     try {
@@ -76,6 +74,39 @@ class CommandeDAO extends DAO {
     }
     return $commande;
   } //function find_by_nom_prenom_commande
+
+  function find_by_date_commande($date_commande){
+    $sql = "SELECT * FROM commande WHERE date_commande = :date_commande";
+    try {
+      $params = array(
+        ":date_commande" => $date_commande,
+      );
+      $sth = $this->executer($sql, $params);
+      $row = $sth->fetch(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+      die("Erreur lors de la requête SQL : " . $e->getMessage());
+    }
+    $commande = null;
+    if ($row) {
+      $commande = new Commande($row);
+    }
+    return $commande;
+  } //function find_by_date_commande
+
+  function find_max_id() {
+    $sql = "SELECT * FROM commande WHERE id_commande = (SELECT MAX(id_commande) FROM commande)";
+    try {
+      $sth=$this->executer($sql); 
+      $row = $sth->fetch(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+      die("Erreur lors de la requête SQL : " . $e->getMessage());
+    }
+    $commande = null;
+    if ($row) {
+      $commande = new Commande($row);
+    }
+    return $commande;
+} // function find_max_id() 
 
   function insert_commande(Commande $commande){
     $sql = "INSERT INTO `commande`(`num_commande`, `date_commande`, `total_commande`, `mode_paiement`, `nom_commande`, `prenom_commande`, `classe_commande`, `tel_commande`, `mail_commande`, `id_user`, `id_statut`)
@@ -101,12 +132,17 @@ class CommandeDAO extends DAO {
     }
   }
   function update(Commande $commande) {
-    $sql = "UPDATE commande set num_commande=:num_commande, total_commande=:total_commande, mode_paiement=:mode_paiement, id_statut=:id_statut where id_commande= :id_commande";
+    $sql = "UPDATE commande set num_commande=:num_commande, total_commande=:total_commande, mode_paiement=:mode_paiement, nom_commande = :nom_commande, prenom_commande = :prenom_commande, classe_commande = :classe_commande, tel_commande = :tel_commande, mail_commande = :mail_commande, id_statut=:id_statut where id_commande= :id_commande";
     $params = array(
       ":id_commande" => $commande->get_id_commande(),
       ":num_commande" => $commande->get_num_commande(),
       ':total_commande' => $commande->get_total_commande(),
       ':mode_paiement' => $commande->get_mode_paiement(),
+      ":nom_commande" => $commande->get_nom_commande(),
+      ":prenom_commande" => $commande->get_prenom_commande(),
+      ":classe_commande" => $commande->get_classe_commande(),
+      ":tel_commande" => $commande->get_tel_commande(),
+      ":mail_commande" => $commande->get_mail_commande(),
       ":id_statut" => $commande->get_id_statut(),
     );
     try {

@@ -19,15 +19,15 @@
 
     $pdf->AddPage(); // Crée une nouvelle page
     $pdf->SetFont('Arial','B',20);  // Définit la police 
-    $x =1;
-    $y =1;
+    $x =10;
+    $y =10;
     $diametre_x = 0;
     $pdf->SetXY($x,$y);
     foreach ($produit_image_commandes as $produit_image_commande){
         $produitDAO = new ProduitDAO;
         $familleDAO = new FamilleDAO;
         $produit = $produitDAO->find($produit_image_commande->get_id_produit());
-        $diametre = $produit->get_diametre_produit();
+        $diametre = $produit->get_diametre_produit()+1;
         $famille = $familleDAO->find($produit_image_commande->get_id_famille());
         $chemin = "./img/Visuel/".$famille->get_lib_famille()."/".$produit_image_commande->get_id_image().".jpg";
         $quantite = $produit_image_commande->get_quantite();
@@ -39,13 +39,13 @@
             }
             if($x > 140){
                 $y = $y+71;
-                $x = 1;
+                $x = 10;
                 $diametre_x = 0;
                 $pdf->SetXY($x,$y);
                 if($y > 214){
                     $pdf->AddPage(); // Crée une nouvelle page
-                    $x =1;
-                    $y =1;                
+                    $x =10;
+                    $y =10;                
                 }
             }
         }

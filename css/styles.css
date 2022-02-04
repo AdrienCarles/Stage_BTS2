@@ -9,16 +9,19 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: Verdana, Geneva, sans-serif;
+  font-family: Helvetica, Verdana;
   background-color: #f6f6f6;
-  overflow-x: hidden;
   cursor: default;
 }
 h1{
   text-align: center;    
   font-weight : 300;
 }
-
+a{
+  font-size:20px;
+  text-align: center;
+  text-decoration: none;
+}
 .text_center{
   text-align: center;
 }
@@ -29,6 +32,10 @@ h1{
   box-shadow: 0 0 20px rgb(0 0 0 / 20%);
   border: 1px solid rgba(87, 15, 15, 0.125);
   padding: 1.25rem;
+}
+.visuel{
+  max-width: 250px;
+  max-height: 120px;
 }
 /*Container et colonnes*/
 .container {
@@ -102,19 +109,32 @@ h1{
 /*navbar et menu*/
 
 .menu {
+  background-color: #ffffff;
   display: inline-flex;
+  /*position: fixed;*/
   justify-content: space-between;
-  align-items: center;
-  padding: 30px 20px;
   width: 100%;
   list-style-type: none;
+  z-index: 900;
+  margin-top: 0%;
 }
 .nav_left{
   display: inline-flex;
   width: 400px;
   justify-content: space-evenly;
+  align-items: center;
 }
 
+/*index.php*/
+.row_index{
+  justify-content: center;
+}
+.card_index{
+  border-radius: 0.5em;
+  background-color: #e9e9e9;
+  box-shadow: 0 0 20px rgb(0 0 0 / 20%);
+  border: 1px solid rgba(87, 15, 15, 0.125);
+}
 /*administration.php*/
 .form_admin{
   max-width: 250px;
@@ -123,6 +143,81 @@ h1{
   margin-right: auto;
   margin-left: auto;
 } 
+.detail{
+  background-color: #032d88;
+  color: white;
+  padding: 14px 25px;
+  display: inline-block;
+}
+.conforme{
+  background-color: #80c944;
+  color: white;
+  padding: 14px 25px;
+  display: inline-block;
+}
+.non_conforme{
+  background-color: #bb2c2c;
+  color: white;
+  padding: 14px 25px;
+  display: inline-block;
+}
+.impression{
+  background-color: #d7da42;
+  color: black;
+  padding: 14px 25px;
+  display: inline-block;
+}
+.regulariser{
+  background-color: #c9931f;
+  color: rgb(255, 255, 255);
+  padding: 14px 25px;
+  display: inline-block;
+}
+/*creation.php*/
+.div_bouton_creation{
+  display: flex;
+  justify-content: center;
+}
+.controleur_type_commande{
+    justify-content: center;
+    margin-bottom: 1%;
+}
+.web{
+  background-color: #5ee9f3;
+  color: white;
+  padding: 14px 42px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+.physique{
+  background-color: #cde950;
+  color: white;
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+/*panier.php*/
+.panier_creation{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2%;
+}
+
+/*detail.php*/
+.detail_commande{
+  margin-top: 0%;
+  font-size: 20px;
+}
+/*modification.php*/
+.form_modif_commande{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 
 /*CSS pris suur autre exos*/
 table, th, td {
@@ -144,6 +239,7 @@ th,td {
 th {
    background-color: grey;
    color: white; 
+   font-size: 20px;
 }
 
 td {
@@ -151,9 +247,4 @@ td {
 }
 td.total {
   font-weight: bold;
-}
-
-img {
-  max-width: 250px;
-  max-height: 120px;
 }
