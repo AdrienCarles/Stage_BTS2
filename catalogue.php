@@ -7,27 +7,23 @@
 ?>
 <h1>Catalogue</h1>
 <h2>Produits</h2>
-
-
-
-
-<table>
-  <tr>
-    <th>Nom du produit</th>
-    <th>Image</th>
-    <th>Prix</th>
-  </tr>
-  <?php
-  foreach($produits as $produit){
-    echo("<tr>");
-    echo("<td>".$produit->get_lib_produit()."</td>");
-    $img = $produit->get_id_produit();
-    echo("<td><img class=' ' src='./img/Produits/$img.jpg' alt='produit'></td>");
-    echo("<td>".$produit->get_prix_produit()."€</td>");
-    echo("</tr>");
-  }
-  ?>  
-</table>
+<div class="container produits_container">
+    <?php   
+    foreach($produits as $produit){
+      ?>
+      <div class="row produits_row">
+        <?php
+        echo("<p class=''>".$produit->get_lib_produit()."</p>");
+        $img = $produit->get_id_produit();
+        echo("<img class=' ' src='./img/Produits/$img.jpg' alt='produit'>");
+        echo("<p class=''>".$produit->get_prix_produit()."€</p>");
+        echo("<p class=''>".$produit->get_diametre_produit()."mm</p>");
+        ?>
+      </div>
+      <?php
+    }
+    ?>
+</div>
 <h2>Visuels</h2>
 <?php
   $familles =New FamilleDAO;

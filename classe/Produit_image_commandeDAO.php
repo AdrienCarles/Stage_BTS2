@@ -42,6 +42,25 @@ class Produit_image_commandeDAO extends DAO {
     return $produit_image_commandes;
   } // function find
 
+  function count_by_id_commande($id_commande) {
+    $sql = "SELECT * FROM produit_image_commande WHERE id_commande= :id_commande";
+    try {
+      $params = array(
+        ":id_commande" => $id_commande
+      );
+      $sth = $this->executer($sql, $params);
+      $rows = $sth->fetchAll(PDO::FETCH_ASSOC);
+      $nb = $sth->rowcount();
+    } catch (PDOException $e) {
+      die("Erreur lors de la requête SQL : " . $e->getMessage());
+    }
+    $produit_image_commandes = array();
+    foreach($rows as $row) {
+      $produit_image_commandes[] = new Produit_image_commande($row);
+    }
+    return $nb;
+  } // function find
+
   function insert_produit_image_commande(Produit_image_commande $produit_image_commande) {
     $sql = "INSERT INTO `produit_image_commande`(`id_produit`, `id_famille`, `id_image`, `id_commande`, `quantite`, `message`) 
             VALUES 

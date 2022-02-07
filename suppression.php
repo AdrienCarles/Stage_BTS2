@@ -17,10 +17,23 @@
         $c = isset($_POST['c']) ? $_POST['c'] : '';
         // Suppression
         $produit_image_commandeDAO->delete($id_produit,$id_image,$id_commande);
-        if ($c == 1){
-            header("Location: modification.php?cloture=1&num_commande=".$commande->get_num_commande()."");
+        $nb = $produit_image_commandeDAO->count_by_id_commande($id_commande);
+        if($nb>0){
+            if ($c == 1){
+                header("Location: modification.php?cloture=1&num_commande=".$commande->get_num_commande()."");
+            }else{
+                header("Location: panier.php");
+            }
         }else{
-            header("Location: panier.php");
+            if ($c == 1){
+                $commandeDAO = new CommandeDAO;
+                $commandeDAO->delete($id_commande);
+                unset($_SESSION['commande']);
+                header("Location: administration.php?cloture=1");
+            }
+            else{
+                header("Location: creation.php");
+            }
         }
     }else{
         $id_produit = isset($_GET['id_produit']) ? $_GET['id_produit'] : '';

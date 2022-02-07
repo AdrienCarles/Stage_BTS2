@@ -192,4 +192,16 @@ class CommandeDAO extends DAO {
     }
   } // update()
 
+  function delete($id_commande) {
+    $sql = "DELETE FROM commande WHERE id_commande=:id_commande";
+    $params = array(
+      ":id_commande" => $id_commande,
+    );
+    try {
+      $sth = $this->executer($sql, $params); // On passe par la méthode de la classe mère
+    } catch (PDOException $e) {
+      die("Erreur lors de la requête SQL : " . $e->getMessage());
+    }
+  } // delete()
+
 }

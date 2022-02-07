@@ -25,26 +25,14 @@
           <a href="index.php"><img src="./img/logo.jpg" alt=""></a>
         </div>
         <div class="nav_left">
-          <li class="li_nav_left"><a href="catalogue.php">Catalogue</a></li>
-          <li class="li_nav_left"><a href="creation.php">Création</a></li>
-          <li class="li_nav_left"><a href="connexion.php">Connexion</a></li>
+          <li class="li_nav_left"><p class='menu_legende'>Catalogue</p><a href="catalogue.php"><img class="img_menu " src="./img/catalogue.png" alt=""></a></li>
+          <li class="li_nav_left"><p class='menu_legende'>Création</p><a href="creation.php"><img class="img_menu " src="./img/gear.png" alt=""></a></li>
+          <li class="li_nav_left"><p class='menu_legende'>Connexion</p><a href="connexion.php"><img class="img_menu " src="./img/log-in.png" alt=""></a></li>
         </div>
       </ul>
       <?php
     }else{
       $role = $_SESSION['utilisateur']->get_id_role();
-      if($role == 1){
-        ?> 
-        <ul class="container-fluid menu">
-          <div class="nav_right">
-            <li><a href="index.php"><img src="./img/logo.jpg" alt=""></a></li>
-          </div>
-          <div class="nav_left">
-            <li><a href="deconnexion.php">Deconnexion</a></li>
-          </div>
-        </ul>
-      <?php
-      }
       if($role == 2){
         ?>    
         <ul class="container-fluid menu"> 
@@ -52,9 +40,9 @@
             <li><a href="index.php"><img src="./img/logo.jpg" alt=""></a></li>
           </div>
           <div class="nav_left">
-            <li><a href="administration.php">Administration</a></li>
-            <li><a href="creation.php">Création</a></li>
-            <li><a href="deconnexion.php">Deconnexion</a></li>
+            <li class="li_nav_left"><p class='menu_legende'>Administration</p><a href="administration.php"><img class="img_menu " src="./img/book.png" alt=""></a></li>
+            <li class="li_nav_left"><p class='menu_legende'>Création</p><a href="creation.php"><img class="img_menu " src="./img/gear.png" alt=""></a></li>
+            <li class="li_nav_left"><p class='menu_legende'>Déconnexion</p><a href="deconnexion.php"><img class="img_menu " src="./img/deconnexion.png" alt=""></a></li>
           </div>
         </ul>
       <?php
@@ -66,10 +54,10 @@
             <li><a href="index.php"><img src="./img/logo.jpg" alt=""></a></li>
           </div>
           <div class="nav_left">
-            <li><a href="inscription.php">Inscription</a></li>
-            <li><a href="administration.php">Administration des commandes</a></li>
-            <li><a href="visuel_ajout.php">Gestions des visuels</a></li>
-            <li><a href="deconnexion.php">Deconnexion</a></li>
+            <li class="li_nav_left"><p class='menu_legende'>Inscription</p><a href="inscription.php"><img class="img_menu" src="./img/add-user.png" alt=""></a></li>
+            <li class="li_nav_left"><p class='menu_legende'>Administration</p><a href="administration.php"><img class="img_menu" src="./img/book.png" alt=""></a></li>
+            <li class="li_nav_left"><p class='menu_legende'>Visuel</p><a href="visuel_ajout.php"><img class="img_menu" src="./img/add-image.png" alt=""></a></li>
+            <li class="li_nav_left"><p class='menu_legende'>Déconnexion</p><a href="deconnexion.php"><img class="img_menu " src="./img/deconnexion.png" alt=""></a></li>
           </div> 
         </ul>
       <?php

@@ -88,21 +88,33 @@
             unset($_SESSION['message']);
             unset($_SESSION['qte']);
             $produitDAO =New ProduitDAO;
-            $produits = $produitDAO->findall();    
-            foreach($produits as $produit){
-              echo("<p class=''>".$produit->get_lib_produit()."</p>");
-              $img = $produit->get_id_produit();
-              echo("<a href='creation.php?etape=2&id_produit=".$img."'><img class=' ' src='./img/Produits/$img.jpg' alt='produit'></a>");
-              echo("<p class=''>".$produit->get_prix_produit()."€</p>");
-              echo("<p class=''>".$produit->get_diametre_produit()."mm</p>");
-            }
+            $produits = $produitDAO->findall(); 
+            ?>
+            <div class="container produits_container">
+                <?php   
+                foreach($produits as $produit){
+                  ?>
+                  <div class="row produits_row">
+                    <?php
+                    echo("<p class=''>".$produit->get_lib_produit()."</p>");
+                    $img = $produit->get_id_produit();
+                    echo("<a href='creation.php?etape=2&id_produit=".$img."'><img class=' ' src='./img/Produits/$img.jpg' alt='produit'></a>");
+                    echo("<p class=''>".$produit->get_prix_produit()."€</p>");
+                    echo("<p class=''>".$produit->get_diametre_produit()."mm</p>");
+                    ?>
+                  </div>
+                  <?php
+                }
+                ?>
+            </div>
+            <?php 
         }
     }
     // Etape 2
     if($etape == 2){
         echo "<h1>Etape 2 :Choisissez un visuel</h1>";
         $familles =New FamilleDAO;
-        $familles = $familles->findall();
+        $familles = $familles->findAll_order_by_promo();
         foreach($familles as $famille){
           $id_famille = $famille->get_id_famille();
           $lib_famille = $famille->get_lib_famille();
@@ -148,7 +160,7 @@
             </form>
             <?php
         }else{
-            header("Location: validation.php"); //Redirection vers validation
+            header("Location: validation.php?ismessage=1"); //Redirection vers validation
         }
     }
     require("footer.php");

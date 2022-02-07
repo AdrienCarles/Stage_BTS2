@@ -49,7 +49,7 @@
                     echo("<td>".$produit->get_prix_produit()."</td>");
                     $prix_total = $prix_total +($produit->get_prix_produit()*$produit_image_commande->get_quantite());
                     echo("<td>".$produit_image_commande->get_message()."</td>");
-                    echo("<td><a href='suppression.php?id_produit=".$produit->get_id_produit()."&lib_famille=".$famille->get_lib_famille()."&id_image=".$image->get_id_image()."'>Supprimer</a></td>");
+                    echo("<td><a class='non_conforme' href='suppression.php?id_produit=".$produit->get_id_produit()."&lib_famille=".$famille->get_lib_famille()."&id_image=".$image->get_id_image()."'>Supprimer</a></td>");
                     echo("</tr>");
                 }
             }

@@ -1,6 +1,19 @@
 <?php
 require("header.php");
-$qte = isset($_POST['qte']) ? $_POST['qte'] : '1'; //recuperation de la quantitée ou valeur fixer a 1 
+$ismessage = isset($_GET['ismessage']) ? $_GET['ismessage'] : '0';
+
+if(!isset($_SESSION['qte'])){
+    if($ismessage == 1){
+        $qte = 1;
+        $_SESSION['qte'] = $qte;
+    }else
+    $qte = isset($_POST['qte']) ? $_POST['qte'] :  ''; //recuperation de la quantitée ou valeur fixer
+    $_SESSION['qte'] = $qte;
+}else{
+    $qte = $_SESSION['qte'];
+}
+
+
 $etape = isset($_GET['etape']) ? $_GET['etape'] : '0';
 $date = date('Y/m/d');
 
@@ -18,7 +31,7 @@ $message = isset($_SESSION['message']) ? $_SESSION['message'] : '';
 ?>
 <h1>Validation</h1>
 <?php
-    $_SESSION['qte'] = $qte;
+
     echo ("<h2 class=''>Valider votre produit</h2>");
     echo("<p class=''>".$produit->get_lib_produit()."</p>");
     $img_produit = $produit->get_id_produit();
@@ -35,7 +48,7 @@ $message = isset($_SESSION['message']) ? $_SESSION['message'] : '';
                 echo ("<a href='validation.php?etape=2'>Valider</a>");
             }        
         }else{
-            echo("<p class=''>Quantité : 1</p>");
+            echo("<p class=''>Quantité : ".$qte."</p>");
             echo("<p class=''>Message : ".$message."</p>");
             if($commande == NULL){
                 echo ("<a href='validation.php?etape=1'>Valider</a>");
@@ -85,7 +98,7 @@ $message = isset($_SESSION['message']) ? $_SESSION['message'] : '';
             unset($_SESSION['famille']);
             unset($_SESSION['image']);
             unset($_SESSION['message']);
-            unset($_SESSION['qte']);
+            //unset($_SESSION['qte']);
             header("Location: panier.php"); //Redirection vers le panier
         }
     }
@@ -105,7 +118,7 @@ $message = isset($_SESSION['message']) ? $_SESSION['message'] : '';
             unset($_SESSION['famille']);
             unset($_SESSION['image']);
             unset($_SESSION['message']);
-            unset($_SESSION['qte']);
+            //unset($_SESSION['qte']);
             header("Location: panier.php"); //Redirection vers le panier
     }
 

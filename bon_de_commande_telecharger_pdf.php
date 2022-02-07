@@ -34,7 +34,7 @@
     $pdf->Ln(10); //Saut de lignes
 
     $pdf->SetFont('Arial','B',18);  // Définit la police 
-    $pdf->SetXY(10,100);
+    $pdf->SetXY(10,65);
     $pdf->Cell(0, 12.5, utf8_decode("Bon de commande WEB ".$commande->get_num_commande()." - Les Silusins"),1,0,'C');
     $pdf->Ln(20);//Saut de lignes
     $pdf->SetFont('Arial','',12);  // Définit la police 

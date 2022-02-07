@@ -155,7 +155,7 @@
                     echo("<td>".$commande->get_mail_commande()."</td>");
                     echo("<td>".$user->get_prenom_user()."</td>");
                     echo("<td><a class='detail' href='detail.php?num_commande=".$commande->get_num_commande()."'>Detail</a></td>");
-                    echo("<td><a class='regulariser' href='modification.php?cloture=1&num_commande=".$commande->get_num_commande() ."'>Regulariser</a></td>");
+                    echo("<td><a class='regulariser' href='modification.php?&num_commande=".$commande->get_num_commande() ."'>Regulariser</a></td>");
 
                 echo("</tr>");
             }

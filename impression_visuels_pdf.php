@@ -35,10 +35,10 @@
             $diametre_x = $diametre_x+$diametre;
             if($x < 140){
                 $pdf->Image($chemin,$x,$y,$diametre,$diametre);
-                $x = $x+$diametre+2;
+                $x = $x+$diametre+10;
             }
             if($x > 140){
-                $y = $y+71;
+                $y = $y+100;
                 $x = 10;
                 $diametre_x = 0;
                 $pdf->SetXY($x,$y);
