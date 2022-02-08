@@ -37,7 +37,7 @@
     $images = $images->find_by_id_famille($id_famille);
     foreach($images AS $image){  
       $img = $image->get_id_image();
-      echo("<img class='visuel' src='./img/Visuel/$lib_famille/$img.jpg' alt=''>");
+      echo("<img class='visuel_img' src='./img/Visuel/$lib_famille/$img.jpg' alt=''>");
     }
   }
 require("footer.php");

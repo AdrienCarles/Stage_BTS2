@@ -7,6 +7,7 @@
     $commande = $commandeDAO->find_num_commande($num_commande);
     $produit_image_commandes = $produit_image_commandeDAO->find_by_id_commande($commande->get_id_commande());
 ?>
+    <a class="impression" href="administration.php">Retour</a>
     <h1>Detail de la commande <?=$commande->get_num_commande()?></h1>
     <div class="container">
         <div class="row">

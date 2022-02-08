@@ -32,14 +32,31 @@
     $famille = isset($_SESSION['famille']) ? $_SESSION['famille'] : '';
     $image = isset($_SESSION['image']) ? $_SESSION['image'] : '';
 
-
     /*Création des variables recuperer depuis les formulaires ($_POST)*/
 
-    $submit = isset($_POST['submit']); //validation de formulaire de l'étape 3
+    $submit = isset($_POST['submit']); //validation de formulaire
     if($submit){
         $message = isset($_POST['message']) ? $_POST['message'] : ''; //récupération du message depuis le formulaire 
         $_SESSION["message"] = $message;  //creation de la session message 
         header("Location: creation.php?etape=4"); //Redirection vers l'etape 4 
+    }
+    
+    $submit2 = isset($_POST['submit2']); //validation de formulaire
+
+    if($submit2){
+        $etape = isset($_POST['etape']) ? $_POST['etape'] : null;//definition de la condition d'affichage
+        if($etape == 2){
+            $produit = NULL;
+            $_SESSION["produit"] = $produit;  
+        }
+        if($etape == 3){
+            $image = NULL;
+            $_SESSION["image"] = $image;  
+            $famille = NULL;
+            $_SESSION["famille"] = $famille;  
+        }
+        $etape--;
+        header("Location: creation.php?etape=".$etape); //Redirection vers l'etape 4 
     }
 
     $message = isset($_SESSION['message']) ? $_SESSION['message'] : '';
@@ -59,6 +76,8 @@
                 <div class="col_12"><p class="text_center">Etape 2 : Choisir son visuel parmis ceux proposés</p></div>
                 <div class="col_12"><p class="text_center">Etape 3 : Choisir son message personalisée (optionel)</p></div>
                 <div class="col-12"><p class="text_center">Etape 4 : Choisir une quantité (si pas de message)</p></div>
+                <div class="col-12"><p class="text_center attention">ATTENTION : La gestion des doublons n'est pas correctement prisent en compte de ce fait il est interdit de sélectionner deux fois la même combinaison produit image dans une commande</p></div>
+                <div class="col-12"><p class="text_center attention">Pour passer outre ce problème il faut générer deux commandes</p></div>
                 <div class="col_12 div_bouton_creation"><a class="conforme" href='creation.php?etape=1'>C'est parti</a></div>
             </div>
         </div>
@@ -73,6 +92,10 @@
             <div class="row controleur_type_commande">
                 <a class='physique' href='creation.php?etape=1&type_commande=P'>Commande Physique</a>
             </div>
+            <div class="row">
+                <div class="col-12"><p class="text_center attention">ATTENTION : La gestion des doublons n'est pas correctement prisent en compte de ce fait il est interdit de sélectionner deux fois la même combinaison produit image dans une commande</p></div>
+                <div class="col-12"><p class="text_center attention">Pour passer outre ce problème il faut générer deux commandes</p></div>
+            </div>
         </div>
     <?php
     }elseif($etape == 0 ){
@@ -81,6 +104,7 @@
     // Etape 1
     if($etape == 1){
         echo "<h1>Etape 1 :Choisissez un produit</h1>";
+        echo "<p class='text_center'>Cliquez sur l'image du produit que vous souhaitez</p>";
         if(!isset($_GET['id_produit'])){
             unset($_SESSION['produit']);
             unset($_SESSION['famille']);
@@ -113,6 +137,7 @@
     // Etape 2
     if($etape == 2){
         echo "<h1>Etape 2 :Choisissez un visuel</h1>";
+        echo "<p class='text_center'>Cliquez sur l'image du visuel que vous souhaitez</p>";
         $familles =New FamilleDAO;
         $familles = $familles->findAll_order_by_promo();
         foreach($familles as $famille){
@@ -123,45 +148,78 @@
           $images = $images->find_by_id_famille($id_famille);
           foreach($images AS $image){  
             $img = $image->get_id_image();
-            echo("<a href='creation.php?etape=3&id_famille=".$id_famille."&id_image=".$img."'><img class='visuel' src='./img/Visuel/$lib_famille/$img.jpg' alt=''></a>");
+            echo("<a href='creation.php?etape=3&id_famille=".$id_famille."&id_image=".$img."'><img class='visuel_img' src='./img/Visuel/$lib_famille/$img.jpg' alt=''></a>");
           }
           echo "<hr>";
         }
     }
     // Etape 3
     if($etape == 3){
-        echo ('<h1>Etape 3 :Choisissez un message personnalisée</h1>');  
-        echo("<p class=''>".$produit->get_lib_produit()."</p>");
-        $img_prod = $produit->get_id_produit();
-        echo("<img class=' ' src='./img/Produits/$img_prod.jpg' alt='produit'>");
-        echo("<img class='visuel' src='./img/Visuel/".$famille->get_lib_famille()."/".$image->get_id_image().".jpg' alt='image'>");
-    ?>
-    <br><br><br>
-    <form action="creation.php?etape=4" method="post">
-        <label for="message">Votre message personnalisé</label><br>
-        <textarea name="message" id="message" cols="30" rows="2"></textarea><br>
-        <input type="submit" name="submit" value="Valider" class="">
-    </form>
+        ?>
+        <h1>Etape 3 :Choisissez un message personnalisée</h1> 
+        <div class="container">
+            <div class="row creation_row">
+                <p class=''><?=$produit->get_lib_produit()?></p>
+            </div>
+            <div class="row creation_row">
+                <?php
+                    $img_prod = $produit->get_id_produit();
+                ?>
+                <img class='produit_img' src='./img/Produits/<?=$img_prod?>.jpg' alt='produit'>
+                <img class='visuel_img' src='./img/Visuel/<?=$famille->get_lib_famille()?>/<?=$image->get_id_image()?>.jpg' alt='image'>
+            </div>
+            <br>
+            <div class="row creation_row">
+                <form class="creation_form" action="creation.php?etape=4" method="post">
+                    <label class="text_center" for="message">Votre message personnalisé</label>
+                    <textarea name="message" id="message" cols="30" rows="2"></textarea><br>
+                    <input class="form_submit_valider" type="submit" name="submit" value="Valider" class="">
+                </form>
+            </div>
+        </div>
     <?php
     }
     //etape 4 
     if($etape == 4){
         if($message === ''){
-            echo ('<h1>Etape 4 :Choisissez une quantité</h1>');  
-            echo("<p class=''>".$produit->get_lib_produit()."</p>");
-            $img_prod = $produit->get_id_produit();
-            echo("<img class=' ' src='./img/Produits/$img_prod.jpg' alt='produit'>");
-            echo("<img class='visuel' src='./img/Visuel/".$famille->get_lib_famille()."/".$image->get_id_image().".jpg' alt='image'>");   
             ?>
-            <form action="validation.php" method="post">
-                <label for="qte">Quantité</label><br>
-                <input name="qte" id="qte" type="number" value=1 required/><br>
-                <input type="submit" name="submit2" value="Valider" class="">
-            </form>
+        <h1>Etape 4 :Choisissez une quantité</h1> 
+        <div class="container">
+            <div class="row creation_row">
+                <p class=''><?=$produit->get_lib_produit()?></p>
+            </div>
+            <div class="row creation_row">
+                <?php
+                    $img_prod = $produit->get_id_produit();
+                ?>
+                <img class='produit_img' src='./img/Produits/<?=$img_prod?>.jpg' alt='produit'>
+                <img class='visuel_img' src='./img/Visuel/<?=$famille->get_lib_famille()?>/<?=$image->get_id_image()?>.jpg' alt='image'>
+            </div>
+            <br>
+            <div class="row creation_row">
+                <form class="creation_form" action="validation.php" method="post">
+                    <label class="text_center" for="qte">Quantité</label><br>
+                    <input name="qte" id="qte" type="number" value=1 required/><br><br>
+                    <input class="form_submit_valider" type="submit" name="submit" value="Valider" class="">
+                </form>
+            </div>
+        </div>
             <?php
         }else{
             header("Location: validation.php?ismessage=1"); //Redirection vers validation
         }
+    }
+    if($etape >= 1){
+    ?>
+    <div class="container">
+        <div class="row creation_row">
+            <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+                <input type="text" name="etape" value="<?=$etape?>" hidden>
+                <input class="form-retour" type="submit" name="submit2" value="Retour à l'étape precédente">
+            </form>
+        </div>
+    </div>
+    <?php
     }
     require("footer.php");
 ?>

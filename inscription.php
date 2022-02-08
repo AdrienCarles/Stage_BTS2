@@ -49,13 +49,8 @@
 
     // TELEPHONE
     $tel = filter_input(INPUT_POST, "tel",FILTER_SANITIZE_NUMBER_INT);
-    if (filter_var($tel, FILTER_VALIDATE_INT) === false){
-        $messages[] = "Le téléphone n'est pas un entier valide"; 
-    } 
     // EMAIL
-    if (filter_var($mail, FILTER_VALIDATE_EMAIL) === false){
-        $messages[] = "Le mail n'est pas valide"; 
-    } 
+    $mail = filter_input(INPUT_POST, "mail",FILTER_SANITIZE_EMAIL);
   }
 
   //Valide et enregistre dans la bdd
@@ -88,30 +83,34 @@
     echo "</ul>";
   }
 ?>
-<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post"> <!-- Formulaire -->
-  <label for="nom">Nom</label><br>
-  <input type="text" name="nom" id="nom" placeholder="Nom" value="<?=$nom?>"><br>
-    
-  <label for="prenom">Prénom</label><br>
-  <input type="text" name="prenom" id="prenom" placeholder="Prénom" value="<?=$prenom?>"><br>
+<div class="container">
+  <div class="row inscription_row">
+    <form class="card" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post"> <!-- Formulaire -->
+      <label for="nom">Nom</label><br>
+      <input type="text" name="nom" id="nom" placeholder="Nom" value="<?=$nom?>"><br>
 
-  <label for="mdp">Mot de Passe</label><br>
-  <input type="password" name="mdp" id="mdp" placeholder="Mot de Passe" value=""><br>
+      <label for="prenom">Prénom</label><br>
+      <input type="text" name="prenom" id="prenom" placeholder="Prénom" value="<?=$prenom?>"><br>
 
-  <label for="c_mdp">Confirmer le Mot de Passe</label><br>
-  <input type="password" name="c_mdp" id="c_mdp" placeholder="Mot de Passe" value=""><br>
+      <label for="mdp">Mot de Passe</label><br>
+      <input type="password" name="mdp" id="mdp" placeholder="Mot de Passe" value=""><br>
 
-  <label for="classe">Classe</label><br>
-  <input type="text" name="classe" id="classe" placeholder="Classe" value="<?=$classe?>"><br>
-    
-  <label for="tel">Téléphone</label><br>
-  <input type="text" name="tel" id="tel" placeholder="Téléphone" value="<?=$tel?>"><br>
-    
-  <label for="mail">Mail</label><br>
-  <input type="text" name="mail" id="mail" placeholder="Mail" value="<?=$mail?>"><br><br>
+      <label for="c_mdp">Confirmer le Mot de Passe</label><br>
+      <input type="password" name="c_mdp" id="c_mdp" placeholder="Mot de Passe" value=""><br>
 
-  <input type="submit" value="S'inscrire" name="submit">
-</form>   
+      <label for="classe">Classe</label><br>
+      <input type="text" name="classe" id="classe" placeholder="Classe" value="<?=$classe?>"><br>
+
+      <label for="tel">Téléphone</label><br>
+      <input type="text" name="tel" id="tel" placeholder="Téléphone" value="<?=$tel?>"><br>
+
+      <label for="mail">Mail</label><br>
+      <input type="text" name="mail" id="mail" placeholder="Mail" value="<?=$mail?>"><br><br>
+
+      <input type="submit" value="S'inscrire" name="submit">
+    </form>
+  </div>   
+</div>
 <?php
   require("footer.php");
 ?>

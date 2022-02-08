@@ -33,7 +33,7 @@ a{
   border: 1px solid rgba(87, 15, 15, 0.125);
   padding: 1.25rem;
 }
-.visuel{
+.visuel_img{
   max-width: 250px;
   max-height: 120px;
 }
@@ -105,6 +105,42 @@ a{
     width: 100%;
   }
 }
+/*Liens de couleurs*/
+.detail{
+  background-color: #032d88;
+  color: white;
+  padding: 14px 25px;
+  display: inline-block;
+  border-radius: 20px;
+}
+.conforme{
+  background-color: #80c944;
+  color: white;
+  padding: 14px 25px;
+  display: inline-block;
+  border-radius: 20px;
+}
+.non_conforme{
+  background-color: #bb2c2c;
+  color: white;
+  padding: 14px 25px;
+  display: inline-block;
+  border-radius: 20px;
+}
+.impression{
+  background-color: #d7da42;
+  color: black;
+  padding: 14px 25px;
+  display: inline-block;
+  border-radius: 20px;
+}
+.regulariser{
+  background-color: #c9931f;
+  color: rgb(255, 255, 255);
+  padding: 14px 25px;
+  display: inline-block;
+  border-radius: 20px;
+}
 
 /*navbar et menu*/
 
@@ -148,7 +184,20 @@ a{
   box-shadow: 0 0 20px rgb(0 0 0 / 20%);
   border: 1px solid rgba(87, 15, 15, 0.125);
 }
+/*inscription.php*/
+.inscription_row{
+  justify-content: center;
+}
+/*connexion.php*/
+.connexion_row{
+  align-items: center;
+  justify-content: center;
+}
 /*administration.php*/
+.administration_container{
+  margin-top: 1%;
+}
+/*visuel_ajout.php*/
 .form_admin{
   max-width: 250px;
   padding-right: 15px;
@@ -156,37 +205,22 @@ a{
   margin-right: auto;
   margin-left: auto;
 } 
-.detail{
-  background-color: #032d88;
-  color: white;
-  padding: 14px 25px;
-  display: inline-block;
+.administration_row{
+  justify-content: center;
 }
-.conforme{
-  background-color: #80c944;
-  color: white;
-  padding: 14px 25px;
-  display: inline-block;
-}
-.non_conforme{
-  background-color: #bb2c2c;
-  color: white;
-  padding: 14px 25px;
-  display: inline-block;
-}
-.impression{
-  background-color: #d7da42;
-  color: black;
-  padding: 14px 25px;
-  display: inline-block;
-}
-.regulariser{
-  background-color: #c9931f;
-  color: rgb(255, 255, 255);
-  padding: 14px 25px;
-  display: inline-block;
+.visuel_ajout_procedure{
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
 }
 /*creation.php*/
+.creation_row{
+  justify-content: center;
+}
+.attention{
+  font-weight: bolder;
+  color: #bb2c2c;
+}
 .div_bouton_creation{
   display: flex;
   justify-content: center;
@@ -200,6 +234,7 @@ a{
   color: white;
   padding: 14px 42px;
   text-align: center;
+  border-radius: 20px;
   text-decoration: none;
   display: inline-block;
 }
@@ -208,6 +243,7 @@ a{
   color: white;
   padding: 14px 25px;
   text-align: center;
+  border-radius: 20px;
   text-decoration: none;
   display: inline-block;
 }
@@ -220,6 +256,45 @@ a{
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+}
+.creation_form{
+  display: flex;
+  flex-direction: column;
+}
+.form-retour{
+background: #ffdb29;
+color: black;
+margin: 50px;
+cursor: pointer;
+border-style: outset;
+border-color: #ffd400;
+border-radius: 20px;
+height: 50px;
+width: 300px;
+font: bold 15px arial, sans-serif;
+text-shadow:none;
+}
+.form_submit_valider{
+  background: #46f740;
+  color: black;
+  margin-left: auto;
+  margin-right: auto;
+  cursor: pointer;
+  border-style: outset;
+  border-color: #01bd0a;
+  border-radius: 20px;
+  height: 50px;
+  width: 100px;
+  font: bold 15px arial, sans-serif;
+  text-shadow:none;
+}
+.produit_img{
+  max-width: 250px;
+  max-height: 120px;
+}
+/*validation.php*/
+.validation_row{
+  justify-content: center;
 }
 /*panier.php*/
 .panier_creation{

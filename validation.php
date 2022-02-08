@@ -30,33 +30,70 @@ $message = isset($_SESSION['message']) ? $_SESSION['message'] : '';
 
 ?>
 <h1>Validation</h1>
-<?php
-
-    echo ("<h2 class=''>Valider votre produit</h2>");
-    echo("<p class=''>".$produit->get_lib_produit()."</p>");
-    $img_produit = $produit->get_id_produit();
-    echo("<img class=' ' src='./img/Produits/$img_produit.jpg' alt='produit'>");
-    $lib_famille = $famille->get_lib_famille();
-    $img_visuel = $image->get_id_image();
-    echo("<img class=' ' src='./img/Visuel/$lib_famille/$img_visuel.jpg' alt='produit'>");
+<h2 class='text_center'>Valider votre produit</h2>
+<div class="container">
+    <div class="row validation_row">
+        <p class=''><?=$produit->get_lib_produit()?></p>
+    </div>
+    <?php
+        $img_produit = $produit->get_id_produit();
+    ?>
+    <div class="row validation_row">
+        <img class='produit_img' src='./img/Produits/<?=$img_produit?>.jpg' alt='produit'>
+        <?php
+        $lib_famille = $famille->get_lib_famille();
+        $img_visuel = $image->get_id_image();
+        ?>
+        <img class='visuel_img' src='./img/Visuel/<?=$lib_famille?>/<?=$img_visuel?>.jpg' alt='produit'>
+    </div>
+    <?php
     if($etape == 0){
         if($message === ''){
-            echo("<p class=''>Quantité : ".$qte."</p>");
+            ?>
+            <div class="row validation_row">
+                <p class=''>Quantité : <?=$qte?></p>
+            </div>
+            <?php
             if($commande == NULL){
-                echo ("<a href='validation.php?etape=1'>Valider</a>");
+                ?>
+                <div class="row validation_row">
+                    <a class='conforme' href='validation.php?etape=1'>Valider</a>
+                </div>
+                <?php
             }else{
-                echo ("<a href='validation.php?etape=2'>Valider</a>");
+                ?>
+                <div class="row validation_row">
+                    <a class='conforme' href='validation.php?etape=2'>Valider</a>
+                </div>
+                <?php
             }        
         }else{
-            echo("<p class=''>Quantité : ".$qte."</p>");
-            echo("<p class=''>Message : ".$message."</p>");
+            ?>
+            <div class="row validation_row">
+                <p class=''>Quantité : <?=$qte?></p>
+            </div>
+            <div class="row validation_row">
+                <p class=''>Message : <?=$message?></p>
+            </div>
+            <?php
             if($commande == NULL){
-                echo ("<a href='validation.php?etape=1'>Valider</a>");
+                ?>
+                <div class="row validation_row">
+                    <a class='conforme' href='validation.php?etape=1'>Valider</a>
+                </div>
+                <?php
             }else{
-                echo ("<a href='validation.php?etape=2'>Valider</a>");
+                ?>
+                <div class="row validation_row">
+                    <a class='conforme' href='validation.php?etape=2'>Valider</a>
+                    </div>
+                <?php
             }
         }
     }
+    ?>
+</div>
+<?php
     if($etape == 1){
         if(isset($utilisateur)){
             $id_utilisateur = $utilisateur->get_id_user();
