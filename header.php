@@ -17,64 +17,54 @@
   <link rel="stylesheet" type="text/css" href="css/styles.css" />
 </head>
 <body>
-  <?php
+<div class="main">
+<div class="container-fluid menu">       
+  <div class="col-3">
+    <a href="index.php"><img class="menu_logo" src="./img/logo.jpg" alt=""></a>
+  </div>
+  <div class="col-6">
+    <h2 class="text_center">Les Silusins</h2>
+  </div>
+  <div class="col-3 row row_menu">
+    <?php
     if (!isset($_SESSION['utilisateur'])){ //Si il n'y a aucun utilisateur connecté
       ?>
-      <ul class="container-fluid menu">
-        <div class="nav_right">
-          <a href="index.php"><img src="./img/logo.jpg" alt=""></a>
-        </div>
-        <div class="nav_left">
-          <li class="li_nav_left"><p class='menu_legende'>Catalogue</p><a href="catalogue.php"><img class="img_menu " src="./img/catalogue.png" alt=""></a></li>
-          <li class="li_nav_left"><p class='menu_legende'>Création</p><a href="creation.php"><img class="img_menu " src="./img/gear.png" alt=""></a></li>
-          <?php
-            if(isset($_SESSION['commande'])){
-              ?>
-                <li class="li_nav_left"><p class='menu_legende'>Panier</p><a href="panier.php"><img class="img_menu " src="./img/cart.png" alt=""></a></li>
-              <?php
-            }
+      <p class='menu_legende'>Catalogue<a href="catalogue.php"><img class="img_menu " src="./img/catalogue.png" alt=""></a></p>
+      <p class='menu_legende'>Création<a href="creation.php"><img class="img_menu " src="./img/gear.png" alt=""></a></p>
+      <?php
+        if(isset($_SESSION['commande'])){
           ?>
-          <li class="li_nav_left"><p class='menu_legende'>Connexion</p><a href="connexion.php"><img class="img_menu " src="./img/log-in.png" alt=""></a></li>
-        </div>
-      </ul>
+            <p class='menu_legende'>Panier<a href="panier.php"><img class="img_menu " src="./img/cart.png" alt=""></a></p>
+          <?php
+        }
+      ?>
+      <p class='menu_legende'>Connexion<a href="connexion.php"><img class="img_menu " src="./img/log-in.png" alt=""></a></p>
       <?php
     }else{
       $role = $_SESSION['utilisateur']->get_id_role();
       if($role == 2){
-        ?>    
-        <ul class="container-fluid menu"> 
-          <div class="nav_right">
-            <li><a href="index.php"><img src="./img/logo.jpg" alt=""></a></li>
-          </div>
-          <div class="nav_left">
-            <li class="li_nav_left"><p class='menu_legende'>Administration</p><a href="administration.php"><img class="img_menu " src="./img/book.png" alt=""></a></li>
-            <li class="li_nav_left"><p class='menu_legende'>Création</p><a href="creation.php"><img class="img_menu " src="./img/gear.png" alt=""></a></li>
-            <?php
-              if(isset($_SESSION['commande'])){
-                ?>
-                  <li class="li_nav_left"><p class='menu_legende'>Panier</p><a href="panier.php"><img class="img_menu " src="./img/cart.png" alt=""></a></li>
-                <?php
-              }
-            ?>
-            <li class="li_nav_left"><p class='menu_legende'>Déconnexion</p><a href="deconnexion.php"><img class="img_menu " src="./img/deconnexion.png" alt=""></a></li>
-          </div>
-        </ul>
+      ?>   
+          <p class='menu_legende'>Administration<a href="administration.php"><img class="img_menu " src="./img/book.png" alt=""></a></p>
+          <p class='menu_legende'>Création<a href="creation.php"><img class="img_menu " src="./img/gear.png" alt=""></a></p>
+          <?php
+        if(isset($_SESSION['commande'])){
+          ?>
+          <p class='menu_legende'>Panier<a href="panier.php"><img class="img_menu " src="./img/cart.png" alt=""></a></p>
+        <?php
+        }
+        ?>
+        <p class='menu_legende'>Déconnexion<a href="deconnexion.php"><img class="img_menu " src="./img/deconnexion.png" alt=""></a></p>
       <?php
       }
       if($role == 3){
-        ?>    
-        <ul class="container-fluid menu">       
-          <div class="nav_right">
-            <li><a href="index.php"><img src="./img/logo.jpg" alt=""></a></li>
-          </div>
-          <div class="nav_left">
-            <li class="li_nav_left"><p class='menu_legende'>Inscription</p><a href="inscription.php"><img class="img_menu" src="./img/add-user.png" alt=""></a></li>
-            <li class="li_nav_left"><p class='menu_legende'>Administration</p><a href="administration.php"><img class="img_menu" src="./img/book.png" alt=""></a></li>
-            <li class="li_nav_left"><p class='menu_legende'>Visuel</p><a href="visuel_ajout.php"><img class="img_menu" src="./img/add-image.png" alt=""></a></li>
-            <li class="li_nav_left"><p class='menu_legende'>Déconnexion</p><a href="deconnexion.php"><img class="img_menu " src="./img/deconnexion.png" alt=""></a></li>
-          </div> 
-        </ul>
-      <?php
+        ?>
+        <p class='menu_legende'>Inscription<a href="inscription.php"><img class="img_menu" src="./img/add-user.png" alt=""></a></p>
+        <p class='menu_legende'>Administration<a href="administration.php"><img class="img_menu" src="./img/book.png" alt=""></a></p>
+        <p class='menu_legende'>Visuel<a href="visuel_ajout.php"><img class="img_menu" src="./img/add-image.png" alt=""></a></p>
+        <p class='menu_legende'>Déconnexion<a href="deconnexion.php"><img class="img_menu " src="./img/deconnexion.png" alt=""></a></p>
+        <?php
       }
     }
-  ?>
+    ?>
+  </div> 
+</div>

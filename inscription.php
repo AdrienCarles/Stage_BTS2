@@ -33,8 +33,8 @@
     if (empty(trim($mdp))){ 
       $messages[] = "Le mot de passe est obligatoire"; 
     }
-    if(mb_strlen($mdp)<8){ //Si le mdp fait 8 caractères ou plus
-      $messages[] = "Le mot de passe doit faire au moins 8 caractères";
+    if(mb_strlen($mdp)<4){ //Si le mdp fait 8 caractères ou plus
+      $messages[] = "Le mot de passe doit faire au moins 4 caractères";
     }
     if (empty(trim($c_mdp))){ 
       $messages[] = "Confirmez le mot de passe"; 

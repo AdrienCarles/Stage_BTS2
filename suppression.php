@@ -32,6 +32,9 @@
                 header("Location: administration.php?cloture=1");
             }
             else{
+                $commandeDAO = new CommandeDAO;
+                $commandeDAO->delete($id_commande);
+                unset($_SESSION['commande']);
                 header("Location: creation.php");
             }
         }
@@ -39,17 +42,26 @@
         $id_produit = isset($_GET['id_produit']) ? $_GET['id_produit'] : '';
         $lib_famille = isset($_GET['lib_famille']) ? $_GET['lib_famille'] : '';
         $id_image = isset($_GET['id_image']) ? $_GET['id_image'] : '';
-    }       
-    echo ("<img class=' ' src='./img/Produits/".$id_produit.".jpg' alt='produit'>");
-    echo ("<img class='visuel' src='./img/Visuel/".$lib_famille."/".$id_image.".jpg' alt=''>");
-?>
-<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-    <input name="id_produit" id="id_produit" type="hidden" value="<?php echo $id_produit; ?>" />
-    <input name="c" id="c" type="hidden" value="<?php echo $c; ?>" />
-    <input name="id_image" id="id_image" type="hidden" value="<?php echo $id_image; ?>" />
-    <input name="id_commande" id="id_commande" type="hidden" value="<?php echo $id_commande; ?>" />
-    <input type="submit" name="submit" value="Supprimer"/>
-</form>
+    }   
+?>        
+<div class="container">
+    <div class="card">
+        <div class="row creation_row">
+            <img class='produit_img' src='./img/Produits/<?=$id_produit?>.jpg' alt='produit'>
+            <img class='visuel_img' src='./img/Visuel/<?=$lib_famille?>/<?=$id_image?>.jpg' alt='visuel'>
+        </div>
+        <br>
+        <div class="row creation_row">
+            <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+                <input name="id_produit" id="id_produit" type="hidden" value="<?php echo $id_produit; ?>" />
+                <input name="c" id="c" type="hidden" value="<?php echo $c; ?>" />
+                <input name="id_image" id="id_image" type="hidden" value="<?php echo $id_image; ?>" />
+                <input name="id_commande" id="id_commande" type="hidden" value="<?php echo $id_commande; ?>" />
+                <input class="rouge" type="submit" name="submit" value="Supprimer"/>
+            </form>
+        </div>
+    </div>
+</div>
 <?php
     require("footer.php");
 ?>

@@ -24,6 +24,41 @@ class CommandeDAO extends DAO {
       return $commandes;
   } // function findAll() 
 
+  function find_by_critere($mot) {
+    $sql = "SELECT * FROM commande WHERE num_commande LIKE :mot OR nom_commande LIKE :mot OR prenom_commande LIKE :mot OR classe_commande LIKE :mot";
+    try {
+      $params = array(":mot" => "%".$mot."%");
+      $sth=$this->executer($sql, $params); 
+      $rows = $sth->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+      die("Erreur lors de la requête SQL : " . $e->getMessage());
+    }
+    $commandes = array();
+    foreach ($rows as $row) {
+      $commandes[] = new Commande($row);
+    }
+    return $commandes;
+  } // function findAll() 
+
+  function find_by_periode($date1,$date2) {
+    $sql = "SELECT * FROM commande WHERE date_commande BETWEEN :date1 AND :date2";
+    try {
+      $params = array(
+        ":date1" => $date1,
+        ":date2" => $date2,
+      );
+      $sth=$this->executer($sql, $params); 
+      $rows = $sth->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+      die("Erreur lors de la requête SQL : " . $e->getMessage());
+    }
+    $commandes = array();
+    foreach ($rows as $row) {
+      $commandes[] = new Commande($row);
+    }
+    return $commandes;
+  } // function findAll() 
+
   function find($id_commande) {
     $sql = "SELECT * FROM commande WHERE id_commande= :id_commande";
     try {

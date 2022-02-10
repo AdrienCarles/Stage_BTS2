@@ -32,66 +32,68 @@ $message = isset($_SESSION['message']) ? $_SESSION['message'] : '';
 <h1>Validation</h1>
 <h2 class='text_center'>Valider votre produit</h2>
 <div class="container">
-    <div class="row validation_row">
-        <p class=''><?=$produit->get_lib_produit()?></p>
-    </div>
-    <?php
-        $img_produit = $produit->get_id_produit();
-    ?>
-    <div class="row validation_row">
-        <img class='produit_img' src='./img/Produits/<?=$img_produit?>.jpg' alt='produit'>
+    <div class="card">
+        <div class="row validation_row">
+            <p class=''><?=$produit->get_lib_produit()?></p>
+        </div>
         <?php
-        $lib_famille = $famille->get_lib_famille();
-        $img_visuel = $image->get_id_image();
+            $img_produit = $produit->get_id_produit();
         ?>
-        <img class='visuel_img' src='./img/Visuel/<?=$lib_famille?>/<?=$img_visuel?>.jpg' alt='produit'>
-    </div>
-    <?php
-    if($etape == 0){
-        if($message === ''){
-            ?>
-            <div class="row validation_row">
-                <p class=''>Quantité : <?=$qte?></p>
-            </div>
+        <div class="row validation_row">
+            <img class='produit_img' src='./img/Produits/<?=$img_produit?>.jpg' alt='produit'>
             <?php
-            if($commande == NULL){
-                ?>
-                <div class="row validation_row">
-                    <a class='conforme' href='validation.php?etape=1'>Valider</a>
-                </div>
-                <?php
-            }else{
-                ?>
-                <div class="row validation_row">
-                    <a class='conforme' href='validation.php?etape=2'>Valider</a>
-                </div>
-                <?php
-            }        
-        }else{
+            $lib_famille = $famille->get_lib_famille();
+            $img_visuel = $image->get_id_image();
             ?>
-            <div class="row validation_row">
-                <p class=''>Quantité : <?=$qte?></p>
-            </div>
-            <div class="row validation_row">
-                <p class=''>Message : <?=$message?></p>
-            </div>
-            <?php
-            if($commande == NULL){
+            <img class='visuel_img' src='./img/Visuel/<?=$lib_famille?>/<?=$img_visuel?>.jpg' alt='produit'>
+        </div>
+        <?php
+        if($etape == 0){
+            if($message === ''){
                 ?>
                 <div class="row validation_row">
-                    <a class='conforme' href='validation.php?etape=1'>Valider</a>
+                    <p class=''>Quantité : <?=$qte?></p>
                 </div>
                 <?php
-            }else{
-                ?>
-                <div class="row validation_row">
-                    <a class='conforme' href='validation.php?etape=2'>Valider</a>
+                if($commande == NULL){
+                    ?>
+                    <div class="row validation_row">
+                        <a class='vert' href='validation.php?etape=1'>Valider</a>
                     </div>
+                    <?php
+                }else{
+                    ?>
+                    <div class="row validation_row">
+                        <a class='vert' href='validation.php?etape=2'>Valider</a>
+                    </div>
+                    <?php
+                }        
+            }else{
+                ?>
+                <div class="row validation_row">
+                    <p class=''>Quantité : <?=$qte?></p>
+                </div>
+                <div class="row validation_row">
+                    <p class=''>Message : <?=$message?></p>
+                </div>
                 <?php
+                if($commande == NULL){
+                    ?>
+                    <div class="row validation_row">
+                        <a class='vert' href='validation.php?etape=1'>Valider</a>
+                    </div>
+                    <?php
+                }else{
+                    ?>
+                    <div class="row validation_row">
+                        <a class='vert' href='validation.php?etape=2'>Valider</a>
+                        </div>
+                    <?php
+                }
             }
         }
-    }
-    ?>
+        ?>
+    </div>
 </div>
 <?php
     if($etape == 1){

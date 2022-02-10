@@ -13,6 +13,7 @@
     $tel = isset($_POST['tel']) ? $_POST['tel'] : '';
     $mail = isset($_POST['mail']) ? $_POST['mail'] : '';
 
+    $_SESSION['mode_paiement'] = $mode_paiement;
 
     $id_commande = $commande->get_id_commande();
     $commandeDAO = new CommandeDAO; 
@@ -106,12 +107,10 @@
     // Génération du document PDF
     $pdf->Output('f','./pdf/'.$pdf->mon_fichier);
     // Redirection vers une autre page
-    if(!empty($utilisateur)){
-        if($utilisateur->get_id_role() == 2){
-            header('Location: administration.php');     
-        }elseif($utilisateur->get_id_role() == 3){
-            header('Location: administration.php');     
-        }
+    if(!empty($utilisateur)){ 
+        unset($_SESSION['commande']);
+        unset($_SESSION['type_commande']);
+        header('Location: administration.php');     
     }else{
         header('Location: commande_validation.php');     
     }   

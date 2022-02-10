@@ -78,7 +78,7 @@
                 <div class="col-12"><p class="text_center">Etape 4 : Choisir une quantité (si pas de message)</p></div>
                 <div class="col-12"><p class="text_center attention">ATTENTION : La gestion des doublons n'est pas correctement prisent en compte de ce fait il est interdit de sélectionner deux fois la même combinaison produit image dans une commande</p></div>
                 <div class="col-12"><p class="text_center attention">Pour passer outre ce problème il faut générer deux commandes</p></div>
-                <div class="col_12 div_bouton_creation"><a class="conforme" href='creation.php?etape=1'>C'est parti</a></div>
+                <div class="col_12 div_bouton_creation"><a class="vert" href='creation.php?etape=1'>C'est parti</a></div>
             </div>
         </div>
         <?php
@@ -87,10 +87,10 @@
         <h1>Choisissez un type de commande</h1>
         <div class='container'>
             <div class="row controleur_type_commande">
-                <a class='web' href='creation.php?etape=1&type_commande=W'>Commande WEB</a>
+                <a class='ciel' href='creation.php?etape=1&type_commande=W'>Commande WEB</a>
             </div>
             <div class="row controleur_type_commande">
-                <a class='physique' href='creation.php?etape=1&type_commande=P'>Commande Physique</a>
+                <a class='vert' href='creation.php?etape=1&type_commande=P'>Commande Physique</a>
             </div>
             <div class="row">
                 <div class="col-12"><p class="text_center attention">ATTENTION : La gestion des doublons n'est pas correctement prisent en compte de ce fait il est interdit de sélectionner deux fois la même combinaison produit image dans une commande</p></div>
@@ -115,21 +115,23 @@
             $produits = $produitDAO->findall(); 
             ?>
             <div class="container produits_container">
-                <?php   
-                foreach($produits as $produit){
-                  ?>
-                  <div class="row produits_row">
-                    <?php
-                    echo("<p class=''>".$produit->get_lib_produit()."</p>");
-                    $img = $produit->get_id_produit();
-                    echo("<a href='creation.php?etape=2&id_produit=".$img."'><img class=' ' src='./img/Produits/$img.jpg' alt='produit'></a>");
-                    echo("<p class=''>".$produit->get_prix_produit()."€</p>");
-                    echo("<p class=''>".$produit->get_diametre_produit()."mm</p>");
+                <div class="produits_container card">
+                    <?php   
+                    foreach($produits as $produit){
+                        ?>
+                        <div class="row produits_row">
+                            <?php
+                                echo("<p class=''>".$produit->get_lib_produit()."</p>");
+                                $img = $produit->get_id_produit();
+                                echo("<a href='creation.php?etape=2&id_produit=".$img."'><img class=' ' src='./img/Produits/$img.jpg' alt='produit'></a>");
+                                echo("<p class=''>".$produit->get_prix_produit()."€</p>");
+                                echo("<p class=''>".$produit->get_diametre_produit()."mm</p>");
+                            ?>
+                        </div>
+                        <?php
+                    }
                     ?>
-                  </div>
-                  <?php
-                }
-                ?>
+                </div>
             </div>
             <?php 
         }
@@ -158,23 +160,25 @@
         ?>
         <h1>Etape 3 :Choisissez un message personnalisée</h1> 
         <div class="container">
-            <div class="row creation_row">
-                <p class=''><?=$produit->get_lib_produit()?></p>
-            </div>
-            <div class="row creation_row">
-                <?php
-                    $img_prod = $produit->get_id_produit();
-                ?>
-                <img class='produit_img' src='./img/Produits/<?=$img_prod?>.jpg' alt='produit'>
-                <img class='visuel_img' src='./img/Visuel/<?=$famille->get_lib_famille()?>/<?=$image->get_id_image()?>.jpg' alt='image'>
-            </div>
-            <br>
-            <div class="row creation_row">
-                <form class="creation_form" action="creation.php?etape=4" method="post">
-                    <label class="text_center" for="message">Votre message personnalisé</label>
-                    <textarea name="message" id="message" cols="30" rows="2"></textarea><br>
-                    <input class="form_submit_valider" type="submit" name="submit" value="Valider" class="">
-                </form>
+            <div class="card">
+                <div class="row creation_row">
+                    <p class=''><?=$produit->get_lib_produit()?></p>
+                </div>
+                <div class="row creation_row">
+                    <?php
+                        $img_prod = $produit->get_id_produit();
+                    ?>
+                    <img class='produit_img' src='./img/Produits/<?=$img_prod?>.jpg' alt='produit'>
+                    <img class='visuel_img' src='./img/Visuel/<?=$famille->get_lib_famille()?>/<?=$image->get_id_image()?>.jpg' alt='image'>
+                </div>
+                <br>
+                <div class="row creation_row">
+                    <form class="creation_form" action="creation.php?etape=4" method="post">
+                        <label class="text_center" for="message">Votre message personnalisé</label>
+                        <textarea name="message" id="message" cols="30" rows="2"></textarea><br>
+                        <input class="vert" type="submit" name="submit" value="Valider" class="">
+                    </form>
+                </div>
             </div>
         </div>
     <?php
@@ -185,23 +189,25 @@
             ?>
         <h1>Etape 4 :Choisissez une quantité</h1> 
         <div class="container">
-            <div class="row creation_row">
-                <p class=''><?=$produit->get_lib_produit()?></p>
-            </div>
-            <div class="row creation_row">
-                <?php
-                    $img_prod = $produit->get_id_produit();
-                ?>
-                <img class='produit_img' src='./img/Produits/<?=$img_prod?>.jpg' alt='produit'>
-                <img class='visuel_img' src='./img/Visuel/<?=$famille->get_lib_famille()?>/<?=$image->get_id_image()?>.jpg' alt='image'>
-            </div>
-            <br>
-            <div class="row creation_row">
-                <form class="creation_form" action="validation.php" method="post">
-                    <label class="text_center" for="qte">Quantité</label><br>
-                    <input name="qte" id="qte" type="number" value=1 required/><br><br>
-                    <input class="form_submit_valider" type="submit" name="submit" value="Valider" class="">
-                </form>
+            <div class="card">
+                <div class="row creation_row">
+                    <p class=''><?=$produit->get_lib_produit()?></p>
+                </div>
+                <div class="row creation_row">
+                    <?php
+                        $img_prod = $produit->get_id_produit();
+                    ?>
+                    <img class='produit_img' src='./img/Produits/<?=$img_prod?>.jpg' alt='produit'>
+                    <img class='visuel_img' src='./img/Visuel/<?=$famille->get_lib_famille()?>/<?=$image->get_id_image()?>.jpg' alt='image'>
+                </div>
+                <br>
+                <div class="row creation_row">
+                    <form class="creation_form" action="validation.php" method="post">
+                        <label class="text_center" for="qte">Quantité</label><br>
+                        <input name="qte" id="qte" type="number" value=1 required/><br><br>
+                        <input class="vert" type="submit" name="submit" value="Valider" class="">
+                    </form>
+                </div>
             </div>
         </div>
             <?php
@@ -211,11 +217,12 @@
     }
     if($etape >= 1){
     ?>
+    <br>
     <div class="container">
         <div class="row creation_row">
             <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
                 <input type="text" name="etape" value="<?=$etape?>" hidden>
-                <input class="form-retour" type="submit" name="submit2" value="Retour à l'étape precédente">
+                <input class="doree" type="submit" name="submit2" value="Retour à l'étape precédente">
             </form>
         </div>
     </div>

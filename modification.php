@@ -63,13 +63,13 @@
         <div class="row">
             <form class="col-12 form_modif_commande" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
                 <label for="nom">NOM</label>
-                <input type="text" name="nom" id="nom" value=" <?=$commande->get_nom_commande()?>"><br>
+                <input type="text" name="nom" id="nom" value="<?=$commande->get_nom_commande()?>"><br>
                 <label for="nom">PRENOM</label>
-                <input type="text" name="prenom" id="prenom" value=" <?=$commande->get_prenom_commande()?>"><br>
+                <input type="text" name="prenom" id="prenom" value="<?=$commande->get_prenom_commande()?>"><br>
                 <label for="nom">TEL</label>
-                <input type="text" name="tel" id="tel" value=" <?=$commande->get_tel_commande()?>"><br>
+                <input type="text" name="tel" id="tel" value="<?=$commande->get_tel_commande()?>"><br>
                 <label for="nom">MAIL</label>
-                <input type="text" name="mail" id="mail" value=" <?=$commande->get_mail_commande()?>"><br>
+                <input type="text" name="mail" id="mail" value="<?=$commande->get_mail_commande()?>"><br>
                 <input type="text" name="num_commande" id="num_commande" value=" <?=$num_commande?>" hidden>
                 <input type="submit" class="regulariser" name="submit" value="Modifier" />
             </form>
@@ -98,8 +98,8 @@
 
                 $id_commande = $commande->get_id_commande();
                 echo("<td>".$produit->get_lib_produit()."</td>");
-                echo("<td><img class=' ' src='./img/Produits/".$produit->get_id_produit().".jpg' alt='produit'></td>");
-                echo("<td><img class='visuel' src='./img/Visuel/".$famille->get_lib_famille()."/".$image->get_id_image().".jpg' alt=''></td>");
+                echo("<td><img class='produit_img' src='./img/Produits/".$produit->get_id_produit().".jpg' alt='produit'></td>");
+                echo("<td><img class='visuel_img' src='./img/Visuel/".$famille->get_lib_famille()."/".$image->get_id_image().".jpg' alt=''></td>");
                 echo("<td>".$famille->get_lib_famille().$image->get_id_image()."</td>");
                 echo("<td>".$produit_image_commande->get_quantite()."</td>");
                 echo("<td>".$produit->get_prix_produit()."</td>");

@@ -71,9 +71,9 @@
                     echo("<td>".$commande->get_total_commande()."€</td>");
                     echo("<td>".$commande->get_nom_commande()."</td>");
                     echo("<td>".$commande->get_prenom_commande()."</td>");
-                    echo("<td><a class='detail' href='detail.php?num_commande=".$commande->get_num_commande()."'>Detail</a></td>");
-                    echo("<td><a class='conforme' href='administration.php?cloture=1&id_commande=".$commande->get_id_commande()."'>Conforme</a></td>");
-                    echo("<td><a class='non_conforme' href='administration.php?cloture=2&id_commande=".$commande->get_id_commande()."'>Non conforme</a></td>");
+                    echo("<td><a class='bleu' href='detail.php?num_commande=".$commande->get_num_commande()."'>Detail</a></td>");
+                    echo("<td><a class='vert' href='administration.php?cloture=1&id_commande=".$commande->get_id_commande()."'>Conforme</a></td>");
+                    echo("<td><a class='rouge' href='administration.php?cloture=2&id_commande=".$commande->get_id_commande()."'>Non conforme</a></td>");
                 echo("</tr>");
             }
         }
@@ -112,9 +112,9 @@
                     echo("<td>".$commande->get_tel_commande()."</td>");
                     echo("<td>".$commande->get_mail_commande()."</td>");
                     echo("<td>".$user->get_prenom_user()."</td>");
-                    echo("<td><a class='detail' href='detail.php?num_commande=".$commande->get_num_commande()."'>Detail</a></td>");
-                    echo("<td><a class='impression' href='impression_visuels_pdf.php?id_commande=".$commande->get_id_commande()."'>Impression des visuels</a></td>");
-                    echo("<td><a class='conforme' href='administration.php?cloture=3&id_commande=".$commande->get_id_commande()."'>Fabriquée</a></td>");
+                    echo("<td><a class='bleu' href='detail.php?num_commande=".$commande->get_num_commande()."'>Detail</a></td>");
+                    echo("<td><a class='ciel' href='impression_visuels_pdf.php?id_commande=".$commande->get_id_commande()."'>Impression des visuels</a></td>");
+                    echo("<td><a class='vert' href='administration.php?cloture=3&id_commande=".$commande->get_id_commande()."'>Fabriquée</a></td>");
 
                 echo("</tr>");
             }
@@ -154,8 +154,8 @@
                     echo("<td>".$commande->get_tel_commande()."</td>");
                     echo("<td>".$commande->get_mail_commande()."</td>");
                     echo("<td>".$user->get_prenom_user()."</td>");
-                    echo("<td><a class='detail' href='detail.php?num_commande=".$commande->get_num_commande()."'>Detail</a></td>");
-                    echo("<td><a class='regulariser' href='modification.php?&num_commande=".$commande->get_num_commande() ."'>Regulariser</a></td>");
+                    echo("<td><a class='bleu' href='detail.php?num_commande=".$commande->get_num_commande()."'>Detail</a></td>");
+                    echo("<td><a class='doree' href='modification.php?&num_commande=".$commande->get_num_commande() ."'>Regulariser</a></td>");
 
                 echo("</tr>");
             }
@@ -195,8 +195,8 @@
                     echo("<td>".$commande->get_tel_commande()."</td>");
                     echo("<td>".$commande->get_mail_commande()."</td>");
                     echo("<td>".$user->get_prenom_user()."</td>");
-                    echo("<td><a class='detail' href='detail.php?num_commande=".$commande->get_num_commande()."'>Detail</a></td>");
-                    echo("<td><a class='conforme' href='administration.php?cloture=4&id_commande=".$commande->get_id_commande()."'>Livrée</a></td>");
+                    echo("<td><a class='bleu' href='detail.php?num_commande=".$commande->get_num_commande()."'>Detail</a></td>");
+                    echo("<td><a class='vert' href='administration.php?cloture=4&id_commande=".$commande->get_id_commande()."'>Livrée</a></td>");
                 echo("</tr>");
             }
         }
@@ -207,7 +207,7 @@
     if($role == 3){
 ?>      <div class="container administration_container">
             <div class="row administration_row">
-                <a class="detail" href="administration_archive.php">Archive</a>
+                <a class="bleu" href="administration_archive.php">Archive</a>
             </div>
         </div>
 <?php 

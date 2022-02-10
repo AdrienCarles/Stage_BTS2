@@ -7,7 +7,7 @@
     $id_commande = $commande->get_id_commande();
     $produit_image_commandeDAO = new Produit_image_commandeDAO;
     $produit_image_commandes = $produit_image_commandeDAO->findall();
-
+    $erreur = 0;
     
     ?>
     <h1>Panier</h1>
@@ -43,13 +43,16 @@
                     $image = $image->find($produit_image_commande->get_id_image());
                     echo("<td>".$produit->get_lib_produit()."</td>");
                     echo("<td><img class=' ' src='./img/Produits/".$produit->get_id_produit().".jpg' alt='produit'></td>");
-                    echo("<td><img class='visuel' src='./img/Visuel/".$famille->get_lib_famille()."/".$image->get_id_image().".jpg' alt=''></td>");
+                    echo("<td><img class='visuel_img' src='./img/Visuel/".$famille->get_lib_famille()."/".$image->get_id_image().".jpg' alt=''></td>");
                     echo("<td>".$famille->get_lib_famille().$image->get_id_image()."</td>");
                     echo("<td>".$produit_image_commande->get_quantite()."</td>");
                     echo("<td>".$produit->get_prix_produit()."</td>");
                     $prix_total = $prix_total +($produit->get_prix_produit()*$produit_image_commande->get_quantite());
-                    echo("<td>".$produit_image_commande->get_message()."</td>");
-                    echo("<td><a class='non_conforme' href='suppression.php?id_produit=".$produit->get_id_produit()."&lib_famille=".$famille->get_lib_famille()."&id_image=".$image->get_id_image()."'>Supprimer</a></td>");
+                    if($produit_image_commande->get_quantite()< 0){
+                        $erreur = 1;
+                    }
+                    echo("<td>".$produit_image_commande->get_message()  ."</td>");
+                    echo("<td><a class='rouge' href='suppression.php?id_produit=".$produit->get_id_produit()."&lib_famille=".$famille->get_lib_famille()."&id_image=".$image->get_id_image()."'>Supprimer</a></td>");
                     echo("</tr>");
                 }
             }
@@ -62,8 +65,16 @@
         ?>
         </table>
         <p class='text_center'>Prix Total : <?=$_SESSION['total_commande']?>€</p>
-        <a class="conforme" href='panier.php?etape=1'>Valider la commande</a>
         <?php
+            if($_SESSION['total_commande'] > 0 && $erreur == 0){
+                ?>
+                <div class="container">
+                    <div class="row">
+                        <a class="vert" href='panier.php?etape=1'>Valider la commande</a>
+                    </div>
+                </div>
+                <?php
+            }
     }
     if ($etape == 1){
     ?>
