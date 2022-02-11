@@ -308,8 +308,6 @@ tr:hover {
 	top:1px;
 }
 
-
-
 /*navbar et menu*/
 
 .menu {
@@ -363,8 +361,15 @@ tr:hover {
 }
 /*inscription.php*/
 .inscription_row{
+  display: flex;
   justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
+.inscription_row li{
+  color: red;
+}
+
 /*connexion.php*/
 .connexion_row{
   align-items: center;

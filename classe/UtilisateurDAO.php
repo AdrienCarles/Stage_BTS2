@@ -78,5 +78,18 @@ class UtilisateurDAO extends DAO {
         die("Erreur lors de la requête SQL : " . $e->getMessage());
       }
     } // insert()
-
+    function update_mdp(Utilisateur $utilisateur) {
+      $sql = "UPDATE utilisateur SET mdp_user=:mdp_user WHERE nom_user= :nom_user";
+      $params = array(
+        ":nom_user" => $utilisateur->get_nom_user(),
+        ":mdp_user" => $utilisateur->get_mdp_user(),
+      );
+      try {
+        $sth = $this->executer($sql, $params); // On passe par la méthode de la classe mère
+        $nb = $sth->rowcount();
+      } catch (PDOException $e) {
+        throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
+      }
+      return $nb; // Retourne le nombre de mise à jour
+    } // update()
 }

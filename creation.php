@@ -215,7 +215,7 @@
                 <div class="row creation_row">
                     <form class="creation_form" action="validation.php" method="post">
                         <label class="text_center" for="qte">Quantité</label><br>
-                        <input name="qte" id="qte" type="number" value=1 required/><br><br>
+                        <input name="qte" id="qte" type="number" min="1" value=1 required/><br><br>
                         <input class="vert" type="submit" name="submit" value="Valider" class="">
                     </form>
                 </div>

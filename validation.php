@@ -15,7 +15,7 @@ if(!isset($_SESSION['qte'])){
 
 
 $etape = isset($_GET['etape']) ? $_GET['etape'] : '0';
-$date = date('Y/m/d');
+$date = date('Y-m-d H:i:s');
 
 $commandeDAO = new CommandeDAO;
 $produit_image_commandeDAO = new Produit_image_commandeDAO;
@@ -120,7 +120,7 @@ $message = isset($_SESSION['message']) ? $_SESSION['message'] : '';
         $commandeDAO->insert_commande($commande); 
         if(isset($commande)){ 
             $commandeDAO = new CommandeDAO;
-            $commande = $commandeDAO->find_max_id();
+            $commande = $commandeDAO->find_by_date_commande($date);
             $_SESSION["commande"] = $commande;  
             $id_commande = $commande->get_id_commande();
             $quantite = $_SESSION['qte'];
