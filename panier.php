@@ -16,7 +16,7 @@
             ?>    
         <div class="container">
             <div class="row">
-                <div class="col-12 panier_creation"><a href="creation.php?etape=1" class="web">Continuer mes achats</a></div>
+                <div class="col-12 panier_creation"><a href="creation.php?etape=1" class="ciel">Continuer mes achats</a></div>
                 <h2 class="col-12">Liste des produits sélectionnés</h2>
             </div>
         </div>
@@ -79,11 +79,11 @@
     if ($etape == 1){
     ?>
     <div class="container">
-        <div class="row">
-            <h2 class="col-12">Entrez vos identifiants de commandes</h2>
+        <div class="row_centrer">
+            <h2 class="">Entrez vos identifiants de commandes</h2>
         </div>
-        <div class="row">
-            <form action="bon_de_commande_pdf.php" method='post'>
+        <div class="row_centrer card">
+            <form action="commande_validation.php" method='post'>
                 <label for="nom">Nom</label><br>
                 <input type="text" name="nom"><br><br>
                 <label for="prenom">Prenom</label><br>
@@ -97,7 +97,9 @@
                 <label for="mode_paiement">Mode de paiement :</label><br>
                 <input type="radio" name="mode_paiement" id="mode_paiement" value="especes" checked>Espèces<br>
                 <input type="radio" name="mode_paiement" id="mode_paiement" value="cheque">Chèque à l'ordre de l'OCCE<br><br>
-                <input type="submit" value="Envoyer"><br><br><br>
+                <div class="row_centrer">
+                    <input class='vert' type="submit" value="Envoyer"><br>
+                </div>
             </form>
         </div>
     </div>

@@ -17,11 +17,7 @@ VALUES
 ("Décapsuleur Porte-clé","Décapsuleur","Porte-clé",2,56),
 ("Décapsuleur Magnet","Décapsuleur","Magnet",2,56);
 
-INSERT INTO `famille`(`lib_famille`,'promo_famille') 
-VALUES 
-("Héro",0),
-("Zen",0),
-("Vanlentin",1),
+²
 
 INSERT INTO `image`(`id_famille`, `id_image`) 
 VALUES 
@@ -95,7 +91,15 @@ VALUES
 INSERT INTO `utilisateur`(`nom_user`, `prenom_user`, `mdp_user`, `classe_user`, `tel_user`, `mail_user`, `id_role`) 
 VALUES 
 ("Default","Default",NULL,NULL,NULL,NULL,1),
-
+(2, 'Admin', 'Silusins', '$2y$10$TYAL4PopunuuFYWPhtf1huKpn3rXojXUaDaTi0YsW9KQVZlVM8ML6', NULL, NULL, NULL, 3),
+(3, 'Controleur', 'Controleur', '$2y$10$jYNEKOt0bDSaN/YyAfxxNOsinStZosajHPAowxb2wX5noIuTmQYhK', NULL, NULL, NULL, 2),
+(5, 'Miramond', 'Léa', '$2y$10$7vkVZWqd6rozDGZ1dUHgveThgD6a6c0Y.vx/XjBSDx3E9piqI.rCi', '', '', '', 2),
+(6, 'Ferrarese', 'Théo', '$2y$10$0iuR2PEj99HC1BCTlSybQ.HPoQe97cn1DSd.sbPaIV7n7QS6CFnXW', '', '', '', 2),
+(7, 'Maurel', 'Angelo', '$2y$10$mC9VzTmebjApzyNb35twg.QndTc3onLENaFxyNeJUOj./GRueXH8a', '', '', '', 2),
+(8, 'Dumon', 'Scyllia', '$2y$10$Uj9VHSngfGcdm35K0eh/1uldOQT/uzKoSm61GdGJMoTtKBm2dwRn2', '', '', '', 2),
+(9, 'Lefebvre', 'Enzo', '$2y$10$BynADtuJ4MRZ2y9Cl24izeN2XjLHYiKckg/2XdznOFI31vR1UNoy2', '', '', '', 2),
+(10, 'Serin', 'Matthis', '$2y$10$kZ9cnl.sQhXgU3BWLYVIOundY1iayxY3T187XijZkLZuUk9TWEz9i', '', '', '', 2),
+(11, 'Selatna', 'David', '$2y$10$ZkIyvPhuU1QsdYJytQXa6uAOoaoERIDDiMW/ynSenmRrXX1geNi4u', '', '', '', 2);
 
 
  

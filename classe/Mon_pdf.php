@@ -9,14 +9,21 @@ class Mon_pdf extends FPDF {
 
   function Footer() {
     //Variables nécessaire au footer 
-    $mode_paiement = $_SESSION['mode_paiement'];  
-    $prix = $_SESSION['total_commande']; 
+    if(isset($_SESSION['mode_paiement'],$_SESSION['total_commande'])){
+      $mode_paiement = $_SESSION['mode_paiement'];  
+      $prix = $_SESSION['total_commande']; 
+    }else{
+      $id_commande = $_GET['id_commande'];
+      $commandeDAO = new CommandeDAO;
+      $commande = $commandeDAO->find($id_commande);   
+      $mode_paiement = $commande->get_mode_paiement();  
+      $prix = $commande->get_total_commande();  
+    }
+    
     //definition des constantes date qui renvois la date du jour et EURO qui atribut le signe €
     date_default_timezone_set('Europe/Paris'); //instanciation du fuseau horaire
     $date = date('d/m/Y');
     
-
-    //  
     $this->SetY(-35);
     $this->SetFont('Arial','',12);  // Définit la police 
     $this->RoundedRect(22.5,260,50,30,5,"D");

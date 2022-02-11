@@ -50,6 +50,10 @@ a{
   text-align: center;
   text-decoration: none;
 }
+hr{
+  margin-left: 2%;
+  margin-right: 2%;
+}
 .text_center{
   text-align: center;
 }
@@ -63,9 +67,53 @@ a{
   width: fit-content;
   margin: auto;
 }
+.card_visuel{
+  border-radius: 0.5em;
+  background-color: white;
+  box-shadow: 0 0 20px rgb(0 0 0 / 20%);
+  border: 1px solid rgba(87, 15, 15, 0.125);
+  padding: 1.25rem;
+  width: 91%;
+  margin: auto;
+}
 .visuel_img{
   max-width: 250px;
   max-height: 120px;
+}
+/*tableau*/
+table, th, td {
+  border-collapse: collapse;
+  margin: auto;
+  padding: 10px;
+}
+th,td {
+  font-weight: inherit;
+  text-align:center;
+}
+tr:nth-child(odd) {
+  color: #ffffff;
+  background-color: rgb(197, 195, 195);
+}
+th {
+   background-color: grey;
+   color: white; 
+   font-size: 20px;
+} 
+td.total {
+  font-weight: bold;
+}
+.tableau_vert th{
+  background-color: #77d42a;
+  color: #000000;
+
+}
+.tableau_rouge th{
+  background-color: #fe1a00;
+  color: #ffffff;
+}
+tr:hover {
+  background-color: goldenrod;
+  color: #000000;
 }
 /*Container et colonnes*/
 .container {
@@ -84,6 +132,11 @@ a{
 .row {
   display: flex;
   flex-wrap: wrap;
+}
+.row_centrer{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 @media (min-width: 1200px){
@@ -262,7 +315,6 @@ a{
 .menu {
   background-color: #ffffff;
   display: inline-flex;
-  /*position: fixed;*/
   justify-content: space-between;
   width: 100%;
   height: 20mm;
@@ -293,6 +345,7 @@ a{
   margin-bottom: 5%;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 .img_menu{
   max-height: 15mm;
@@ -413,34 +466,4 @@ a{
   bottom: 0%;
   width: 100%;
   height: 10mm;
-}
-
-/*CSS pris suur autre exos*/
-table, th, td {
-  border-style: solid;
-  border-width: 1px;
-  border-color: black;
-  border-collapse: collapse;
-  margin: auto;
-  padding: auto;
-}
-
-th,td {
-  font-family: Verdana, Geneva, sans-serif;
-  font-size : 14px;
-  padding: 5px;
-  text-align:center;
-}
-
-th {
-   background-color: grey;
-   color: white; 
-   font-size: 20px;
-}
-
-td {
-   color: black;
-}
-td.total {
-  font-weight: bold;
 }

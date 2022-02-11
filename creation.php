@@ -114,7 +114,7 @@
             $produitDAO =New ProduitDAO;
             $produits = $produitDAO->findall(); 
             ?>
-            <div class="container produits_container">
+            <div class="container">
                 <div class="produits_container card">
                     <?php   
                     foreach($produits as $produit){
@@ -145,14 +145,25 @@
         foreach($familles as $famille){
           $id_famille = $famille->get_id_famille();
           $lib_famille = $famille->get_lib_famille();
-          echo $lib_famille."<br>";
+          ?>
+          <h3 class="text_center"><?=$lib_famille?></h3>
+          <?php 
           $images = New ImageDAO;
           $images = $images->find_by_id_famille($id_famille);
-          foreach($images AS $image){  
-            $img = $image->get_id_image();
-            echo("<a href='creation.php?etape=3&id_famille=".$id_famille."&id_image=".$img."'><img class='visuel_img' src='./img/Visuel/$lib_famille/$img.jpg' alt=''></a>");
-          }
-          echo "<hr>";
+          ?>
+          <div class="container_fluid">
+            <div class="row_centrer card_visuel">
+                <?php       
+                foreach($images AS $image){  
+                  $img = $image->get_id_image();
+                  ?>
+                  <a href='creation.php?etape=3&id_famille=<?=$id_famille?>&id_image=<?=$img?>'><img class='visuel_img' src='./img/Visuel/<?=$lib_famille."/".$img?>.jpg' alt=''></a>
+                  <?php 
+                }
+                ?>
+            </div>
+          </div>
+          <?php 
         }
     }
     // Etape 3

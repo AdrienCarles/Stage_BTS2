@@ -60,7 +60,7 @@
     <th>Nom</th>
     <th>Prenom</th>
     <th>Détail</th>
-    <th colspan="2">Action</th>
+    <th colspan="3">Action</th>
     <?php
         foreach($commandes as $commande){
             $id_statut = $commande->get_id_statut();
@@ -74,6 +74,9 @@
                     echo("<td><a class='bleu' href='detail.php?num_commande=".$commande->get_num_commande()."'>Detail</a></td>");
                     echo("<td><a class='vert' href='administration.php?cloture=1&id_commande=".$commande->get_id_commande()."'>Conforme</a></td>");
                     echo("<td><a class='rouge' href='administration.php?cloture=2&id_commande=".$commande->get_id_commande()."'>Non conforme</a></td>");
+                    if($role == 3){
+                        echo("<td><a class='ciel' href='bon_de_commande_pdf.php?id_commande=".$commande->get_id_commande()."'>Facture</a></td>");
+                    }
                 echo("</tr>");
             }
         }
@@ -82,7 +85,7 @@
 
 <h2 class="text_center">Liste des commandes controlées (statut: Conforme)</h2>
 
-<table>
+<table class="tableau_vert">
     <th>Numéro</th>
     <th>Date</th>
     <th>Prix total</th>
@@ -124,7 +127,7 @@
 
 <h2 class="text_center">Liste des commandes controlées (statut: Non conforme)</h2>
 
-<table>
+<table class="tableau_rouge">
     <th>Numéro</th>
     <th>Date</th>
     <th>Prix total</th>
