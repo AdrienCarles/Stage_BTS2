@@ -68,16 +68,16 @@
     // Point 0
     if($etape == 0 && !isset($utilisateur)){
         ?>
-        <h1>Créer votre objet personalisée</h1>
+        <h1>Créer votre objet personalisé</h1>
         <div class="container">
             <div class="card">
                 <div class="col-12"><h3 class="text_center">4 étapes</h3></div>
                 <div class="col_12"><p class="text_center">Etape 1 : Choisir son objet</p></div>
                 <div class="col_12"><p class="text_center">Etape 2 : Choisir son visuel parmis ceux proposés</p></div>
-                <div class="col_12"><p class="text_center">Etape 3 : Choisir son message personalisée (optionel)</p></div>
+                <div class="col_12"><p class="text_center">Etape 3 : Choisir son message personalisé (optionel)</p></div>
                 <div class="col-12"><p class="text_center">Etape 4 : Choisir une quantité (si pas de message)</p></div>
-                <div class="col-12"><p class="text_center attention">ATTENTION : La gestion des doublons n'est pas correctement prisent en compte de ce fait il est interdit de sélectionner deux fois la même combinaison produit image dans une commande</p></div>
-                <div class="col-12"><p class="text_center attention">Pour passer outre ce problème il faut générer deux commandes</p></div>
+                <div class="col-12"><p class="text_center attention">ATTENTION : La gestion des doublons n'est pas correctement prises en compte, de ce fait il est interdit de sélectionner deux fois la même combinaison produit image dans une commande.</p></div>
+                <div class="col-12"><p class="text_center attention">Pour passer outre ce problème il faut générer deux commandes.</p></div>
                 <div class="col_12 div_bouton_creation"><a class="vert" href='creation.php?etape=1'>C'est parti</a></div>
             </div>
         </div>
@@ -93,8 +93,8 @@
                 <a class='vert' href='creation.php?etape=1&type_commande=P'>Commande Physique</a>
             </div>
             <div class="row">
-                <div class="col-12"><p class="text_center attention">ATTENTION : La gestion des doublons n'est pas correctement prisent en compte de ce fait il est interdit de sélectionner deux fois la même combinaison produit image dans une commande</p></div>
-                <div class="col-12"><p class="text_center attention">Pour passer outre ce problème il faut générer deux commandes</p></div>
+                <div class="col-12"><p class="text_center attention">ATTENTION : La gestion des doublons n'est pas correctement prises en compte, de ce fait il est interdit de sélectionner deux fois la même combinaison produit image dans une commande.</p></div>
+                <div class="col-12"><p class="text_center attention">Pour passer outre ce problème il faut générer deux commandes.</p></div>
             </div>
         </div>
     <?php
