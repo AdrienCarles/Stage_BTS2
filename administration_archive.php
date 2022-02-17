@@ -84,7 +84,7 @@
                         echo("<td>".$commande->get_classe_commande()."</td>");
                         echo("<td>".$commande->get_tel_commande()."</td>");
                         echo("<td>".$commande->get_mail_commande()."</td>");
-                        echo("<td><a class='bleu' href='detail.php?num_commande=".$commande->get_num_commande()."'>Detail</a></td>");
+                        echo("<td><a class='bleu' href='detail.php?c=1&num_commande=".$commande->get_num_commande()."'>Detail</a></td>");
                         echo("<td><a class='ciel' href='bon_de_commande_pdf.php?id_commande=".$commande->get_id_commande()."'>Facture</a></td>");
                     echo("</tr>");
                 }

@@ -47,7 +47,7 @@
         ?>   
           <p class='menu_legende'>Catalogue<a href="catalogue.php"><img class="img_menu " src="./img/catalogue.png" alt=""></a></p>
           <p class='menu_legende'>Création<a href="creation.php"><img class="img_menu " src="./img/gear.png" alt=""></a></p>
-          <p class='menu_legende'>Connexion<a href="connexion.php"><img class="img_menu " src="./img/log-in.png" alt=""></a></p>
+          <p class='menu_legende'>Déconnexion<a href="deconnexion.php"><img class="img_menu " src="./img/deconnexion.png" alt=""></a></p>
         <?php  
       }
       if($role == 2){

@@ -1,6 +1,7 @@
 <?php
     require("header.php");
     $num_commande = isset($_GET["num_commande"]) ? $_GET["num_commande"] : '';
+    $c = $_GET['c'] ?? null;
     $commandeDAO = new CommandeDAO;
     $produit_image_commandeDAO = new Produit_image_commandeDAO;
 
@@ -10,7 +11,18 @@
     <h1>Detail de la commande <?=$commande->get_num_commande()?></h1>
     <div class="container">
         <div class="row">
-            <a class="doree" href="administration.php">Retour</a>
+            <?php 
+                if(!isset($c)){
+                    ?>
+                        <a class="doree" href="administration.php">Retour</a>
+                    <?php
+                }
+                if($c == 1){
+                    ?>
+                        <a class="doree" href="administration_archive.php">Retour</a>
+                    <?php
+                }
+            ?>
         </div>
     </div>
     <br>

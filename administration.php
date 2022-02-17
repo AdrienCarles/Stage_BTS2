@@ -215,6 +215,7 @@
         </div>
 <?php 
     }
-  require("footer.php");
+    unset($_SESSION['commande']);
+    require("footer.php");
 ?>
 

@@ -104,7 +104,7 @@
                 echo("<td>".$produit_image_commande->get_quantite()."</td>");
                 echo("<td>".$produit->get_prix_produit()."</td>");
                 echo("<td>".$produit_image_commande->get_message()."</td>");
-                echo("<td><a class='rouge' href='suppression.php?c=1&id_produit=".$produit->get_id_produit()."&lib_famille=".$famille->get_lib_famille()."&id_image=".$image->get_id_image()."'>Supprimer</a></td>");
+                echo("<td><a class='rouge' href='suppression.php?c=1&id_produit=".$produit->get_id_produit()."&lib_famille=".$famille->get_lib_famille()."&id_image=".$image->get_id_image()."&prix=".$produit->get_prix_produit()*$produit_image_commande->get_quantite()."'>Supprimer</a></td>");
                 echo("</tr>");
             }
         ?>
