@@ -91,7 +91,7 @@ th,td {
   text-align:center;
 }
 tr:nth-child(odd) {
-  color: #ffffff;
+  color: #000000;
   background-color: rgb(197, 195, 195);
 }
 th {
@@ -105,11 +105,18 @@ td.total {
 .tableau_vert th{
   background-color: #77d42a;
   color: #000000;
-
 }
 .tableau_rouge th{
   background-color: #fe1a00;
   color: #ffffff;
+}
+.tableau_bleu th{
+  background-color: #3d94f6;
+  color: #ffffff;
+}
+.tableau_pomme th{
+  background-color: #b8e356;
+  color: #000000;
 }
 tr:hover {
   background-color: goldenrod;
@@ -307,7 +314,30 @@ tr:hover {
 	position:relative;
 	top:1px;
 }
-
+.pomme {
+	box-shadow:inset 0px 1px 0px 0px #d9fbbe;
+	background:linear-gradient(to bottom, #b8e356 5%, #a5cc52 100%);
+	background-color:#b8e356;
+	border-radius:6px;
+	border:1px solid #83c41a;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #86ae47;
+}
+.pomme:hover {
+	background:linear-gradient(to bottom, #a5cc52 5%, #b8e356 100%);
+	background-color:#a5cc52;
+}
+.pomme:active {
+	position:relative;
+	top:1px;
+}
 /*navbar et menu*/
 
 .menu {

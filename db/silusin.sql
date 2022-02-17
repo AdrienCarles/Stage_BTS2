@@ -79,7 +79,7 @@ CREATE TABLE utilisateur(
 CREATE TABLE commande(
    id_commande INT NOT NULL UNIQUE AUTO_INCREMENT,
    num_commande VARCHAR(500),
-   date_commande DATE,
+   date_commande DATETIME,
    total_commande FLOAT,
    mode_paiement VARCHAR(500),
    nom_commande VARCHAR(500),
@@ -89,7 +89,7 @@ CREATE TABLE commande(
    mail_commande VARCHAR(500),
    id_user INT NOT NULL,
    id_statut INT NOT NULL,
-   id_user_controleur INT NOT NULL,
+   id_user_controleur INT,
    PRIMARY KEY(Id_commande),
    FOREIGN KEY(Id_user) REFERENCES utilisateur(Id_user),
    FOREIGN KEY(Id_statut) REFERENCES statut(Id_statut),

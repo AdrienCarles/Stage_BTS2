@@ -27,20 +27,18 @@
         $produitDAO = new ProduitDAO;
         $familleDAO = new FamilleDAO;
         $produit = $produitDAO->find($produit_image_commande->get_id_produit());
-        $diametre = $produit->get_diametre_produit()+1;
+        $diametre = $produit->get_diametre_produit()+2;
         $famille = $familleDAO->find($produit_image_commande->get_id_famille());
         $chemin = "./img/Visuel/".$famille->get_lib_famille()."/".$produit_image_commande->get_id_image().".jpg";
         $quantite = $produit_image_commande->get_quantite();
         for($quantite; $quantite > 0; $quantite--){
-            $diametre_x = $diametre_x+$diametre;
-            if($x < 140){
+            if($x < 150){
                 $pdf->Image($chemin,$x,$y,$diametre,$diametre);
                 $x = $x+$diametre+10;
             }
-            if($x > 140){
+            if($x > 150){
                 $y = $y+100;
                 $x = 10;
-                $diametre_x = 0;
                 $pdf->SetXY($x,$y);
                 if($y > 214){
                     $pdf->AddPage(); // Crée une nouvelle page

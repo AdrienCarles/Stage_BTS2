@@ -14,6 +14,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Les Silusins</title>
+  <link rel="icon" type="./img/x-icon" href="./img/favicon.ico">
   <link rel="stylesheet" type="text/css" href="css/styles.css" />
 </head>
 <body>
@@ -42,6 +43,13 @@
       <?php
     }else{
       $role = $_SESSION['utilisateur']->get_id_role();
+      if($role == 1){
+        ?>   
+          <p class='menu_legende'>Catalogue<a href="catalogue.php"><img class="img_menu " src="./img/catalogue.png" alt=""></a></p>
+          <p class='menu_legende'>Création<a href="creation.php"><img class="img_menu " src="./img/gear.png" alt=""></a></p>
+          <p class='menu_legende'>Connexion<a href="connexion.php"><img class="img_menu " src="./img/log-in.png" alt=""></a></p>
+        <?php  
+      }
       if($role == 2){
       ?>   
           <p class='menu_legende'>Administration<a href="administration.php"><img class="img_menu " src="./img/book.png" alt=""></a></p>

@@ -53,7 +53,7 @@
 
 <h2 class="text_center">Liste des commandes validées (statut: Validée)</h2>
 
-<table>
+<table class="tableau_bleu">
     <th>Numéro</th>
     <th>Date</th>
     <th>Prix total</th>
@@ -117,7 +117,7 @@
                     echo("<td>".$user->get_prenom_user()."</td>");
                     echo("<td><a class='bleu' href='detail.php?num_commande=".$commande->get_num_commande()."'>Detail</a></td>");
                     echo("<td><a class='ciel' href='impression_visuels_pdf.php?id_commande=".$commande->get_id_commande()."'>Impression des visuels</a></td>");
-                    echo("<td><a class='vert' href='administration.php?cloture=3&id_commande=".$commande->get_id_commande()."'>Fabriquée</a></td>");
+                    echo("<td><a class='pomme' href='administration.php?cloture=3&id_commande=".$commande->get_id_commande()."'>Fabriquée</a></td>");
 
                 echo("</tr>");
             }
@@ -168,7 +168,7 @@
 
 <h2 class="text_center">Liste des commandes fabriquées (statut: Fabriquée)</h2>
 
-<table>
+<table class="tableau_pomme">
     <th>Numéro</th>
     <th>Date</th>
     <th>Prix total</th>

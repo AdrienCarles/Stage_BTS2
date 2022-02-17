@@ -55,6 +55,19 @@ class ImageDAO extends DAO {
     return $image;
   } // function find
 
+  function count_img_by_famille($id_famille){
+    $sql = "SELECT * FROM image WHERE id_famille = :id_famille";
+    try {
+      $params = array(":id_famille" => $id_famille);
+      $sth = $this->executer($sql, $params);
+      $row = $sth->fetch(PDO::FETCH_ASSOC);
+      $nb = $sth->rowcount();
+    } catch (PDOException $e) {
+      die("Erreur lors de la requête SQL : " . $e->getMessage());
+    }
+    return $nb;
+  }
+
   function insert(Image $image){
       $sql = "INSERT INTO `image`(`id_famille`, `id_image`) 
               VALUES 
@@ -69,4 +82,17 @@ class ImageDAO extends DAO {
         die("Erreur lors de la requête SQL : " . $e->getMessage());
       }
   } // insert()
+
+  public function delete_by_famille($id_famille) {
+    $sql = "DELETE FROM image where id_famille=:id_famille";
+    $params = array(
+      ":id_famille" => $id_famille
+    );
+    try {
+      $sth = $this->executer($sql, $params); // On passe par la méthode de la classe mère
+      $nb = $sth->rowcount();
+    } catch (PDOException $e) {
+    throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
+    }
+  } // delete()
 }

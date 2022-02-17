@@ -42,6 +42,10 @@
     {
         $this->lib_famille = $lib_famille;
     }
+    public function set_promo_famille($promo_famille)
+    {
+        $this->promo_famille = $promo_famille;
+    }
 
     /**
     * Getter
@@ -53,5 +57,9 @@
     public function get_lib_famille()
     {
         return $this->lib_famille;
+    }
+    public function get_promo_famille()
+    {
+        return $this->promo_famille;
     }
 }

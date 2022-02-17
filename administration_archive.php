@@ -69,7 +69,7 @@
         <th>Classe</th>
         <th>Tel</th>
         <th>Mail</th>
-        <th>Détail</th>
+        <th colspan="2">Détail</th>
         <?php
             foreach($commandes as $commande){
                 $id_statut = $commande->get_id_statut();
@@ -85,6 +85,7 @@
                         echo("<td>".$commande->get_tel_commande()."</td>");
                         echo("<td>".$commande->get_mail_commande()."</td>");
                         echo("<td><a class='bleu' href='detail.php?num_commande=".$commande->get_num_commande()."'>Detail</a></td>");
+                        echo("<td><a class='ciel' href='bon_de_commande_pdf.php?id_commande=".$commande->get_id_commande()."'>Facture</a></td>");
                     echo("</tr>");
                 }
             }

@@ -46,7 +46,7 @@
         foreach($images AS $image){  
           $img = $image->get_id_image();
           ?>
-            <img class='visuel_img' src='./img/Visuel/<?=$lib_famille."/".$img?>.jpg' alt=''>
+            <img class='visuel_img' src='./img/Visuel/<?=$lib_famille."/".$img?>.jpg' alt='visuel'>
           <?php 
         }
         ?>
