@@ -8,6 +8,7 @@ La solution permet aussi de générer des PDF contenants les visuels demandé po
 
 Lancer le serveur local
 -Installation de la base de donnée 
+
 dans mySQL 
 lancer le script silusin.sql contenu dans le dossier db
 dans la base nouvellement créé lancer le script peuplement.sql dans le donnsier db EN DESACTIVANT LA VERIFICATION DES CLES ETRANGERES
