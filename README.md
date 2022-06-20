@@ -13,6 +13,6 @@ lancer le script silusin.sql contenu dans le dossier db
 dans la base nouvellement créé lancer le script peuplement.sql dans le donnsier db EN DESACTIVANT LA VERIFICATION DES CLES ETRANGERES
 
 -Connextion 
-La solution a 3 profile
+La solution a 3 profiles
 L'utilisateur (connecté par défaut)
 le controleur dont les dientifiants de connextion sont 
